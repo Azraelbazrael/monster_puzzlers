@@ -48,6 +48,60 @@ layout_mode = 2
 [node name="Recipe_button2" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory/MarginContainer/Inventory_Slots" instance=ExtResource("3_cyydn")]
 layout_mode = 2
 
+[node name="Recipe_button3" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory/MarginContainer/Inventory_Slots" instance=ExtResource("3_cyydn")]
+layout_mode = 2
+
+[node name="Recipe_button4" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory/MarginContainer/Inventory_Slots" instance=ExtResource("3_cyydn")]
+layout_mode = 2
+
+[node name="Recipe_button5" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory/MarginContainer/Inventory_Slots" instance=ExtResource("3_cyydn")]
+layout_mode = 2
+
+[node name="Recipe_button6" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory/MarginContainer/Inventory_Slots" instance=ExtResource("3_cyydn")]
+layout_mode = 2
+
+[node name="Recipe_button7" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory/MarginContainer/Inventory_Slots" instance=ExtResource("3_cyydn")]
+layout_mode = 2
+
+[node name="Recipe_button8" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory/MarginContainer/Inventory_Slots" instance=ExtResource("3_cyydn")]
+layout_mode = 2
+
+[node name="Recipe_button9" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory/MarginContainer/Inventory_Slots" instance=ExtResource("3_cyydn")]
+layout_mode = 2
+
+[node name="Recipe_button10" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory/MarginContainer/Inventory_Slots" instance=ExtResource("3_cyydn")]
+layout_mode = 2
+
+[node name="Recipe_button11" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory/MarginContainer/Inventory_Slots" instance=ExtResource("3_cyydn")]
+layout_mode = 2
+
+[node name="Recipe_button12" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory/MarginContainer/Inventory_Slots" instance=ExtResource("3_cyydn")]
+layout_mode = 2
+
+[node name="Recipe_button13" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory/MarginContainer/Inventory_Slots" instance=ExtResource("3_cyydn")]
+layout_mode = 2
+
+[node name="Recipe_button14" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory/MarginContainer/Inventory_Slots" instance=ExtResource("3_cyydn")]
+layout_mode = 2
+
+[node name="Recipe_button15" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory/MarginContainer/Inventory_Slots" instance=ExtResource("3_cyydn")]
+layout_mode = 2
+
+[node name="Recipe_button16" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory/MarginContainer/Inventory_Slots" instance=ExtResource("3_cyydn")]
+layout_mode = 2
+
+[node name="Recipe_button17" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory/MarginContainer/Inventory_Slots" instance=ExtResource("3_cyydn")]
+layout_mode = 2
+
+[node name="Recipe_button18" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory/MarginContainer/Inventory_Slots" instance=ExtResource("3_cyydn")]
+layout_mode = 2
+
+[node name="Recipe_button19" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory/MarginContainer/Inventory_Slots" instance=ExtResource("3_cyydn")]
+layout_mode = 2
+
+[node name="Recipe_button20" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory/MarginContainer/Inventory_Slots" instance=ExtResource("3_cyydn")]
+layout_mode = 2
+
 [node name="RecipeContainers" type="HBoxContainer" parent="PanelContainer/RecipeMarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
