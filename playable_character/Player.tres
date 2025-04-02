@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Character_stats" load_steps=3 format=3 uid="uid://dx84dtkbq66da"]
+
+[ext_resource type="Texture2D" uid="uid://bwf71r213qbk4" path="res://playable_character/icon.png" id="1_mneb5"]
+[ext_resource type="Script" uid="uid://brxclei3yhw1o" path="res://resources/character_stats.gd" id="1_rhevn"]
+
+[resource]
+script = ExtResource("1_rhevn")
+max_stamina = 100
+type = 0
+max_health = 100
+art = ExtResource("1_mneb5")

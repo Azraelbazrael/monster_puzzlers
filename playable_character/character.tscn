@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://clxu3pvvi21e8"]
+
+[ext_resource type="Script" uid="uid://cna6q07tdh7om" path="res://playable_character/character.gd" id="1_yq3e2"]
+[ext_resource type="Resource" uid="uid://dx84dtkbq66da" path="res://playable_character/Player.tres" id="2_6inmr"]
+[ext_resource type="Texture2D" uid="uid://bwf71r213qbk4" path="res://playable_character/icon.png" id="2_dm4l0"]
+[ext_resource type="PackedScene" uid="uid://7wtngh11pph" path="res://UI_layers/floating_text.tscn" id="3_gpoms"]
+[ext_resource type="PackedScene" uid="uid://bn3g6m1yo6o5s" path="res://battle/weapon.tscn" id="5_h2glg"]
+[ext_resource type="PackedScene" uid="uid://cfqed3nxels06" path="res://UI_layers/hud_elements.tscn" id="5_jqy6k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xco0j"]
+size = Vector2(50, 51)
+
+[sub_resource type="Animation" id="Animation_cvd6m"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_mvwir"]
+resource_name = "generic_attack"
+length = 0.5
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f4jrc"]
+_data = {
+&"RESET": SubResource("Animation_cvd6m"),
+&"generic_attack": SubResource("Animation_mvwir")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gpoms"]
+size = Vector2(64.5, 68)
+
+[node name="Character" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_yq3e2")
+damage_label = ExtResource("3_gpoms")
+character_stats = ExtResource("2_6inmr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, 0)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_dm4l0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -0.5)
+shape = SubResource("RectangleShape2D_xco0j")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD_elements" parent="CanvasLayer" instance=ExtResource("5_jqy6k")]
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+metadata/_edit_lock_ = true
+
+[node name="PlayerFX" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_f4jrc")
+}
+
+[node name="right_pos" type="Marker2D" parent="."]
+position = Vector2(34, 0)
+
+[node name="left_pos" type="Marker2D" parent="."]
+position = Vector2(-35, 0)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-1.25, -2)
+shape = SubResource("RectangleShape2D_gpoms")
+
+[node name="Weapon" parent="." instance=ExtResource("5_h2glg")]
+
+[editable path="CanvasLayer/HUD_elements"]
+[editable path="CanvasLayer/HUD_elements/recipe_canvas"]
+[editable path="CanvasLayer/HUD_elements/recipe_canvas/PanelContainer/RecipeMarginContainer/VBoxContainer/RecipeContainers/MarginContainer/Craft_grid/craft_slot2"]
+[editable path="CanvasLayer/HUD_elements/recipe_canvas/PanelContainer/RecipeMarginContainer/VBoxContainer/RecipeContainers/MarginContainer/Craft_grid/craft_slot"]

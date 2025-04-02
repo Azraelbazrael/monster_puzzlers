@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Stats" load_steps=3 format=3 uid="uid://cp34rnc1vqdut"]
+
+[ext_resource type="Texture2D" uid="uid://bm1xtdmdl2f3u" path="res://assets/evil_rock.png" id="1_di5lh"]
+[ext_resource type="Script" uid="uid://bo3ep8hogvh5p" path="res://resources/stats.gd" id="1_uumh4"]
+
+[resource]
+script = ExtResource("1_uumh4")
+type = 2
+max_health = 45
+art = ExtResource("1_di5lh")
+damage = 0.0
+metadata/_custom_type_script = "uid://bo3ep8hogvh5p"

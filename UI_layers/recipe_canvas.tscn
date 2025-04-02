@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 uid="uid://c1vjw7bfp0mmc"]
+
+[ext_resource type="Script" uid="uid://b4pgwa8e71eki" path="res://UI_layers/recipe_margin_container.gd" id="1_cyydn"]
+[ext_resource type="Script" uid="uid://b2cd2ehjeh0rw" path="res://UI_layers/inventory_slots.gd" id="2_ctkkk"]
+[ext_resource type="PackedScene" uid="uid://bn7e8uvaoxbno" path="res://UI_layers/recipe_button.tscn" id="3_cyydn"]
+[ext_resource type="PackedScene" uid="uid://bxjh225dp1o" path="res://UI_layers/slot.tscn" id="3_eamts"]
+[ext_resource type="Script" uid="uid://t3v8uxoi2ysi" path="res://UI_layers/recipe.gd" id="4_kvctr"]
+[ext_resource type="Script" uid="uid://b6uapsixf6vx" path="res://UI_layers/craft_slot.gd" id="6_22868"]
+
+[node name="recipe_canvas" type="CanvasLayer"]
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.0798611
+anchor_right = 0.0798611
+offset_left = 390.0
+offset_top = 48.0
+offset_right = 1098.0
+offset_bottom = 560.0
+metadata/_edit_use_anchors_ = true
+
+[node name="RecipeMarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+script = ExtResource("1_cyydn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/RecipeMarginContainer"]
+layout_mode = 2
+
+[node name="Inventory" type="VBoxContainer" parent="PanelContainer/RecipeMarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 17
+theme_override_constants/margin_right = 21
+
+[node name="Inventory_Slots" type="GridContainer" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+columns = 5
+script = ExtResource("2_ctkkk")
+
+[node name="Recipe_button" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory/MarginContainer/Inventory_Slots" instance=ExtResource("3_cyydn")]
+layout_mode = 2
+
+[node name="Recipe_button2" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/Inventory/MarginContainer/Inventory_Slots" instance=ExtResource("3_cyydn")]
+layout_mode = 2
+
+[node name="RecipeContainers" type="HBoxContainer" parent="PanelContainer/RecipeMarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/RecipeContainers"]
+layout_mode = 2
+theme_override_constants/margin_right = 13
+
+[node name="Craft_grid" type="GridContainer" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/RecipeContainers/MarginContainer" node_paths=PackedStringArray("craft")]
+layout_mode = 2
+columns = 4
+script = ExtResource("4_kvctr")
+craft = NodePath("craft")
+
+[node name="craft_slot2" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/RecipeContainers/MarginContainer/Craft_grid" instance=ExtResource("3_eamts")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("6_22868")
+
+[node name="craft_slot" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/RecipeContainers/MarginContainer/Craft_grid" instance=ExtResource("3_eamts")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+script = ExtResource("6_22868")
+
+[node name="craft" type="Button" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/RecipeContainers/MarginContainer/Craft_grid"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 0
+disabled = true
+
+[node name="Label" type="Label" parent="PanelContainer/RecipeMarginContainer/VBoxContainer/RecipeContainers/MarginContainer/Craft_grid/craft"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 14
+text = "craft"
+
+[editable path="PanelContainer/RecipeMarginContainer/VBoxContainer/RecipeContainers/MarginContainer/Craft_grid/craft_slot2"]
+[editable path="PanelContainer/RecipeMarginContainer/VBoxContainer/RecipeContainers/MarginContainer/Craft_grid/craft_slot"]

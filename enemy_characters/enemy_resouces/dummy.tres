@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Stats" load_steps=3 format=3 uid="uid://2s6wkvulb4pv"]
+
+[ext_resource type="Texture2D" uid="uid://dovasmx4yak07" path="res://enemy_characters/dummy_texture.png" id="1_jmp06"]
+[ext_resource type="Script" uid="uid://bo3ep8hogvh5p" path="res://resources/stats.gd" id="2_ywneb"]
+
+[resource]
+script = ExtResource("2_ywneb")
+type = 1
+max_health = 50
+art = ExtResource("1_jmp06")

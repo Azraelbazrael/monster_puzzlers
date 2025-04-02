@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://ula61jmk21mg"]
+
+[ext_resource type="Script" uid="uid://c0ll4mk41pqsi" path="res://item_test_scenes/evil_rock.gd" id="1_181eq"]
+[ext_resource type="Texture2D" uid="uid://bm1xtdmdl2f3u" path="res://assets/evil_rock.png" id="1_ecrf2"]
+[ext_resource type="Resource" uid="uid://cp34rnc1vqdut" path="res://resources/interactables/evil_rock.tres" id="2_dcc5t"]
+[ext_resource type="PackedScene" uid="uid://7wtngh11pph" path="res://UI_layers/floating_text.tscn" id="3_64spj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3fbr4"]
+size = Vector2(27, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4j5ma"]
+
+[node name="Evil_rock" type="RigidBody2D"]
+script = ExtResource("1_181eq")
+stats = ExtResource("2_dcc5t")
+damage_label = ExtResource("3_64spj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_3fbr4")
+
+[node name="rock_sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_ecrf2")
+
+[node name="rock_range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rock_range"]
+shape = SubResource("RectangleShape2D_4j5ma")

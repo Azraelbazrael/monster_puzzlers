@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfcmdo4rjimke"]
+
+[ext_resource type="Script" uid="uid://decr12pcq5vju" path="res://enemy_characters/enemy_character.gd" id="1_fq3j4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eytep"]
+size = Vector2(50, 51)
+
+[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
+script = ExtResource("1_fq3j4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, 0)
+scale = Vector2(0.8, 0.8)
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -0.5)
+shape = SubResource("RectangleShape2D_eytep")
+
+[connection signal="dead_enemy" from="." to="." method="_on_dead_enemy"]

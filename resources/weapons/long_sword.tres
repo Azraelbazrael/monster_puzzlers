@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Weapon_resource" load_steps=5 format=3 uid="uid://bgrwditf7ugmo"]
+
+[ext_resource type="Texture2D" uid="uid://rj3x6nv5sus" path="res://resources/weapons/Weapon Pack/weapon_27.png" id="1_gf1bc"]
+[ext_resource type="Script" uid="uid://cxvvvlfvh3xbb" path="res://resources/weapons.gd" id="1_ua68t"]
+[ext_resource type="Script" uid="uid://dbx1n0k0or8s4" path="res://resources/items.gd" id="2_frsgo"]
+[ext_resource type="Resource" uid="uid://cfd24cum2rx4o" path="res://resources/weapons/short_sword.tres" id="3_1do6e"]
+
+[resource]
+script = ExtResource("1_ua68t")
+id = "Longsword"
+cost = 20
+damage = 20.0
+weapon_type = 0
+recipe = Array[ExtResource("2_frsgo")]([ExtResource("3_1do6e"), ExtResource("3_1do6e")])
+rock_damage = 5.0
+type = 2
+art = ExtResource("1_gf1bc")
+name = "Longsword"
+stackable = true
+max_stack = 0
+animation = "long_sword"
+item_desc = "Longsword"

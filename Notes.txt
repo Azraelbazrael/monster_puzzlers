@@ -1,0 +1,7 @@
+3 Broad steps
+-generate rooms
+-generate corridors
+-turn that into a tile map to walk around on
+
+a "room" is a rectangular space for a player to walk around in
+^ create a "room scene in which to instance many times.

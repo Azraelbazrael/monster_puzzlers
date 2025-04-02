@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxjh225dp1o"]
+
+[ext_resource type="Script" uid="uid://dgld3rspi14u3" path="res://UI_layers/slot.gd" id="1_ahbps"]
+
+[node name="Slot" type="PanelContainer" node_paths=PackedStringArray("texture_rect") groups=["Slot"]]
+custom_minimum_size = Vector2(40, 40)
+mouse_filter = 1
+script = ExtResource("1_ahbps")
+texture_rect = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Weapon_resource" load_steps=6 format=3 uid="uid://1tswto083w7i"]
+
+[ext_resource type="Script" uid="uid://dbx1n0k0or8s4" path="res://resources/items.gd" id="1_axwog"]
+[ext_resource type="Texture2D" uid="uid://dkydegpxwo6dv" path="res://assets/pickaxe.png" id="1_xgj7u"]
+[ext_resource type="Script" uid="uid://cxvvvlfvh3xbb" path="res://resources/weapons.gd" id="2_xgfdf"]
+[ext_resource type="Resource" uid="uid://cfd24cum2rx4o" path="res://resources/weapons/short_sword.tres" id="3_erord"]
+[ext_resource type="Resource" uid="uid://ca7rvn34u6t1c" path="res://resources/weapons/scythe.tres" id="4_1ra5k"]
+
+[resource]
+script = ExtResource("2_xgfdf")
+id = "Pickaxe"
+cost = 5
+damage = 15.0
+weapon_type = 0
+recipe = Array[ExtResource("1_axwog")]([ExtResource("3_erord"), ExtResource("4_1ra5k")])
+rock_damage = 30.0
+type = 1
+art = ExtResource("1_xgj7u")
+name = "Pickaxe"
+stackable = true
+max_stack = 2
+animation = "short_sword"
+item_desc = ""
+metadata/_custom_type_script = "uid://cxvvvlfvh3xbb"

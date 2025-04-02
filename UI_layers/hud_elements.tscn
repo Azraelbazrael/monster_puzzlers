@@ -1,0 +1,272 @@
+[gd_scene load_steps=9 format=3 uid="uid://cfqed3nxels06"]
+
+[ext_resource type="PackedScene" uid="uid://bxjh225dp1o" path="res://UI_layers/slot.tscn" id="1_8nd76"]
+[ext_resource type="Script" uid="uid://cyvei8l5lmjw4" path="res://UI_layers/hud_elements.gd" id="1_qa41y"]
+[ext_resource type="Script" uid="uid://b2cd2ehjeh0rw" path="res://UI_layers/inventory_slots.gd" id="1_v36sh"]
+[ext_resource type="Texture2D" uid="uid://ih6cudu5e0cc" path="res://assets/bar_under.png" id="2_bfbvt"]
+[ext_resource type="Script" uid="uid://d3f2jrlfybdpi" path="res://UI_layers/player_inventory.gd" id="3_3mshm"]
+[ext_resource type="Texture2D" uid="uid://c4nau48rs403q" path="res://assets/bar_progress.png" id="3_8qdjm"]
+[ext_resource type="Texture2D" uid="uid://db460ch2parqg" path="res://assets/bar_over_asset.png" id="4_5gaxu"]
+[ext_resource type="PackedScene" uid="uid://c1vjw7bfp0mmc" path="res://UI_layers/recipe_canvas.tscn" id="5_hgqje"]
+
+[node name="HUD_elements" type="VBoxContainer" node_paths=PackedStringArray("stam_bar", "hp_bar", "min_sp", "max_sp", "min_hp", "max_hp")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 20.0
+offset_right = -47.0
+offset_bottom = -32.0
+grow_vertical = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 0
+script = ExtResource("1_qa41y")
+stam_bar = NodePath("TopContainer/VboxContainer/Stam_Container/stam_bar")
+hp_bar = NodePath("TopContainer/VboxContainer/HP_Container/VBoxContainer/HBoxContainer/NinePatchRect/hp_bar")
+min_sp = NodePath("TopContainer/VboxContainer/Stam_Container/stam_bar/HBoxContainer/min_sp")
+max_sp = NodePath("TopContainer/VboxContainer/Stam_Container/stam_bar/HBoxContainer/max_sp")
+min_hp = NodePath("TopContainer/VboxContainer/HP_Container/VBoxContainer/HBoxContainer/NinePatchRect/hp_bar/HBoxContainer/min_hp")
+max_hp = NodePath("TopContainer/VboxContainer/HP_Container/VBoxContainer/HBoxContainer/NinePatchRect/hp_bar/HBoxContainer/max_hp")
+metadata/_edit_use_anchors_ = true
+
+[node name="TopContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="VboxContainer" type="HBoxContainer" parent="TopContainer"]
+layout_mode = 2
+
+[node name="HP_Container" type="MarginContainer" parent="TopContainer/VboxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TopContainer/VboxContainer/HP_Container"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_stretch_ratio = 0.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopContainer/VboxContainer/HP_Container/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="TopContainer/VboxContainer/HP_Container/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="hp_bar" type="TextureProgressBar" parent="TopContainer/VboxContainer/HP_Container/VBoxContainer/HBoxContainer/NinePatchRect"]
+layout_mode = 2
+offset_left = -6.0
+offset_top = 4.0
+offset_right = 337.0
+offset_bottom = 55.0
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_bfbvt")
+texture_progress = ExtResource("4_5gaxu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopContainer/VboxContainer/HP_Container/VBoxContainer/HBoxContainer/NinePatchRect/hp_bar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.5
+offset_top = -34.5
+offset_right = 110.5
+offset_bottom = 34.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="TopContainer/VboxContainer/HP_Container/VBoxContainer/HBoxContainer/NinePatchRect/hp_bar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+text = "HP:"
+
+[node name="min_hp" type="Label" parent="TopContainer/VboxContainer/HP_Container/VBoxContainer/HBoxContainer/NinePatchRect/hp_bar/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "???"
+
+[node name="slash" type="Label" parent="TopContainer/VboxContainer/HP_Container/VBoxContainer/HBoxContainer/NinePatchRect/hp_bar/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "/"
+
+[node name="max_hp" type="Label" parent="TopContainer/VboxContainer/HP_Container/VBoxContainer/HBoxContainer/NinePatchRect/hp_bar/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "???"
+
+[node name="Stam_Container" type="NinePatchRect" parent="TopContainer/VboxContainer"]
+layout_mode = 2
+
+[node name="stam_bar" type="TextureProgressBar" parent="TopContainer/VboxContainer/Stam_Container"]
+layout_mode = 2
+offset_left = -11.0
+offset_top = 69.0
+offset_right = 332.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_bfbvt")
+texture_progress = ExtResource("3_8qdjm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopContainer/VboxContainer/Stam_Container/stam_bar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.5
+offset_top = -19.5
+offset_right = 69.5
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="TopContainer/VboxContainer/Stam_Container/stam_bar/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "SP:"
+
+[node name="min_sp" type="Label" parent="TopContainer/VboxContainer/Stam_Container/stam_bar/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "???"
+
+[node name="slash" type="Label" parent="TopContainer/VboxContainer/Stam_Container/stam_bar/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "/"
+
+[node name="max_sp" type="Label" parent="TopContainer/VboxContainer/Stam_Container/stam_bar/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "???"
+
+[node name="recipe_canvas" parent="." instance=ExtResource("5_hgqje")]
+visible = false
+
+[node name="PanelContainer" parent="recipe_canvas" index="0"]
+anchor_left = 0.03125
+anchor_top = -0.0401235
+anchor_right = 0.03125
+anchor_bottom = -0.0401235
+
+[node name="BottomContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 360
+metadata/_edit_lock_ = true
+
+[node name="VboxContainer" type="HBoxContainer" parent="BottomContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomContainer/VboxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_constants/margin_right = 50
+
+[node name="Inventory" type="Panel" parent="BottomContainer/VboxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.87
+
+[node name="Slot_Container" type="MarginContainer" parent="BottomContainer/VboxContainer/MarginContainer/Inventory"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -218.0
+offset_top = -40.0
+offset_right = 218.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Inventory_Slots" type="GridContainer" parent="BottomContainer/VboxContainer/MarginContainer/Inventory/Slot_Container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 20
+script = ExtResource("1_v36sh")
+
+[node name="Slot" parent="BottomContainer/VboxContainer/MarginContainer/Inventory/Slot_Container/Inventory_Slots" instance=ExtResource("1_8nd76")]
+layout_mode = 2
+
+[node name="Slot2" parent="BottomContainer/VboxContainer/MarginContainer/Inventory/Slot_Container/Inventory_Slots" instance=ExtResource("1_8nd76")]
+layout_mode = 2
+
+[node name="Slot3" parent="BottomContainer/VboxContainer/MarginContainer/Inventory/Slot_Container/Inventory_Slots" instance=ExtResource("1_8nd76")]
+layout_mode = 2
+
+[node name="Slot4" parent="BottomContainer/VboxContainer/MarginContainer/Inventory/Slot_Container/Inventory_Slots" instance=ExtResource("1_8nd76")]
+layout_mode = 2
+
+[node name="Slot5" parent="BottomContainer/VboxContainer/MarginContainer/Inventory/Slot_Container/Inventory_Slots" instance=ExtResource("1_8nd76")]
+layout_mode = 2
+
+[node name="Slot6" parent="BottomContainer/VboxContainer/MarginContainer/Inventory/Slot_Container/Inventory_Slots" instance=ExtResource("1_8nd76")]
+layout_mode = 2
+
+[node name="Slot7" parent="BottomContainer/VboxContainer/MarginContainer/Inventory/Slot_Container/Inventory_Slots" instance=ExtResource("1_8nd76")]
+layout_mode = 2
+
+[node name="Slot8" parent="BottomContainer/VboxContainer/MarginContainer/Inventory/Slot_Container/Inventory_Slots" instance=ExtResource("1_8nd76")]
+layout_mode = 2
+
+[node name="Slot9" parent="BottomContainer/VboxContainer/MarginContainer/Inventory/Slot_Container/Inventory_Slots" instance=ExtResource("1_8nd76")]
+layout_mode = 2
+
+[node name="Slot10" parent="BottomContainer/VboxContainer/MarginContainer/Inventory/Slot_Container/Inventory_Slots" instance=ExtResource("1_8nd76")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="BottomContainer/VboxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 8
+
+[node name="Panel" type="Panel" parent="BottomContainer/VboxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomContainer/VboxContainer/MarginContainer2/Panel"]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 10.0
+offset_right = 92.0
+offset_bottom = 50.0
+
+[node name="Player_inventory" type="GridContainer" parent="BottomContainer/VboxContainer/MarginContainer2/Panel/MarginContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 4
+columns = 2
+script = ExtResource("3_3mshm")
+
+[node name="Slot" parent="BottomContainer/VboxContainer/MarginContainer2/Panel/MarginContainer/Player_inventory" instance=ExtResource("1_8nd76")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 2
+
+[node name="inv_button" type="Button" parent="BottomContainer/VboxContainer/MarginContainer2/Panel/MarginContainer/Player_inventory"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "bag"
+
+[connection signal="pressed" from="BottomContainer/VboxContainer/MarginContainer2/Panel/MarginContainer/Player_inventory/inv_button" to="." method="_on_inv_button_pressed"]
+
+[editable path="recipe_canvas"]
+[editable path="recipe_canvas/PanelContainer/RecipeMarginContainer/VBoxContainer/RecipeContainers/MarginContainer/Craft_grid/craft_slot2"]
+[editable path="recipe_canvas/PanelContainer/RecipeMarginContainer/VBoxContainer/RecipeContainers/MarginContainer/Craft_grid/craft_slot"]

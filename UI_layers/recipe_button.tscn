@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn7e8uvaoxbno"]
+
+[ext_resource type="Script" uid="uid://ttyimnuwo7aq" path="res://UI_layers/slot_button.gd" id="1_fv0el"]
+
+[node name="Recipe_button" type="PanelContainer" node_paths=PackedStringArray("texture_rect")]
+custom_minimum_size = Vector2(40, 40)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_fv0el")
+texture_rect = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
