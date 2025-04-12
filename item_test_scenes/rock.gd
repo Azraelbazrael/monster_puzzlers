@@ -9,7 +9,7 @@ var can_be_damaged: bool
 
 func _ready() -> void:
 	$Sprite2D.texture = (stats.art)
-	Global.connect("rock_broken", broken_rock)
+	Global.connect("item_drop", drop_items)
 	
 func set_stats(value: Stats) -> void:
 	stats = value.create_instance()
@@ -25,7 +25,7 @@ func break_rock(amount: float):
 	take_damage_cooldown(0.5)
 			
 	if stats.health == 0:
-		Global.emit_signal("rock_broken")
+		broken_rock()
 
 func take_damage_cooldown(wait_time):
 	can_be_damaged = false
@@ -33,4 +33,7 @@ func take_damage_cooldown(wait_time):
 	can_be_damaged = true
 
 func broken_rock():
+	pass
+	
+func drop_items():
 	pass

@@ -34,9 +34,6 @@ func _input(event):
 		
 		gen_items()
 	
-	#if event.is_action_pressed('ui_cancel'):
-		#player_c.damage_test()
-	
 	
 	
 	
