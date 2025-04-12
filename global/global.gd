@@ -8,4 +8,4 @@ signal obj_placed
 signal game_start
 signal game_over
 
-signal broken_ore
+signal item_drop
