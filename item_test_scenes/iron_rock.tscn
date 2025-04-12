@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbmf7ka4l5wda"]
+
+[ext_resource type="Script" uid="uid://hiegq10ijhh3" path="res://item_test_scenes/iron_rock.gd" id="1_x0uj8"]
+[ext_resource type="Resource" uid="uid://05jacqha5wwd" path="res://resources/interactables/regular_rock.tres" id="2_0hcm7"]
+[ext_resource type="PackedScene" uid="uid://7wtngh11pph" path="res://UI_layers/floating_text.tscn" id="3_hgul4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hcm7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgul4"]
+
+[node name="iron_rock" type="RigidBody2D"]
+script = ExtResource("1_x0uj8")
+stats = ExtResource("2_0hcm7")
+damage_label = ExtResource("3_hgul4")
+metadata/_custom_type_script = "uid://bd7y1xr1l48bk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0hcm7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_hgul4")

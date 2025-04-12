@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Stats" load_steps=3 format=3 uid="uid://05jacqha5wwd"]
+
+[ext_resource type="Script" uid="uid://bo3ep8hogvh5p" path="res://resources/stats.gd" id="1_e83q6"]
+[ext_resource type="Texture2D" uid="uid://cdo81qnvud3xp" path="res://assets/rock.png" id="1_vaplt"]
+
+[resource]
+script = ExtResource("1_e83q6")
+type = 2
+max_health = 90
+art = ExtResource("1_vaplt")
+damage = 0.0
+metadata/_custom_type_script = "uid://bo3ep8hogvh5p"

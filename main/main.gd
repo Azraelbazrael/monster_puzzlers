@@ -1,10 +1,5 @@
 extends Node2D
 
-#signal end_box_made
-#signal player_placed
-signal obj_placed
-signal game_over
-signal game_start
 
 var Room = preload("res://dungeon_generator/Room.tscn")
 var Player = preload("res://Playable_character/character.tscn")
@@ -39,10 +34,17 @@ var start
 var end
 
 func _ready():
+	Global.connect("game_start", _on_game_start)
+	Global.connect("game_over", _on_game_over)
+	Global.connect("player_died", retry)
+	Global.connect("generate_dungeon", make_rooms)
+	
 	randomize()
 	make_rooms()
 	
+	
 func make_rooms():
+	
 	Map = $TileMap ## makes the map take into the placeholder one for now LOL
 	textbox.end_button.disabled = true
 	
@@ -101,8 +103,7 @@ func _input(event):
 		
 	if event.is_action_pressed('ui_select'): ## space_bar
 		
-		gen_rand_end_box()
-	#	make_rooms()
+		gen_rand_end_rock()
 		
 	if event.is_action_pressed('ui_focus_next') && path: ##tab
 		player_to_end_room()
@@ -230,16 +231,15 @@ func find_end_room():
 			print(end_room.position/tile_size)
 
 func start_playing():
-	emit_signal("game_start")
-	get_node("Camera2D").enabled = false
-	screen_layer.hide()
+	Global.emit_signal("game_start")
+
 	player = Player.instantiate()
-	emit_signal("obj_placed")
+	Global.emit_signal("obj_placed")
 	
 	add_child(player)
 	player.position = Map.rand_point * 32
 	await get_tree().process_frame
-	gen_rand_end_box()
+	gen_rand_end_rock()
 	
 	
 	
@@ -248,8 +248,8 @@ func player_to_end_room():
 
 
 
-func gen_rand_end_box():
-	emit_signal("obj_placed")
+func gen_rand_end_rock():
+	Global.emit_signal("obj_placed")
 	
 	end_box = evil_rock.instantiate()
 	end_box.position = Map.rand_point * 32 
@@ -264,15 +264,14 @@ func _on_game_over() -> void:
 	play_mode = false
 	player.queue_free()
 	end_box.queue_free()
-
+	screen_layer.show()
+	
 func _on_game_start() -> void:
 	play_mode = true # Replace with function body.
+	get_node("Camera2D").enabled = false
+	screen_layer.hide()
 	
 
-func _on_screen_layers_on_hide() -> void:
-	emit_signal("game_start")
-	
-
-
-func _on_screen_layers_on_show() -> void:
-	emit_signal("game_over")
+func retry() -> void:
+	Global.emit_signal("game_over")
+	print("lol")

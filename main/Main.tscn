@@ -11,8 +11,6 @@ script = ExtResource("1_eg6d5")
 
 [node name="RoomContainer" type="Node" parent="."]
 
-[node name="EnemyContainer" type="Node2D" parent="."]
-
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.1, 0.1)
 
@@ -34,11 +32,6 @@ script = ExtResource("4_vhq5f")
 
 [node name="textbox" parent="ScreenLayers" instance=ExtResource("3_qqp57")]
 
-[connection signal="game_over" from="." to="." method="_on_game_over"]
-[connection signal="game_over" from="." to="TileMap" method="_on_main_game_over"]
-[connection signal="game_over" from="." to="ScreenLayers/textbox" method="_on_main_game_over"]
-[connection signal="game_start" from="." to="." method="_on_game_start"]
-[connection signal="obj_placed" from="." to="TileMap" method="_on_main_obj_placed"]
-[connection signal="on_hide" from="ScreenLayers" to="." method="_on_screen_layers_on_hide"]
-[connection signal="on_show" from="ScreenLayers" to="." method="_on_screen_layers_on_show"]
 [connection signal="visibility_changed" from="ScreenLayers" to="ScreenLayers" method="_on_visibility_changed"]
+
+[editable path="ScreenLayers/textbox"]

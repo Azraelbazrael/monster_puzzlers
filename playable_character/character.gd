@@ -5,7 +5,6 @@ signal player_dead
 @onready var Camera: Camera2D = $Camera2D
 @onready var hud_ui: VBoxContainer = $CanvasLayer/HUD_elements as Hud_UI
 
-#@export var Current_weapon: PackedScene
 @export var speed = 350
 @export var damage_label: PackedScene
 
@@ -18,7 +17,7 @@ signal player_dead
 			set_damage(1)
 			
 @export var character_stats: Character_stats: set = set_character_stats
-@export var s_timer := 0.5
+#@export var s_timer := 1.5
 
 
 var current_weapon
@@ -44,8 +43,6 @@ func update_character() -> void:
 
 
 func set_held_item(value: Item_resource) -> void:
-	#current_weapon = Current_weapon.instantiate()
-	#add_child(current_weapon)
 	$Weapon.weapon = current_item
 	$Weapon.texture = current_item.art
 	$Weapon.position = $right_pos.position
@@ -80,51 +77,23 @@ func get_input():
 	var input_dir = Input.get_vector('ui_left', 'ui_right', 'ui_up', 'ui_down') 
 	velocity = input_dir * speed
 	if Input.is_action_just_pressed('click'):
-		#can_attack = true
-		use_weapon()	
-				
-func use_weapon():
-	if current_item != null:
-			#print(current_item.name)
-			$Weapon.get_node("WeaponFX").play(current_item.animation)
+		if current_item != null:
+			$Weapon.use_weapon()
 			current_item.use_cost(character_stats)
-	else:	
-		pass
+
 		
 func _process(delta: float) -> void:
 	
-	if can_regen == false && character_stats.stamina != 100 or character_stats.stamina == 0:
-		can_start_timer = true
-		if can_start_timer:
-			s_timer +=delta
-			if s_timer >= stamina_cooldown:
-				can_regen = true
-				can_start_timer = false
-				s_timer = 0
-			
-	if character_stats.stamina == 100:
-		can_regen = false
-	
-	if can_regen == true:
-		character_stats.stamina += 1
-		can_start_timer = false
-		s_timer = 0
-	
 	if character_stats.health == 0:
-		emit_signal("player_dead")	
+		Global.emit_signal("player_died")	
 		var screenlayer = get_tree().current_scene.get_node("ScreenLayers")
 		if screenlayer:
 			screenlayer.show()
-			
-	#if current_item:
 				
-		#current_weapon.weapon = current_item		
 	check_hitbox()
 	update_stats()
 
-func weapon_test():
-	print("this signal works!!")
-	
+
 	
 func check_hitbox():
 	var hitbox_areas = $Hurtbox.get_overlapping_areas()

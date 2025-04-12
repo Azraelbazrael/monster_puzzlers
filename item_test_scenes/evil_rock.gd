@@ -1,35 +1,5 @@
-extends RigidBody2D
-class_name rock
-
-@export var stats: Stats: set = set_stats
-@export var damage_label: PackedScene
-var can_be_damaged: bool
+extends rock
 
 	
-
-func set_stats(value: Stats) -> void:
-	stats = value.create_instance()
-
-
-
-
-func break_rock(amount: float):
-	stats.take_damage(amount)
-	var damage = damage_label.instantiate()
-	damage.position = position
-	damage.find_child("Label").text = str(amount)
-	get_tree().current_scene.add_child(damage)	
-	take_damage_cooldown(0.5)
-			
-	if stats.health == 0:
-		level_exit()
-
-func take_damage_cooldown(wait_time):
-	can_be_damaged = false
-	await get_tree().create_timer(wait_time).timeout
-	can_be_damaged = true
-	
-func level_exit() -> void:
-	var textbox = get_tree().current_scene.find_child("ScreenLayers")
-	if textbox:
-		textbox.show()
+func broken_rock():
+	Global.emit_signal("game_over")

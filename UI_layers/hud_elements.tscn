@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cfqed3nxels06"]
+[gd_scene load_steps=10 format=3 uid="uid://cfqed3nxels06"]
 
 [ext_resource type="PackedScene" uid="uid://bxjh225dp1o" path="res://UI_layers/slot.tscn" id="1_8nd76"]
 [ext_resource type="Script" uid="uid://cyvei8l5lmjw4" path="res://UI_layers/hud_elements.gd" id="1_qa41y"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c4nau48rs403q" path="res://assets/bar_progress.png" id="3_8qdjm"]
 [ext_resource type="Texture2D" uid="uid://db460ch2parqg" path="res://assets/bar_over_asset.png" id="4_5gaxu"]
 [ext_resource type="PackedScene" uid="uid://c1vjw7bfp0mmc" path="res://UI_layers/recipe_canvas.tscn" id="5_hgqje"]
+[ext_resource type="Resource" uid="uid://1tswto083w7i" path="res://resources/weapons/pickaxe.tres" id="7_funva"]
 
 [node name="HUD_elements" type="VBoxContainer" node_paths=PackedStringArray("stam_bar", "hp_bar", "min_sp", "max_sp", "min_hp", "max_hp")]
 anchors_preset = 15
@@ -201,6 +202,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 20
 script = ExtResource("1_v36sh")
+ITEM = ExtResource("7_funva")
 
 [node name="Slot" parent="BottomContainer/VboxContainer/MarginContainer/Inventory/Slot_Container/Inventory_Slots" instance=ExtResource("1_8nd76")]
 layout_mode = 2

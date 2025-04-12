@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bn3g6m1yo6o5s"]
 
-[ext_resource type="Script" uid="uid://bejq3cqs0dm6x" path="res://battle/weapon.gd" id="1_av17d"]
-[ext_resource type="Script" uid="uid://47w13bhyrl1j" path="res://battle/weapon_hitbox.gd" id="2_upngb"]
+[ext_resource type="Script" uid="uid://bejq3cqs0dm6x" path="res://battle/weapon.gd" id="1_1soaq"]
+[ext_resource type="Script" uid="uid://47w13bhyrl1j" path="res://battle/weapon_hitbox.gd" id="2_njl78"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0lxp7"]
 size = Vector2(35, 26)
@@ -153,11 +153,11 @@ _data = {
 [node name="Weapon" type="Sprite2D" groups=["Weapon"]]
 texture_filter = 1
 position = Vector2(0, -2)
-script = ExtResource("1_av17d")
+script = ExtResource("1_1soaq")
 
 [node name="Hitbox" type="Area2D" parent="."]
 scale = Vector2(1.48, 1.32)
-script = ExtResource("2_upngb")
+script = ExtResource("2_njl78")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 scale = Vector2(0.690708, -0.837184)
