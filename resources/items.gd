@@ -12,4 +12,5 @@ enum Type{COLLECTABLE, WEAPON}
 @export var animation : String
 
 
+
 @export_multiline var item_desc: String

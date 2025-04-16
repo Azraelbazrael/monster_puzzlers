@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Item_resource" load_steps=3 format=3 uid="uid://cqxvomyfitgvp"]
+[gd_resource type="Resource" script_class="Item_resource" load_steps=4 format=3 uid="uid://cqxvomyfitgvp"]
 
 [ext_resource type="Script" uid="uid://dbx1n0k0or8s4" path="res://resources/items.gd" id="1_1r61u"]
 [ext_resource type="Texture2D" uid="uid://bdywcsgkd4cj5" path="res://assets/iron_ore.png" id="1_swme4"]
+[ext_resource type="Script" uid="uid://dj70fcnkrrk5y" path="res://resources/dropdata.gd" id="2_2vnwa"]
 
 [resource]
 script = ExtResource("1_1r61u")
@@ -11,5 +12,6 @@ name = ""
 stackable = false
 max_stack = 0
 animation = ""
+drops = Array[ExtResource("2_2vnwa")]([null])
 item_desc = ""
 metadata/_custom_type_script = "uid://dbx1n0k0or8s4"

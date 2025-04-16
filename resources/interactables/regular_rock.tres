@@ -1,7 +1,17 @@
-[gd_resource type="Resource" script_class="Stats" load_steps=3 format=3 uid="uid://05jacqha5wwd"]
+[gd_resource type="Resource" script_class="Stats" load_steps=6 format=3 uid="uid://05jacqha5wwd"]
 
 [ext_resource type="Script" uid="uid://bo3ep8hogvh5p" path="res://resources/stats.gd" id="1_e83q6"]
 [ext_resource type="Texture2D" uid="uid://cdo81qnvud3xp" path="res://assets/rock.png" id="1_vaplt"]
+[ext_resource type="Script" uid="uid://dj70fcnkrrk5y" path="res://resources/dropdata.gd" id="2_ltg2v"]
+[ext_resource type="Resource" uid="uid://cqxvomyfitgvp" path="res://resources/collectable_items/iron_ore.tres" id="3_wux4o"]
+
+[sub_resource type="Resource" id="Resource_wux4o"]
+script = ExtResource("2_ltg2v")
+item = ExtResource("3_wux4o")
+probability = 100.0
+min_amount = 1
+max_amount = 1
+metadata/_custom_type_script = "uid://dj70fcnkrrk5y"
 
 [resource]
 script = ExtResource("1_e83q6")
@@ -9,4 +19,5 @@ type = 2
 max_health = 90
 art = ExtResource("1_vaplt")
 damage = 0.0
+drops = Array[ExtResource("2_ltg2v")]([SubResource("Resource_wux4o")])
 metadata/_custom_type_script = "uid://bo3ep8hogvh5p"

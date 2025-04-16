@@ -8,6 +8,9 @@ enum Type{PLAYER,MONSTER,INTERACTABLE}
 @export var art: Texture
 @export var damage: float
 
+@export_group("Item drops")
+@export var drops: Array[DropData]
+
 var health: int : set = set_health
 
 
@@ -17,10 +20,12 @@ func set_health(value : int) -> void:
 func take_damage(damage : int) -> void:
 	if damage <= 0:
 		return
-	#var initial_damage = damage
 	self.health -= damage
 	
 func create_instance() -> Resource:
 	var instance: Stats = self.duplicate()
 	instance.health = max_health
 	return instance
+
+func drop_items() -> void:
+	pass

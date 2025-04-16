@@ -1,7 +1,9 @@
 extends RigidBody2D
 class_name rock
 
-#signal rock_broken
+signal item_drop
+##add drop data here later...
+
 @export var stats: Stats: set = set_stats
 @export var damage_label: PackedScene
 var can_be_damaged: bool
@@ -9,7 +11,7 @@ var can_be_damaged: bool
 
 func _ready() -> void:
 	$Sprite2D.texture = (stats.art)
-	Global.connect("item_drop", drop_items)
+	connect("item_drop", drop_items)
 	
 func set_stats(value: Stats) -> void:
 	stats = value.create_instance()
