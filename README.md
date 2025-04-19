@@ -25,7 +25,7 @@ As it stands this project is currently in it's development phase!
 <!-- <p align="right">(<a href="#readme-top">back to top</a>)</p>  -->
 
 
-### Road Map
+## Road Map
 
 - [ ] environment
     - [x] Create randomly generated map 
