@@ -9,6 +9,8 @@
 
 ## Position Generation
 
+## Inventory
 
+## State Machine
 
 
