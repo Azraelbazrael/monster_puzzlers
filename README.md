@@ -7,7 +7,7 @@ As it stands this project is currently in it's development phase!
 <!-- Project information -->
 ### Built with
 
-- [Godot 4.4][godot 4]
+- <a href="https://godotengine.org/">Godot 4.4 </a>
     - wirtten in GDscript
 
 ### Installation
@@ -22,7 +22,7 @@ As it stands this project is currently in it's development phase!
    ```sh
    git remote set-url origin AzraelBazrael/DungeonGame
    git remote -v # confirm the changes
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<!-- <p align="right">(<a href="#readme-top">back to top</a>)</p>  -->
 
 
 ### Road Map
@@ -51,6 +51,7 @@ As it stands this project is currently in it's development phase!
     - [x] enemy can kill player
     - [ ] player can befriend monsters
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<!-- <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
+
 <!-- MARKDOWN LINKS & IMAGES -->
-[godot 4]: https://godotengine.org/
+<!-- [godot 4]: https://godotengine.org/  -->
