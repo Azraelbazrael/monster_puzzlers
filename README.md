@@ -28,27 +28,27 @@ As it stands this project is currently in it's development phase!
 ### Road Map
 
 - [ ] environment
-    - [ ] Create randomly generated map 
-    - [ ] generate new maps between floors
+    - [x] Create randomly generated map 
+    - [x] generate new maps between floors
     - [ ] levels and environments change when the player progresses further
 
 - [ ] winning/losing
-    - [ ] "win" condition between floors
-    - [ ] "lose" condition between floors
+    - [x] "win" condition between floors
+    - [x] "lose" condition between floors
     - [ ] player gains exp after level is passed
     - [ ] player level / floor is reset upon death
 
 - [ ] inventory system
     - [ ] items are dropped from rocks/enemies
-    - [ ] collectable items
-    - [ ] player can hold items
-    - [ ] items can be crafted
+    - [x] collectable items
+    - [x] player can hold items
+    - [x] items can be crafted
 
 - [ ] enemies
     - [ ] big ending boss
-    - [ ] different types of enemies
-    - [ ] basic state machine
-    - [ ] enemy can kill player
+    - [x] different types of enemies
+    - [x] basic state machine
+    - [x] enemy can kill player
     - [ ] player can befriend monsters
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
