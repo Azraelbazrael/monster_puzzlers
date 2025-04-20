@@ -1,8 +1,10 @@
 ## Important Resources
-Custom resources in Godot 4.4 are a great way to store data, loading to the disk only once. 
+Resources in Godot 4.4 act as data containers, nodes pull from them in order to do things like hold variables and arrays and lists. The ability to create custom resources is a very valuable tool in the arsenal of any godot dev. <br> In this section, I'll go over the prominent resources I've created and used through out the project and where I've used them to get a better picture of how each part plays into the larger project. 
+
+### Stats
 
 
-
+### Items
 
 ## Signals
 
@@ -13,6 +15,6 @@ Custom resources in Godot 4.4 are a great way to store data, loading to the disk
 
 ## Inventory
 
-## State Machine
+## State Machines
 
 
