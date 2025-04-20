@@ -64,7 +64,6 @@ func create_instance() -> Resource:
 class_name Character_stats
 extends Stats
 
-
 @export var max_stamina:= 1
 var stamina: int : set = set_stamina
 
@@ -90,12 +89,12 @@ Character_resource inherits from Stats and uses most of the same logic.
 * amount / damage is determined by a value to be assigned when called
 * stamina opperates identically to health, when instanced into a scene both are at their maximum value
 
-One new function present in the character stats is the addition of healing. It still takes in an amount to be assigned later, but replenishes health opposed to taking damage.
-
 ```sh
 func heal(amount : int) -> void:
 	self.health += amount
 ```
+One new function present in the character stats is the addition of healing. It still takes in an amount to be assigned later, but replenishes health opposed to taking damage.
+
 ### Items
 
 ## Signals
