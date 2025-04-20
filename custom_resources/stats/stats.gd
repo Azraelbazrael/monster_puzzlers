@@ -27,5 +27,4 @@ func create_instance() -> Resource:
 	instance.health = max_health
 	return instance
 
-func drop_items() -> void:
-	pass
+
