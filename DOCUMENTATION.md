@@ -3,7 +3,7 @@ Resources in Godot 4.4 act as data containers, nodes pull from them in order to 
 
 ### Stats
 The stats resource class holds components related to the node's it'll be attached to later on. If it's got "health" to speak of, it has data from or inheriting from this resource.  
-
+<br>
 #### Exported variables
  ```sh
 class_name Stats
@@ -21,6 +21,7 @@ The exported variables represent these things as follows:
 * **Max_health**: Maximum amount of health
 * **Art**: Sprite2D texture
 * **Damage**: How much an (unarmed) attack will deal upon contact
+<br>
 
 #### Exported group
 The Item Drops group below carries an array of what "Items" the object can "Drop". 
