@@ -21,7 +21,6 @@ The exported variables represent these things as follows:
 * **Max_health**: Maximum amount of health
 * **Art**: Sprite2D texture
 * **Damage**: How much an (unarmed) attack will deal upon contact
-<br>
 
 #### Exported group
 The Item Drops group below carries an array of what "Items" the object can "Drop". 
@@ -30,7 +29,7 @@ Not all objects with the stats resource attached to them have items that it can 
 @export_group("Item drops")
 @export var drops: Array[DropData]
 ```
-**<p>read more about <a href="#readme-top">DropData</a> here</p>**
+<p align="right">read more about <a href="#readme-top">DropData</a> here</p>
 
 
 #### Health
@@ -51,7 +50,7 @@ func take_damage(damage : int) -> void:
 ```
 
 
-
+By duplicating the resource here, I can instance the data into the scene. This allows it to be modified and used for multiple objects without messing with the original container. When duplicating these stats, the function makes sure the object's health is at the maximum.
 ```sh	
 func create_instance() -> Resource:
 	var instance: Stats = self.duplicate()
