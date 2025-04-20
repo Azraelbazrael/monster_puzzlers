@@ -11,9 +11,9 @@ enum Type{PLAYER,MONSTER,INTERACTABLE}
 @export_group("Item drops")
 @export var drops: Array[DropData]
 
-var health: int : set = set_health
+var health: int : set = set_health ## CURRENT health, different from total health
 
-
+ 
 func set_health(value : int) -> void:
 	health = clampi(value, 0, max_health)
 	
