@@ -39,7 +39,8 @@ As it stands this project is currently in it's development phase!
     - [ ] player level / floor is reset upon death
 
 - [ ] inventory system
-    - [ ] items are dropped from rocks/enemies
+    - [x] items are dropped from rocks
+    - [ ] enemies drop items when killed
     - [x] collectable items
     - [x] player can hold items
     - [x] items can be crafted
