@@ -67,7 +67,7 @@ As it stands this project is currently in it's development phase!
     - [x] enemy can kill player
     - [ ] player can befriend monsters
 
-
+For more information please refer to the - <a href="#documentation">Documentation</a>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- [godot 4]: https://godotengine.org/  -->
