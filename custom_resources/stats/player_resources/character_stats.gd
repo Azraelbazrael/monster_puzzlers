@@ -8,8 +8,6 @@ var stamina: int : set = set_stamina
 func set_stamina(value : int) -> void:
 	stamina = clampi(value, 0, 999)
 	
-func heal(amount : int) -> void:
-	self.health += amount
 	
 func add_stamina(amount : int) -> void:
 	self.stamina += amount
@@ -24,3 +22,6 @@ func create_instance() -> Resource:
 	instance.health = max_health
 	instance.stamina = max_stamina
 	return instance
+
+func heal(amount : int) -> void:
+	self.health += amount
