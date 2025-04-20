@@ -34,16 +34,16 @@ As it stands this project is currently in it's development phase!
 
  - [ ] player
    - [ ] different player resources
-   - [ ] player depletes stamina when using an item
-   - [ ] player depletes health when attacked
-   - [ ] player can die
+   - [x] player depletes stamina when using an item
+   - [x] player depletes health when attacked
+   - [x] player can die
    - [ ] player can level up
         
 - [ ] Levels
   - [ ] Keep track of levels when one is passed
   - [ ] change biomes when reaching different thresholds randomly
   - [ ] reset level when dead
-  - [ ] have resources containing different
+  - [ ] have resources holding arrays of different items and enemies to spawn in different biomes
 
  
 - [ ] winning/losing
