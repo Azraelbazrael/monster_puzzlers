@@ -26,7 +26,12 @@ func _on_body_entered( b ) -> void:
 			queue_free()
 	pass	
 
-
+func _physics_process(delta):
+	move_and_collide(velocity * delta) 
+	#if collision_info:
+		#velocity = velocity.bounce( collision_info.get_normal() )
+	#velocity -= velocity * delta * 4
+	
 func _update_texture() -> void:
 	if item_data and sprite_2d:
 		sprite_2d.texture = item_data.art

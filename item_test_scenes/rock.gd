@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends CharacterBody2D
 class_name rock
 
 signal item_drop
@@ -36,9 +36,6 @@ func take_damage_cooldown(wait_time):
 	can_be_damaged = true
 
 func broken_rock():
-	if stats.drops.size() != 0:
-		drop_items()
-	else:
 		pass
 	
 func drop_items():
@@ -54,6 +51,7 @@ func drop_items():
 			drop.item_data = stats.drops[ i ].item
 			get_tree().root.call_deferred( "add_child", drop )
 			drop.global_position = global_position
+			drop.velocity = velocity.rotated( randf_range( -1.5, 1.5 ) ) * randf_range( 0.9 , 1.5 )
 			
 	pass
 	

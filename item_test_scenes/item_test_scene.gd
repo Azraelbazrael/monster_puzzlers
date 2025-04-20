@@ -35,23 +35,11 @@ func _input(event):
 	
 func gen_items():
 	player_c = player.instantiate()
-	rock = evil_rock.instantiate()	
-	enemy_c = enemy.instantiate()
-	chaser_c = chaser.instantiate()
-	#i_rock = iron_rock.instantiate()
 	
 	add_child(player_c)	
 	Global.emit_signal("obj_placed")
 	player_c.position = map.rand_point * 32
 	
-	add_child(rock)
-	Global.emit_signal("obj_placed")
-	rock.position = map.rand_point * 32
-	
-	#add_child(i_rock)
-	#Global.emit_signal("obj_placed")
-	#i_rock.position = map.rand_point * 32
-
 func show_screenlayer():
 	$ScreenLayers.show()
 	

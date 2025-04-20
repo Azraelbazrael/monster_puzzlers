@@ -9,8 +9,8 @@
 script = ExtResource("2_ltg2v")
 item = ExtResource("3_wux4o")
 probability = 100.0
-min_amount = 1
-max_amount = 1
+min_amount = 2
+max_amount = 4
 metadata/_custom_type_script = "uid://dj70fcnkrrk5y"
 
 [resource]

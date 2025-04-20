@@ -8,11 +8,10 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hgul4"]
 
-[node name="iron_rock" type="RigidBody2D"]
+[node name="iron_rock" type="CharacterBody2D"]
 script = ExtResource("1_x0uj8")
 stats = ExtResource("2_0hcm7")
 damage_label = ExtResource("3_hgul4")
-metadata/_custom_type_script = "uid://bd7y1xr1l48bk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0hcm7")
