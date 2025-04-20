@@ -4,7 +4,7 @@ Resources in Godot 4.4 act as data containers, nodes pull from them in order to 
 ### Stats
 The stats resource class holds components related to the node's it'll be attached to later on. If it's got "health" to speak of, it has data from or inheriting from this resource.  
 <br>
-#### Exported variables
+#### Variables
  ```sh
 class_name Stats
 extends Resource
@@ -21,22 +21,20 @@ The exported variables represent these things as follows:
 * **Max_health**: Maximum amount of health
 * **Art**: Sprite2D texture
 * **Damage**: How much an (unarmed) attack will deal upon contact
-<br>
 
-#### Exported group
-The Item Drops group below carries an array of what "Items" the object can "Drop". 
-Not all objects with the stats resource attached to them have items that it can drop, this only applies specifically to enemies and chests/rocks.
+
+#### Export group
+
 ```sh
 @export_group("Item drops")
 @export var drops: Array[DropData]
 ```
-<p align="right">read more about <a href="#readme-top">DropData</a> here</p>
+The Item Drops group below carries an array of what "Items" the object can "Drop". 
+Not all objects with the stats resource attached to them have items that it can drop, this only applies specifically to enemies and chests/rocks.
+<p>read more about <a href="#readme-top">DropData</a> here</p>
 
 
 #### Health
-
-If it has health, it can lose health as well. These two functions keep track of both of these. 
-take_damage takes from the health based off of an assigned value when the function is called.
 ```sh
 var health: int : set = set_health ## CURRENT health, different from total health
 
@@ -49,16 +47,55 @@ func take_damage(damage : int) -> void:
 		return
 	self.health -= damage
 ```
+If it has health, it can lose health as well. These two functions keep track of both of these. 
+take_damage takes from the health based off of an assigned value when the function is called.
 
 
-By duplicating the resource here, I can instance the data into the scene. This allows it to be modified and used for multiple objects without messing with the original container. When duplicating these stats, the function makes sure the object's health is at the maximum.
 ```sh	
 func create_instance() -> Resource:
 	var instance: Stats = self.duplicate()
 	instance.health = max_health
 	return instance
 ```
+<p>By duplicating the resource here, I can instance the data into the scene. This allows it to be modified and used for multiple objects without messing with the original container. When duplicating these stats, the function makes sure the object's health is at the maximum.</p>
 
+#### Player Resource
+```sh
+class_name Character_stats
+extends Stats
+
+
+@export var max_stamina:= 1
+var stamina: int : set = set_stamina
+
+func set_stamina(value : int) -> void:
+	stamina = clampi(value, 0, 999)
+	
+func add_stamina(amount : int) -> void:
+	self.stamina += amount
+	
+func take_damage(damage: int) -> void:
+	if damage <= 0:
+		return
+	super.take_damage(damage)
+
+func create_instance() -> Resource:
+	var instance: Stats = self.duplicate()
+	instance.health = max_health
+	instance.stamina = max_stamina
+	return instance
+
+```
+Character_resource inherits from Stats and uses most of the same logic. 
+* amount / damage is determined by a value to be assigned when called
+* stamina opperates identically to health, when instanced into a scene both are at their maximum value
+
+One new function present in the character stats is the addition of healing. It still takes in an amount to be assigned later, but replenishes health opposed to taking damage.
+
+```sh
+func heal(amount : int) -> void:
+	self.health += amount
+```
 ### Items
 
 ## Signals
