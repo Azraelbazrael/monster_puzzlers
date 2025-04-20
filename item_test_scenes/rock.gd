@@ -52,7 +52,7 @@ func drop_items():
 			get_tree().root.call_deferred( "add_child", drop )
 			
 			drop.global_position = global_position
-			drop.velocity = global_position.rotated(randf_range(-1.5, 1.5) * randf_range( 0.9, 1.5))
+			drop.velocity = global_position.rotated(randf_range(-1.5, 1.5) * randf_range(0.9, 1.5)) / 2.5
 			
 	pass
 	
