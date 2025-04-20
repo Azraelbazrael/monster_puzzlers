@@ -27,10 +27,11 @@ func _on_body_entered( b ) -> void:
 	pass	
 
 func _physics_process(delta):
-	move_and_collide(velocity * delta) 
-	#if collision_info:
-		#velocity = velocity.bounce( collision_info.get_normal() )
-	#velocity -= velocity * delta * 4
+	var collision_info = move_and_collide( velocity * delta )
+	if collision_info:
+		velocity = velocity.bounce( collision_info.get_normal() )
+	velocity -= velocity * delta * 4 
+	
 	
 func _update_texture() -> void:
 	if item_data and sprite_2d:

@@ -1,12 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://4apxre8qmijm"]
+[gd_scene load_steps=7 format=3 uid="uid://4apxre8qmijm"]
 
 [ext_resource type="Script" uid="uid://blgb0w5se4rvl" path="res://item_test_scenes/item_test_scene.gd" id="1_0ea5s"]
 [ext_resource type="TileSet" uid="uid://clr01r8bc543d" path="res://assets/tiles.tres" id="1_6c26f"]
 [ext_resource type="Script" uid="uid://bclirr8wasxlp" path="res://dungeon_generator/screen_layers.gd" id="4_fdt3l"]
 [ext_resource type="Script" uid="uid://c36v1jey32rsy" path="res://dungeon_generator/tile_map.gd" id="4_pejts"]
 [ext_resource type="PackedScene" uid="uid://hicct6hwqhhn" path="res://UI_layers/textbox.tscn" id="4_w8q88"]
-[ext_resource type="PackedScene" uid="uid://btrtdsy2iyvlq" path="res://item_test_scenes/interactable_items/PickableItem.tscn" id="6_1pqcw"]
-[ext_resource type="Resource" uid="uid://cqxvomyfitgvp" path="res://resources/collectable_items/iron_ore.tres" id="7_q0ori"]
 [ext_resource type="PackedScene" uid="uid://bbmf7ka4l5wda" path="res://item_test_scenes/iron_rock.tscn" id="8_q0ori"]
 
 [node name="item_test_scene" type="Node2D"]
@@ -30,10 +28,6 @@ visible = false
 script = ExtResource("4_fdt3l")
 
 [node name="textbox" parent="ScreenLayers" instance=ExtResource("4_w8q88")]
-
-[node name="PickableItem" parent="." instance=ExtResource("6_1pqcw")]
-position = Vector2(471, 314)
-item_data = ExtResource("7_q0ori")
 
 [node name="iron_rock" parent="." instance=ExtResource("8_q0ori")]
 position = Vector2(493, 215)
