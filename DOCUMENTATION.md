@@ -59,7 +59,7 @@ func create_instance() -> Resource:
 ```
 <p>By duplicating the resource here, I can instance the data into the scene. This allows it to be modified and used for multiple objects without messing with the original container. When duplicating these stats, the function makes sure the object's health is at the maximum.</p>
 
-#### Player Resource
+#### Player's stats
 ```sh
 class_name Character_stats
 extends Stats
@@ -85,7 +85,7 @@ func create_instance() -> Resource:
 	return instance
 
 ```
-Character_resource inherits from Stats and uses most of the same logic. 
+Under a new file, character stats inherits from the stats class and uses most of the same logic.
 * amount / damage is determined by a value to be assigned when called
 * stamina opperates identically to health, when instanced into a scene both are at their maximum value
 
