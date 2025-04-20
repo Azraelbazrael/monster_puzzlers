@@ -28,10 +28,24 @@ As it stands this project is currently in it's development phase!
 ## Road Map
 
 - [ ] environment
+    - [ ] implement multiple tilemaps
     - [x] Create randomly generated map 
     - [x] generate new maps between floors
-    - [ ] levels and environments change when the player progresses further
 
+ - [ ] player
+   - [ ] different player resources
+   - [x] player depletes stamina when using an item
+   - [x] player depletes health when attacked
+   - [x] player can die
+   - [ ] player can level up
+        
+- [ ] Levels
+  - [ ] Keep track of levels when one is passed
+  - [ ] change biomes when reaching different thresholds randomly
+  - [ ] reset level when dead
+  - [ ] have resources holding arrays of different items and enemies to spawn in different biomes
+
+ 
 - [ ] winning/losing
     - [x] "win" condition between floors
     - [x] "lose" condition between floors
@@ -39,10 +53,12 @@ As it stands this project is currently in it's development phase!
     - [ ] player level / floor is reset upon death
 
 - [ ] inventory system
-    - [ ] items are dropped from rocks/enemies
+    - [x] items are dropped from rocks
+    - [ ] enemies drop items when killed
     - [x] collectable items
     - [x] player can hold items
     - [x] items can be crafted
+    - [ ] crafting instructions saved after dying
 
 - [ ] enemies
     - [ ] big ending boss
@@ -51,7 +67,7 @@ As it stands this project is currently in it's development phase!
     - [x] enemy can kill player
     - [ ] player can befriend monsters
 
-<!-- <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
+<p align="right">(For more information please refer to the <a href="https://github.com/Azraelbazrael/monster_puzzlers/blob/main/DOCUMENTATION.md">documentation</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- [godot 4]: https://godotengine.org/  -->
