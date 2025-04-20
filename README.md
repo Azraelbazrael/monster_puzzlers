@@ -67,7 +67,7 @@ As it stands this project is currently in it's development phase!
     - [x] enemy can kill player
     - [ ] player can befriend monsters
 
-_For more information please refer to the <a href="https://github.com/Azraelbazrael/monster_puzzlers/blob/main/DOCUMENTATION.md">documentation</a>_
+<p align="right">(For more information please refer to the <a href="https://github.com/Azraelbazrael/monster_puzzlers/blob/main/DOCUMENTATION.md">documentation</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- [godot 4]: https://godotengine.org/  -->
