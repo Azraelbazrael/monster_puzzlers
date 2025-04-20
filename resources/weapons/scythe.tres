@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Weapon_resource" load_steps=6 format=3 uid="uid://ca7rvn34u6t1c"]
 
-[ext_resource type="Texture2D" uid="uid://2xha8fnxpr68" path="res://resources/weapons/Weapon Pack/weapon_35.png" id="1_4wt88"]
 [ext_resource type="Script" uid="uid://cxvvvlfvh3xbb" path="res://resources/weapons.gd" id="1_28s7y"]
+[ext_resource type="Texture2D" uid="uid://2xha8fnxpr68" path="res://assets/Weapon Pack/weapon_35.png" id="1_oaohu"]
 [ext_resource type="Script" uid="uid://dbx1n0k0or8s4" path="res://resources/items.gd" id="2_6lqbg"]
 [ext_resource type="Resource" uid="uid://bgrwditf7ugmo" path="res://resources/weapons/long_sword.tres" id="3_sq54e"]
 [ext_resource type="Resource" uid="uid://cfd24cum2rx4o" path="res://resources/weapons/short_sword.tres" id="4_g16k8"]
@@ -15,7 +15,7 @@ weapon_type = 1
 recipe = Array[ExtResource("2_6lqbg")]([ExtResource("4_g16k8"), ExtResource("3_sq54e")])
 rock_damage = 5.0
 type = 2
-art = ExtResource("1_4wt88")
+art = ExtResource("1_oaohu")
 name = ""
 stackable = true
 max_stack = 1

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://btrtdsy2iyvlq"]
+
+[ext_resource type="Script" uid="uid://beu6qvcvslwpj" path="res://item_test_scenes/interactable_items/item.gd" id="1_mhem8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qe2la"]
+
+[node name="PickableItem" type="CharacterBody2D"]
+script = ExtResource("1_mhem8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_qe2la")

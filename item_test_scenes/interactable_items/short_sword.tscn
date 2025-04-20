@@ -1,15 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bea6u6n1awegh"]
-
-[ext_resource type="Script" uid="uid://beu6qvcvslwpj" path="res://item_test_scenes/interactable_items/item.gd" id="2_npt1y"]
-[ext_resource type="Resource" uid="uid://cfd24cum2rx4o" path="res://resources/weapons/short_sword.tres" id="3_tv3mt"]
+[gd_scene load_steps=2 format=3 uid="uid://bea6u6n1awegh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tv3mt"]
 size = Vector2(20, 18)
 
 [node name="Short_sword" type="Sprite2D"]
 texture_filter = 1
-script = ExtResource("2_npt1y")
-item = ExtResource("3_tv3mt")
 
 [node name="Area2D" type="Area2D" parent="."]
 

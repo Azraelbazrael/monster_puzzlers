@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Weapon_resource" load_steps=4 format=3 uid="uid://cfd24cum2rx4o"]
 
-[ext_resource type="Texture2D" uid="uid://cg4d1ib8gah01" path="res://resources/weapons/Weapon Pack/weapon_29.png" id="1_2cqp1"]
+[ext_resource type="Texture2D" uid="uid://cg4d1ib8gah01" path="res://assets/Weapon Pack/weapon_29.png" id="1_2cqp1"]
 [ext_resource type="Script" uid="uid://cxvvvlfvh3xbb" path="res://resources/weapons.gd" id="1_q3i0b"]
 [ext_resource type="Script" uid="uid://dbx1n0k0or8s4" path="res://resources/items.gd" id="2_udogr"]
 
