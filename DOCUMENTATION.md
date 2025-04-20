@@ -1,7 +1,17 @@
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+</details>
+
+
 ## Important Resources
 Resources in Godot 4.4 act as data containers, nodes pull from them in order to do things like hold variables and arrays and lists. The ability to create custom resources is a very valuable tool in the arsenal of any godot dev. <br> In this section, I'll go over the prominent resources I've created and used through out the project and where I've used them to get a better picture of how each part plays into the larger project. 
 
 ### Stats
+
+
+
+
 The stats resource class holds components related to the node's it'll be attached to later on. If it's got "health" to speak of, it has data from or inheriting from this resource.  
 <br>
 #### Variables
@@ -89,11 +99,14 @@ Under a new file, character stats inherits from the stats class and uses most of
 * amount / damage is determined by a value to be assigned when called
 * stamina opperates identically to health, when instanced into a scene both are at their maximum value
 
+
 ```sh
 func heal(amount : int) -> void:
 	self.health += amount
 ```
 One new function present in the character stats is the addition of healing. It still takes in an amount to be assigned later, but replenishes health opposed to taking damage.
+
+
 
 ### Items
 
