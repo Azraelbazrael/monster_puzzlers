@@ -1,8 +1,7 @@
 # Monster Puzzlers
  
 <!-- ABOUT THE PROJECT -->
-Monster Puzzlers is a Roguelite Dungeon Crawler where you have the option to slay or befriend the beasts in your path. Will you slaughter one foe to feed another? Play fetch with your weapons? 
-As it stands this project is currently in it's development phase!
+Monster puzzlers is a monster-taming dungeon crawler currently in development. No playable builds are available yet.
 
 <!-- Project information -->
 ### Built with
