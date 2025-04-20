@@ -28,10 +28,24 @@ As it stands this project is currently in it's development phase!
 ## Road Map
 
 - [ ] environment
+    - [ ] implement multiple tilemaps
     - [x] Create randomly generated map 
     - [x] generate new maps between floors
-    - [ ] levels and environments change when the player progresses further
 
+ - [ ] player
+   - [ ] different player resources
+   - [ ] player depletes stamina when using an item
+   - [ ] player depletes health when attacked
+   - [ ] player can die
+   - [ ] player can level up
+        
+- [ ] Levels
+  - [ ] Keep track of levels when one is passed
+  - [ ] change biomes when reaching different thresholds randomly
+  - [ ] reset level when dead
+  - [ ] have resources containing different
+
+ 
 - [ ] winning/losing
     - [x] "win" condition between floors
     - [x] "lose" condition between floors
@@ -44,6 +58,7 @@ As it stands this project is currently in it's development phase!
     - [x] collectable items
     - [x] player can hold items
     - [x] items can be crafted
+    - [ ] crafting instructions saved after dying
 
 - [ ] enemies
     - [ ] big ending boss
@@ -52,7 +67,7 @@ As it stands this project is currently in it's development phase!
     - [x] enemy can kill player
     - [ ] player can befriend monsters
 
-<!-- <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
+
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- [godot 4]: https://godotengine.org/  -->
