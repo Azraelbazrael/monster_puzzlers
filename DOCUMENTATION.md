@@ -10,8 +10,6 @@ Resources in Godot 4.4 act as data containers, nodes pull from them in order to 
 ### Stats
 
 
-
-
 The stats resource class holds components related to the node's it'll be attached to later on. If it's got "health" to speak of, it has data from or inheriting from this resource.  
 <br>
 #### Variables
@@ -27,9 +25,7 @@ enum Type{PLAYER,MONSTER,INTERACTABLE}
 @export var damage: float
   ```
 The exported variables represent these things as follows:
-* **Type**: What type of object has these stats, a player/enemy or chest/rock?
 * **Max_health**: Maximum amount of health
-* **Art**: Sprite2D texture
 * **Damage**: How much an (unarmed) attack will deal upon contact
 
 
