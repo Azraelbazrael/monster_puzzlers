@@ -7,6 +7,12 @@
 ## Important Resources
 Resources in Godot 4.4 act as data containers, nodes pull from them in order to do things like hold variables and arrays and lists. The ability to create custom resources is a very valuable tool in the arsenal of any godot dev. <br> In this section, I'll go over the prominent resources I've created and used through out the project and where I've used them to get a better picture of how each part plays into the larger project. 
 
+### Reoccurring variables
+Present in these resources are two types of labels, with the same functions. For brevity's sake, I'll define them before delving deeper.
+
+* **Type**: A type of list holding strings of information, usually what kind of object the resource is attached to.
+* **Art**: The short hand for 2D texture, to be grabbed later by the object's script.
+
 ### Stats
 
 
@@ -105,6 +111,45 @@ One new function present in the character stats is the addition of healing. It s
 
 
 ### Items
+Items refers to collectables and weapons the player can interact with and craft. This section talks about the data the items generally hold for future reference. 
+<p>Read more about <a href="#readme-top">Interactable items</a> here.</p>
+
+```sh
+enum Type{COLLECTABLE, WEAPON}
+
+@export_group("Item Attributes")
+@export var type: Type
+@export var art: Texture
+@export var name: String
+@export var stackable: bool
+@export var max_stack: int
+@export var animation : String
+
+
+
+@export_multiline var item_desc: String
+```
+* stackable: if the player can hold the same item in one slot
+* max_stack: how many of each item can be implemented in a single slot
+* animation: item's animation name (if applicable)
+
+  
+#### Weapon
+```sh
+@export var cost: int
+@export var damage: float
+@export var weapon_type: Weapon_type
+@export var recipe: Array[Item_resource]
+@export var rock_damage: float
+
+func use_cost(char_stats: Character_stats) -> void:
+	if cost:
+		char_stats.stamina -= cost
+```
+
+* **cost**: how much stamina the weapon depletes when the player uses it each time
+* **rock_damage**: How much damage does this inflict on chests/rocks as opposed to enemies?
+* **recipe**: An array of existing item resources needed in order to craft the object
 
 ## Signals
 
@@ -113,7 +158,7 @@ One new function present in the character stats is the addition of healing. It s
 
 ## Position Generation
 
-## Inventory
+## Interactable Items
 
 ## State Machines
 
