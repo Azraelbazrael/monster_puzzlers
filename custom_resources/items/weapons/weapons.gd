@@ -17,5 +17,3 @@ func create_instance() -> Resource:
 	var instance: Item_resource = self.duplicate()
 	return instance
 
-func apply_effects():
-	pass
