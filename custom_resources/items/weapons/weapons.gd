@@ -3,7 +3,6 @@ extends Item_resource
 
 enum Weapon_type{MELEE, RANGED}
 
-@export var id: String
 @export var cost: int
 @export var damage: float
 @export var weapon_type: Weapon_type
