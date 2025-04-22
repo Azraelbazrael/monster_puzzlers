@@ -182,6 +182,7 @@ func _ready():
 ### Position Generation
 as a randomly-generated dungeon is created for the level's map, it's important that the items, enemy spawns and player position is generated at random as well. Signals are used to indicate when a new random position needs to be pulled up, opposed to the same position being used multiple times otherwise.
 <p>Below is code used on the main tilemaps for dungeon generation. This is located in tile_map.gd.</p>
+
 ```sh
 extends TileMap
 
@@ -207,9 +208,10 @@ func place_object() -> void:
 	rand_point = tiles_in_room.pick_random()
 
 ```
-This block of code also demonstrates that at the end of a level the array containing each position is cleared in order to ensure any one of the items generated isn't put in an impossible positon. Like the comment implies there are some flaws with this system, mainly that I can't control what goes where yet in case I really didn't want something to be some place.
+<p>This block of code also demonstrates that at the end of a level the array containing each position is cleared in order to ensure any one of the items generated isn't put in an impossible positon. Like the comment implies there are some flaws with this system, mainly that I can't control what goes where yet in case I really didn't want something to be some place. </p>
 
 ## Main
+
 ## Interactable Items
 
 ## Enemies
