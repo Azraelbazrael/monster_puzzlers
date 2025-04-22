@@ -15,8 +15,7 @@ func _ready() -> void:
 		return
 	area_2d.body_entered.connect(_on_body_entered )
 
-#func _ready():
-	#texture = item.art
+
 func _on_body_entered( b ) -> void:
 	if b is PlayerCharacter:
 		if item_data:
