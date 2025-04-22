@@ -213,7 +213,8 @@ func place_object() -> void:
 The following section will be covering the main node of the project, encompassing maze generation, file structure and how a level is presented to the player.
 
 ## Interactable Items
+Interactable items refers to the collectables that a player can pick up on their journey, these can be small pieces of loot, ore for crafting.
 
 ## Enemies
-
+An enemy is an important obstacle for this time of gameplay loop. There is no monster taming without any monsters
 
