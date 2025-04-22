@@ -112,7 +112,7 @@ One new function present in the character stats is the addition of healing. It s
 
 ### Items
 Items refers to collectables and weapons the player can interact with and craft. This section talks about the data the items generally hold for future reference. 
-<p>Read more about <a href="#readme-top">Interactable items</a> here.</p>
+<p>Read more about <a href="#interactable-items">Interactable items</a> here.</p>
 
 ```sh
 enum Type{COLLECTABLE, WEAPON}
@@ -206,7 +206,6 @@ func place_object() -> void:
 	else: 
 		pass
 	rand_point = tiles_in_room.pick_random()
-
 ```
 <p>This block of code also demonstrates that at the end of a level the array containing each position is cleared in order to ensure any one of the items generated isn't put in an impossible positon. Like the comment implies there are some flaws with this system, mainly that I can't control what goes where yet in case I really didn't want something to be some place. </p>
 
