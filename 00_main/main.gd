@@ -10,12 +10,12 @@ var evil_rock = preload("res://item_test_scenes/evil_rock.tscn")
 @onready var screen_layer: CanvasLayer = $ScreenLayers
 @onready var textbox: MarginContainer = $ScreenLayers/textbox
 
-var tile_size = 32 ## size of tikes
+var tile_size = 32 ## size of tiles
 var num_rooms = 20 ## number of total rooms generated
 var min_size = 4 ## min room size in tiles
-var max_size = 10 ## max room size in tiles
-var h_spread = 250 ## horizontal spread in pixels
-var v_spread = 250 ## vertical spread in pixels
+var max_size = 15 ## max room size in tiles
+var h_spread = 25 ## horizontal spread in pixels
+var v_spread = 25 ## vertical spread in pixels
 
 var path: AStar2D ## for Astar pathfinding (corridors)
 var start_room = null
@@ -39,21 +39,20 @@ func _ready():
 	Global.connect("player_died", retry)
 	Global.connect("generate_dungeon", make_rooms)
 	Global.connect("level_passed", level_proceed)
-	Global.connect("player_died", reset_counter)
 	
 	randomize()
 	make_rooms()
 	
 	
 func make_rooms():
-	
+	for n in $RoomContainer.get_children():
+		n.queue_free()
 	Map = $TileMap ## makes the map take into the placeholder one for now LOL
 	textbox.end_button.disabled = true
 	
 	get_node("Camera2D").enabled = true
 	
-	for n in $RoomContainer.get_children():
-		n.queue_free()
+	
 			
 	start_room = null
 
@@ -258,9 +257,7 @@ func gen_rand_end_rock():
 	end_box.position = Map.rand_point * 32 
 
 	add_child(end_box)
-	print(end_box.position)
-		
-			
+	#print(end_box.position)
 
 
 func _on_game_over() -> void:
@@ -271,14 +268,14 @@ func _on_game_over() -> void:
 	
 func _on_game_start() -> void:
 	
-	play_mode = true # Replace with function body.
+	play_mode = true 
 	get_node("Camera2D").enabled = false
 	screen_layer.hide()
 	
 
 func retry() -> void:
-	Global.emit_signal("game_over")
-	print("lol")
+	_on_game_over()
+	Global.current_level = 0 
 
 func level_proceed() -> void:
 	Global.current_level += 1

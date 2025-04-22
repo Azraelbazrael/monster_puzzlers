@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="map_resource" load_steps=6 format=3 uid="uid://dsg2y24ieqm3f"]
+
+[ext_resource type="Resource" uid="uid://2s6wkvulb4pv" path="res://custom_resources/stats/enemy_resouces/dummy.tres" id="1_ah6iv"]
+[ext_resource type="TileSet" uid="uid://clr01r8bc543d" path="res://assets/tiles.tres" id="2_b0adn"]
+[ext_resource type="Script" uid="uid://djdrgpjq3yspg" path="res://custom_resources/maps/map_enemies.gd" id="2_ydqdw"]
+[ext_resource type="Script" uid="uid://ci4glncunbf0j" path="res://custom_resources/maps/map.gd" id="3_ydqdw"]
+
+[sub_resource type="Resource" id="Resource_c0r2y"]
+script = ExtResource("2_ydqdw")
+enemy = ExtResource("1_ah6iv")
+probability = 100.0
+min_amount = 8
+max_amount = 10
+metadata/_custom_type_script = "uid://djdrgpjq3yspg"
+
+[resource]
+script = ExtResource("3_ydqdw")
+tileset = ExtResource("2_b0adn")
+map_enemies = Array[Object]([SubResource("Resource_c0r2y")])
+map_items = null
+metadata/_custom_type_script = "uid://ci4glncunbf0j"

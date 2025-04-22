@@ -1,10 +1,10 @@
-class_name DropData 
 extends Resource
+class_name map_enemies
 
-@export var item : Item_resource
+@export var enemy: Stats
 @export_range( 0, 100, 1, "suffix:%" ) var probability : float = 100
-@export_range( 1, 10, 1, "suffix:items" ) var min_amount : int = 1
-@export_range( 1, 10, 1, "suffix:items" ) var max_amount : int = 1
+@export_range( 1, 10, 1, "suffix:enemies" ) var min_amount : int = 1
+@export_range( 1, 10, 1, "suffix:enemies" ) var max_amount : int = 1
 
 func get_drop_count() -> int:
 	if randf_range( 0, 100 ) >= probability:
