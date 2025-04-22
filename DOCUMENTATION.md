@@ -43,7 +43,7 @@ The exported variables represent these things as follows:
 ```
 The Item Drops group below carries an array of what "Items" the object can "Drop". 
 Not all objects with the stats resource attached to them have items that it can drop, this only applies specifically to enemies and chests/rocks.
-<p>read more about <a href="#readme-top">DropData</a> here</p>
+<p>read more about <a href="#Dropdata">DropData</a> here</p>
 
 
 #### Health
@@ -151,6 +151,9 @@ func use_cost(char_stats: Character_stats) -> void:
 * **rock_damage**: How much damage does this inflict on chests/rocks as opposed to enemies?
 * **recipe**: An array of existing item resources needed in order to craft the object
 
+#### Dropdata
+
+
 ## Signals
 In Godot, Signals are little messages emitted in order to indicate something's happening. There are multiple ways a signal could be listened for and used and overall make working within GDscript less of a headache. 
 
@@ -181,7 +184,8 @@ func _ready():
 
 ### Position Generation
 as a randomly-generated dungeon is created for the level's map, it's important that the items, enemy spawns and player position is generated at random as well. Signals are used to indicate when a new random position needs to be pulled up, opposed to the same position being used multiple times otherwise.
-<p>Below is code used on the main tilemaps for dungeon generation. This is located in tile_map.gd.</p>
+<br>
+Below is code used on the main tilemaps for dungeon generation. This is located in `tile_map.gd` and can be seen attached to the tilemap node of the same name.
 
 ```sh
 extends TileMap
@@ -210,11 +214,66 @@ func place_object() -> void:
 <p>This block of code also demonstrates that at the end of a level the array containing each position is cleared in order to ensure any one of the items generated isn't put in an impossible positon. Like the comment implies there are some flaws with this system, mainly that I can't control what goes where yet in case I really didn't want something to be some place. </p>
 
 ## Main
-The following section will be covering the main node of the project, encompassing maze generation, file structure and how a level is presented to the player.
+The following section will be covering the main node of the project, encompassing maze generation, file structure and how a level is presented to the player. Generally, everything found in the main scene.
 
 ## Interactable Items
-Interactable items refers to the collectables that a player can pick up on their journey, these can be small pieces of loot, ore for crafting.
+Interactable items refers to the collectables that a player can pick up on their journey, these can be small pieces of loot, ore for crafting. The ptoject handles loose items by having one central pickup item code and changes the sprite texture based on the resource attached to the node via code.
+```sh
+extends CharacterBody2D
+class_name PickableItem
+
+signal picked_up
+
+@onready var area_2d: Area2D = $Area2D
+@onready var sprite_2d: Sprite2D = $Sprite2D
+@export var item_data: Item_resource
+
+func _ready() -> void:
+	_update_texture()
+	if Engine.is_editor_hint():
+		return
+	area_2d.body_entered.connect(_on_body_entered )
+```
+`item.gd`'s beginning half begins by establishing a few things, mainly the variables referenced throughout the script. The if statement present checks if the enginge's screen is the editor as opposed to the game and calls the update texture occordingly.
+
+```sh
+func _on_body_entered( b ) -> void:
+	if b is PlayerCharacter:
+		if item_data:
+			emit_signal("picked_up")
+			visible = false
+			b.add_item(item_data)
+			queue_free()
+	pass	
+```
+the body entered function listens for the singal in the area 2D to detect if another body has entered the space. Upon this, the if statement checks if the body belongs the the `PlayerCharacter` class. If that requirement is met, it emits the established `picked_up` signal, removes visibility from the sprite and lastly, adds the item to the player's inventory. 
+
+`add_item` function found in the `Character.gd` script:
+
+```sh
+func add_item(item):
+	var inventory = $CanvasLayer/HUD_elements/BottomContainer/VboxContainer/MarginContainer/Inventory/Slot_Container/Inventory_Slots
+	
+	if inventory:
+		inventory.add_item(item)
+```
+`add_item` function found in `inventory_slot.gd` script:
+```sh
+func add_item(item : Item_resource):
+	for slot in slots:
+		if slot.item == null:
+			slot.item = item
+			item_changed.emit()
+			return
+	print("Can't add any more item...")
+
+```
+### Items in the overworld
+
+### Inventory
+
 
 ## Enemies
 An enemy is an important obstacle for this time of gameplay loop. There is no monster taming without any monsters
 
+### State machines
