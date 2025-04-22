@@ -112,7 +112,7 @@ One new function present in the character stats is the addition of healing. It s
 
 ### Items
 Items refers to collectables and weapons the player can interact with and craft. This section talks about the data the items generally hold for future reference. 
-<p>Read more about <a href="#readme-top">Interactable items</a> here.</p>
+<p>Read more about <a href="#interactable-items">Interactable items</a> here.</p>
 
 ```sh
 enum Type{COLLECTABLE, WEAPON}
@@ -170,14 +170,50 @@ signal game_over
 
 signal enemy_dead(object) ## currently unused
 ```
+Main.gd acknowledges and listens for these signals in order to preform fuctions when emitted upon startup.
+```sh
+func _ready():
+	Global.connect("game_start", _on_game_start)
+	Global.connect("game_over", _on_game_over)
+	Global.connect("player_died", retry)
+	Global.connect("generate_dungeon", make_rooms)
+```
 
-## Maze generation
+### Position Generation
+as a randomly-generated dungeon is created for the level's map, it's important that the items, enemy spawns and player position is generated at random as well. Signals are used to indicate when a new random position needs to be pulled up, opposed to the same position being used multiple times otherwise.
+<p>Below is code used on the main tilemaps for dungeon generation. This is located in tile_map.gd.</p>
+
+```sh
+extends TileMap
+
+var tiles_in_room = []
+var rand_point
+
+	
+func _ready() -> void:
+	Global.connect("game_over", clear_tiles)
+	Global.connect("obj_placed", place_object)
 
 
-## Position Generation
+func clear_tiles():
+	tiles_in_room.clear()
+
+
+func place_object() -> void:
+	if tiles_in_room.is_empty():
+		for tile in get_used_cells_by_id(0,0):
+			tiles_in_room.append(tile) ##i'll figure something out later, this just puts the endbox on ANY tile the player can int with
+	else: 
+		pass
+	rand_point = tiles_in_room.pick_random()
+```
+<p>This block of code also demonstrates that at the end of a level the array containing each position is cleared in order to ensure any one of the items generated isn't put in an impossible positon. Like the comment implies there are some flaws with this system, mainly that I can't control what goes where yet in case I really didn't want something to be some place. </p>
+
+## Main
+The following section will be covering the main node of the project, encompassing maze generation, file structure and how a level is presented to the player.
 
 ## Interactable Items
 
-## State Machines
+## Enemies
 
 
