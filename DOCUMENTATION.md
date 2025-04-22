@@ -210,7 +210,7 @@ func place_object() -> void:
 <p>This block of code also demonstrates that at the end of a level the array containing each position is cleared in order to ensure any one of the items generated isn't put in an impossible positon. Like the comment implies there are some flaws with this system, mainly that I can't control what goes where yet in case I really didn't want something to be some place. </p>
 
 ## Main
-This section will be covering the main node of the project, encompassing maze generation, file structure and how a level is presented to the player.
+The following section will be covering the main node of the project, encompassing maze generation, file structure and how a level is presented to the player.
 
 ## Interactable Items
 
