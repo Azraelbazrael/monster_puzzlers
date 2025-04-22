@@ -8,4 +8,4 @@ signal obj_placed
 signal game_start
 signal game_over
 
-signal enemy_dead(object)
+signal enemy_dead(object) ## currently unused
