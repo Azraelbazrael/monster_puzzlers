@@ -3,7 +3,7 @@ extends Node2D
 
 var Room = preload("res://dungeon_generator/Room.tscn")
 var Player = preload("res://Playable_character/character.tscn")
-var font = preload("res://assets/RobotoBold24.tres")
+var font = preload("res://assets/fonts/RobotoBold24.tres")
 var evil_rock = preload("res://item_test_scenes/evil_rock.tscn")
 
 @export var Map: TileMap
@@ -38,6 +38,8 @@ func _ready():
 	Global.connect("game_over", _on_game_over)
 	Global.connect("player_died", retry)
 	Global.connect("generate_dungeon", make_rooms)
+	Global.connect("level_passed", level_proceed)
+	Global.connect("player_died", reset_counter)
 	
 	randomize()
 	make_rooms()
@@ -142,7 +144,7 @@ func make_map():
 	##finds start and end rooms
 	find_start_room()
 	find_end_room()
-	
+	print(Global.current_level)
 	## creates tilemap based off of the rooms and pathes made
 	corridors.clear()
 	Map.clear()
@@ -250,6 +252,7 @@ func player_to_end_room():
 
 func gen_rand_end_rock():
 	Global.emit_signal("obj_placed")
+	Global.emit_signal("level_passed")
 	
 	end_box = evil_rock.instantiate()
 	end_box.position = Map.rand_point * 32 
@@ -267,6 +270,7 @@ func _on_game_over() -> void:
 	screen_layer.show()
 	
 func _on_game_start() -> void:
+	
 	play_mode = true # Replace with function body.
 	get_node("Camera2D").enabled = false
 	screen_layer.hide()
@@ -275,3 +279,10 @@ func _on_game_start() -> void:
 func retry() -> void:
 	Global.emit_signal("game_over")
 	print("lol")
+
+func level_proceed() -> void:
+	Global.current_level += 1
+	
+
+func reset_counter() -> void:
+	Global.current_level = 0

@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bwsaigphdiqte"
-path="res://.godot/imported/Roboto-Light.ttf-e1071d3e7ad89c3583bd0840d365d0ee.fontdata"
+path="res://.godot/imported/Roboto-Light.ttf-36313910791b925a2c0bec3b5f969444.fontdata"
 
 [deps]
 
-source_file="res://assets/Roboto-Light.ttf"
-dest_files=["res://.godot/imported/Roboto-Light.ttf-e1071d3e7ad89c3583bd0840d365d0ee.fontdata"]
+source_file="res://assets/fonts/Roboto-Light.ttf"
+dest_files=["res://.godot/imported/Roboto-Light.ttf-36313910791b925a2c0bec3b5f969444.fontdata"]
 
 [params]
 
@@ -29,7 +29,12 @@ Fallbacks=null
 fallbacks=[]
 Compress=null
 compress=true
-preload=[]
+preload=[{
+"chars": [],
+"glyphs": [],
+"name": "New Configuration",
+"size": Vector2i(16, 0)
+}]
 language_support={}
 script_support={}
 opentype_features={}

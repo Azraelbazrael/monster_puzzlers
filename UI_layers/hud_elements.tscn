@@ -3,14 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://bxjh225dp1o" path="res://UI_layers/slot.tscn" id="1_8nd76"]
 [ext_resource type="Script" uid="uid://cyvei8l5lmjw4" path="res://UI_layers/hud_elements.gd" id="1_qa41y"]
 [ext_resource type="Script" uid="uid://b2cd2ehjeh0rw" path="res://UI_layers/inventory_slots.gd" id="1_v36sh"]
-[ext_resource type="Texture2D" uid="uid://ih6cudu5e0cc" path="res://assets/bar_under.png" id="2_bfbvt"]
+[ext_resource type="Texture2D" uid="uid://ih6cudu5e0cc" path="res://assets/bar/bar_under.png" id="2_bfbvt"]
 [ext_resource type="Script" uid="uid://d3f2jrlfybdpi" path="res://UI_layers/player_inventory.gd" id="3_3mshm"]
-[ext_resource type="Texture2D" uid="uid://c4nau48rs403q" path="res://assets/bar_progress.png" id="3_8qdjm"]
-[ext_resource type="Texture2D" uid="uid://db460ch2parqg" path="res://assets/bar_over_asset.png" id="4_5gaxu"]
+[ext_resource type="Texture2D" uid="uid://c4nau48rs403q" path="res://assets/bar/bar_progress.png" id="3_8qdjm"]
+[ext_resource type="Texture2D" uid="uid://db460ch2parqg" path="res://assets/bar/bar_over_asset.png" id="4_5gaxu"]
 [ext_resource type="PackedScene" uid="uid://c1vjw7bfp0mmc" path="res://UI_layers/recipe_canvas.tscn" id="5_hgqje"]
-[ext_resource type="Resource" uid="uid://1tswto083w7i" path="res://resources/weapons/pickaxe.tres" id="7_funva"]
+[ext_resource type="Resource" uid="uid://1tswto083w7i" path="res://custom_resources/items/weapons/pickaxe.tres" id="7_funva"]
 
-[node name="HUD_elements" type="VBoxContainer" node_paths=PackedStringArray("stam_bar", "hp_bar", "min_sp", "max_sp", "min_hp", "max_hp")]
+[node name="HUD_elements" type="VBoxContainer" node_paths=PackedStringArray("stam_bar", "hp_bar", "min_sp", "max_sp", "min_hp", "max_hp", "lvl_label")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -29,6 +29,7 @@ min_sp = NodePath("TopContainer/VboxContainer/Stam_Container/stam_bar/HBoxContai
 max_sp = NodePath("TopContainer/VboxContainer/Stam_Container/stam_bar/HBoxContainer/max_sp")
 min_hp = NodePath("TopContainer/VboxContainer/HP_Container/VBoxContainer/HBoxContainer/NinePatchRect/hp_bar/HBoxContainer/min_hp")
 max_hp = NodePath("TopContainer/VboxContainer/HP_Container/VBoxContainer/HBoxContainer/NinePatchRect/hp_bar/HBoxContainer/max_hp")
+lvl_label = NodePath("TopContainer/Level_label")
 metadata/_edit_use_anchors_ = true
 
 [node name="TopContainer" type="MarginContainer" parent="."]
@@ -150,6 +151,12 @@ text = "/"
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "???"
+
+[node name="Level_label" type="Label" parent="TopContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 28
+text = "LEVEL: "
 
 [node name="recipe_canvas" parent="." instance=ExtResource("5_hgqje")]
 visible = false

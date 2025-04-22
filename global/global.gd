@@ -7,5 +7,8 @@ signal generate_dungeon
 signal obj_placed
 signal game_start
 signal game_over
+signal level_passed
 
 signal enemy_dead(object) ## currently unused
+
+var current_level = 0

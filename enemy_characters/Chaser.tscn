@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bhhbvb6lvcin6"]
 
 [ext_resource type="Script" uid="uid://br2it7g33brnp" path="res://enemy_characters/chaser_enemy.gd" id="1_i2vdt"]
-[ext_resource type="Resource" uid="uid://dnbj2d2k1t0o4" path="res://resources/enemy_resouces/chaser.tres" id="2_ecse2"]
+[ext_resource type="Resource" uid="uid://dnbj2d2k1t0o4" path="res://custom_resources/stats/enemy_resouces/chaser.tres" id="2_ecse2"]
 [ext_resource type="PackedScene" uid="uid://7wtngh11pph" path="res://UI_layers/floating_text.tscn" id="3_iutq5"]
 [ext_resource type="Script" uid="uid://bvpsio45nj0r7" path="res://states/state_machine.gd" id="4_wqey0"]
 [ext_resource type="Script" uid="uid://ctcnwn2sk51qu" path="res://states/enemy_states/EnemyIdle.gd" id="5_n21k1"]

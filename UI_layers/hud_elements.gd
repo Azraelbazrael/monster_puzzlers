@@ -10,6 +10,11 @@ extends VBoxContainer
 @export var min_hp: Label
 @export var max_hp: Label
 
+@export var lvl_label: Label
+
+func _process(delta: float) -> void:
+	lvl_label.text = "FLOOR: %d" % [Global.current_level]
+	
 func update_stats(stats: Character_stats):
 
 	
@@ -29,6 +34,8 @@ func update_stats(stats: Character_stats):
 	hp_bar.value = (stats.health)
 
 
+
+	
 func _on_inv_button_pressed() -> void:
 	#print("wsg")
 	var craft_bag = $recipe_canvas
