@@ -152,6 +152,24 @@ func use_cost(char_stats: Character_stats) -> void:
 * **recipe**: An array of existing item resources needed in order to craft the object
 
 ## Signals
+In Godot, Signals are little messages emitted in order to indicate something's happening. There are multiple ways a signal could be listened for and used and overall make working within GDscript less of a headache. 
+
+### Global Signals
+Godot offers a way to automatically load nodes at the base of your scene globally, making for an easy way to access certain signals without having to define new ones for similar uses. this section overs the following  examples.
+
+```sh
+extends Node
+
+signal weapon_changed
+signal player_died
+signal rock_broken
+signal generate_dungeon
+signal obj_placed
+signal game_start
+signal game_over
+
+signal enemy_dead(object) ## currently unused
+```
 
 ## Maze generation
 
