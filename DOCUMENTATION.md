@@ -3,7 +3,7 @@
   <summary>Table of Contents</summary>
 </details>
 
-
+<br>
 ## Important Resources
 Resources in Godot 4.4 act as data containers, nodes pull from them in order to do things like hold variables and arrays and lists. The ability to create custom resources is a very valuable tool in the arsenal of any godot dev. <br> In this section, I'll go over the prominent resources I've created and used through out the project and where I've used them to get a better picture of how each part plays into the larger project. 
 
@@ -175,6 +175,7 @@ The `get_drop_count` function underneath the establishing variables runs a check
 <br>
 If so, return the function, do not proceed. Otherwise, return a new random interger from the established minimum and maximum values.
 
+<br>
 <!-- SIGNALS -->
 ## Signals
 In Godot, Signals are little messages emitted in order to indicate something's happening. There are multiple ways a signal could be listened for and used and overall make working within GDscript less of a headache. 
@@ -236,10 +237,12 @@ func place_object() -> void:
 <p>This block of code also demonstrates that at the end of a level the array containing each position is cleared in order to ensure any one of the items generated isn't put in an impossible positon. Like the comment implies there are some flaws with this system, mainly that I can't control what goes where yet in case I really didn't want something to be some place. </p>
 
 
+<br>
 <!-- MAIN SECTION -->
 ## Main
 The following section will be covering the main node of the project, encompassing maze generation, file structure and how a level is presented to the player. Generally, everything found in the main scene.
 
+<br>
 <!-- ITEMS SECTION -->
 ## Interactable Items
 Interactable items refers to the collectables that a player can pick up on their journey, these can be small pieces of loot, ore for crafting. The ptoject handles loose items by having one central pickup item code and changes the sprite texture based on the resource attached to the node via code.
