@@ -316,6 +316,7 @@ when an enemy drops an item, each item has velocity and bounce to it. This makes
 ### Player Inventory
 This section highlights the ability to equip items and crafting UI.
 
+<br>
 <!-- ENEMIES SECTION -->
 ## Enemies
 An enemy is an important obstacle for this time of gameplay loop. There is no monster taming without any monsters
