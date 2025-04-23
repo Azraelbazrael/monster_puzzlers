@@ -110,7 +110,7 @@ func heal(amount : int) -> void:
 One new function present in the character stats is the addition of healing. It still takes in an amount to be assigned later, but replenishes health opposed to taking damage.
 
 
-
+<br>
 ## Items
 Items refers to collectables and weapons the player can interact with and craft. This section talks about the data the items generally hold for future reference. 
 <p>Read more about <a href="#interactable-items">Interactable items</a> here.</p>
