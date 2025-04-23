@@ -111,7 +111,7 @@ One new function present in the character stats is the addition of healing. It s
 
 
 
-### Items
+## Items
 Items refers to collectables and weapons the player can interact with and craft. This section talks about the data the items generally hold for future reference. 
 <p>Read more about <a href="#interactable-items">Interactable items</a> here.</p>
 
@@ -135,7 +135,7 @@ enum Type{COLLECTABLE, WEAPON}
 * animation: item's animation name (if applicable)
 
   
-#### Weapon
+### Weapon
 ```sh
 @export var cost: int
 @export var damage: float
@@ -152,7 +152,7 @@ func use_cost(char_stats: Character_stats) -> void:
 * **rock_damage**: How much damage does this inflict on chests/rocks as opposed to enemies?
 * **recipe**: An array of existing item resources needed in order to craft the object
 
-#### Dropdata
+### Dropdata
 ```sh
 class_name DropData 
 extends Resource
