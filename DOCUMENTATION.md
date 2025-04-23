@@ -21,7 +21,7 @@ The stats resource class holds components related to the node's it'll be attache
 <br>
 #### Variables
  ```sh
-class_name Stats
+class_name Stats	
 extends Resource
 
 enum Type{PLAYER,MONSTER,INTERACTABLE}
@@ -299,7 +299,7 @@ func add_item(item : Item_resource):
 	print("Can't add any more item...")
 
 ```
-### Items in the overworld
+### Items in the Overworld
 Items do not currently spawn in the overworld in the main scenes, what's in this section details what's present in the projects test scenes. I felt it's important this game had a specific system where items in the map resources arrays show up and spawn randomly as opposed to having them all plop in individually. The latter is inflexible and cannot work for the type of game this is. 
 <br>
 ```sh
@@ -313,13 +313,44 @@ func _physics_process(delta):
 
 when an enemy drops an item, each item has velocity and bounce to it. This makes sure that the objects are not only not static, but add life to the project.
 
-### Player Inventory
-This section highlights the ability to equip items and crafting UI.
+### Equipping an Item
 
+### Inventory
+Here we'll be going over functions related to the inventory and crafting system. This covers dragging and dropping items, checking the inventory for recipe requirements and how crafting functions.
+
+```sh
+extends GridContainer
+@onready var slots = get_children()
+
+```
+The above is found in `inventory_slots.gd`. It's worth pointing out that this script is attached to nodes that are the parent of individual slot nodes, acting like a manager of sorts. It's here where the `add_item` function is set up for the inventory. 
+
+```sh
+func remove_item(item : Item_resource):
+	for slot in slots:
+		if slot.item == item:
+			slot.item = null
+			item_changed.emit()
+			return
+	print("Item not found...")
+
+```
+`remove_item` functions almost identically to `add_item` and serves to remove the items from individual slots or, in the future, discard the item all together. 
+You can read more about the way an item is picked up in game <a href="#interactable-items">here</a>.
 <br>
+```sh
+func is_available(item):
+	for i in get_children():
+		if i.item == item:
+			return true
+	return false
+
+```
+`is_available` serves as a means to return if an item resource is available. It runs through all the children, checks if the child node has the called item_resource attached and proceeds to return a true or false based off of the check.
+
 
 <!-- ENEMIES SECTION -->
 ## Enemies
 An enemy is an important obstacle for this time of gameplay loop. There is no monster taming without any monsters
 
-### State machines
+### State Machines
