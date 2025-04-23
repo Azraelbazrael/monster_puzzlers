@@ -152,8 +152,30 @@ func use_cost(char_stats: Character_stats) -> void:
 * **recipe**: An array of existing item resources needed in order to craft the object
 
 #### Dropdata
+```sh
+class_name DropData 
+extends Resource
 
+@export var item : Item_resource
+@export_range( 0, 100, 1, "suffix:%" ) var probability : float = 100
+@export_range( 1, 10, 1, "suffix:items" ) var min_amount : int = 1
+@export_range( 1, 10, 1, "suffix:items" ) var max_amount : int = 1
+```
+Mentioned previously, DropData stores data about item drops. 
+<br>
+This encompasses which item resource this is going to reference, the potential minimum and maximum amounts of items and the probability for an item to show up for more chance.
 
+```sh
+func get_drop_count() -> int:
+	if randf_range( 0, 100 ) >= probability:
+		return 0
+	return randi_range( min_amount, max_amount )
+```
+The `get_drop_count` function underneath the establishing variables runs a check to see if a number rolled is greater than the given probability. 
+<br>
+If so, return the function, do not proceed. Otherwise, return a new random interger from the established minimum and maximum values.
+
+<!-- SIGNALS -->
 ## Signals
 In Godot, Signals are little messages emitted in order to indicate something's happening. There are multiple ways a signal could be listened for and used and overall make working within GDscript less of a headache. 
 
@@ -213,9 +235,12 @@ func place_object() -> void:
 ```
 <p>This block of code also demonstrates that at the end of a level the array containing each position is cleared in order to ensure any one of the items generated isn't put in an impossible positon. Like the comment implies there are some flaws with this system, mainly that I can't control what goes where yet in case I really didn't want something to be some place. </p>
 
+
+<!-- MAIN SECTION -->
 ## Main
 The following section will be covering the main node of the project, encompassing maze generation, file structure and how a level is presented to the player. Generally, everything found in the main scene.
 
+<!-- ITEMS SECTION -->
 ## Interactable Items
 Interactable items refers to the collectables that a player can pick up on their journey, these can be small pieces of loot, ore for crafting. The ptoject handles loose items by having one central pickup item code and changes the sprite texture based on the resource attached to the node via code.
 ```sh
@@ -269,10 +294,23 @@ func add_item(item : Item_resource):
 
 ```
 ### Items in the overworld
+Items do not currently spawn in the overworld in the main scenes, what's in this section details what's present in the projects test scenes. I felt it's important this game had a specific system where items in the map resources arrays show up and spawn randomly as opposed to having them all plop in individually. The latter is inflexible and cannot work for the type of game this is. 
+<br>
+```sh
+func _physics_process(delta):
+	var collision_info = move_and_collide( velocity * delta )
+	if collision_info:
+		velocity = velocity.bounce( collision_info.get_normal() )
+	velocity -= velocity * delta * 4 
+	
+```
 
-### Inventory
+when an enemy drops an item, each item has velocity and bounce to it. This makes sure that the objects are not only not static, but add life to the project.
 
+### Player Inventory
+This section highlights the ability to equip items and crafting UI.
 
+<!-- ENEMIES SECTION -->
 ## Enemies
 An enemy is an important obstacle for this time of gameplay loop. There is no monster taming without any monsters
 
