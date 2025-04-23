@@ -178,6 +178,7 @@ If so, return the function, do not proceed. Otherwise, return a new random inter
 
 <br>
 <!-- SIGNALS -->
+
 ## Signals
 In Godot, Signals are little messages emitted in order to indicate something's happening. There are multiple ways a signal could be listened for and used and overall make working within GDscript less of a headache. 
 
