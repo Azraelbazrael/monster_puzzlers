@@ -239,11 +239,13 @@ func place_object() -> void:
 
 
 <br>
+
 <!-- MAIN SECTION -->
 ## Main
 The following section will be covering the main node of the project, encompassing maze generation, file structure and how a level is presented to the player. Generally, everything found in the main scene.
 
 <br>
+
 <!-- ITEMS SECTION -->
 ## Interactable Items
 Interactable items refers to the collectables that a player can pick up on their journey, these can be small pieces of loot, ore for crafting. The ptoject handles loose items by having one central pickup item code and changes the sprite texture based on the resource attached to the node via code.
