@@ -1,6 +1,6 @@
 extends Node2D
 
-
+## MAIN VARIABLES
 var Room = preload("res://dungeon_generator/Room.tscn")
 var Player = preload("res://Playable_character/character.tscn")
 var font = preload("res://assets/fonts/RobotoBold24.tres")
@@ -33,6 +33,7 @@ var corridors = [] ## one corridor per connection
 var start
 var end
 
+
 func _ready():
 	Global.connect("game_start", _on_game_start)
 	Global.connect("game_over", _on_game_over)
@@ -44,7 +45,7 @@ func _ready():
 	make_rooms()
 	
 	
-func make_rooms():
+func make_rooms(): ## makes rooms
 	for n in $RoomContainer.get_children():
 		n.queue_free()
 		
@@ -59,12 +60,12 @@ func make_rooms():
 
 		
 	for i in range(num_rooms):
-		var pos = Vector2((randi_range(-h_spread, h_spread)),(randi_range(-v_spread, v_spread)))
+		var pos = Vector2((randi_range(-h_spread, h_spread)),(randi_range(-v_spread, v_spread))) ## chooses random position based on the vertical and horizontal spread
 		var r = Room.instantiate()
 		var w = min_size + randi() % (max_size - min_size)
 		var h = min_size + randi() % (max_size - min_size)
 		r.make_room(pos, Vector2(w,h) * tile_size)
-		$RoomContainer.add_child(r)
+		$RoomContainer.add_child(r) ## adds child to room container
 		
 	## wait for rooms to stop moving
 	await(get_tree().create_timer(1.1).timeout) 
