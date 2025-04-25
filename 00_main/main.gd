@@ -13,7 +13,7 @@ var evil_rock = preload("res://item_test_scenes/evil_rock.tscn")
 var tile_size = 32 ## size of tiles
 var num_rooms = 20 ## number of total rooms generated
 var min_size = 4 ## min room size in tiles
-var max_size = 15 ## max room size in tiles
+var max_size = 10 ## max room size in tiles
 var h_spread = 400 ## horizontal spread in pixels
 var v_spread =	400 ## vertical spread in pixels
 
