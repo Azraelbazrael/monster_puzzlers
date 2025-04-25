@@ -251,6 +251,7 @@ The following section will be covering the main node of the project, encompassin
 
 <img src="assets/screenshots/Main_structure_screenshot.png">
 
+The main scene holds the `RoomContainer`, `LevelManager` and `Screenlayer` 
 <br>
 
 <!-- ITEMS SECTION -->
