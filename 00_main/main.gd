@@ -145,7 +145,7 @@ func make_map():
 	find_start_room()
 	find_end_room()
 	print(Global.current_level)
-	## creates tilemap based off of the rooms and pathes made
+	## creates tilemap based off of the rooms and paths made 
 	corridors.clear()
 	Map.clear()
 	
