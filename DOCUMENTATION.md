@@ -251,7 +251,9 @@ The following section will be covering the main node of the project, encompassin
 
 <img src="assets/screenshots/Main_structure_screenshot.png">
 
-The main scene holds the `RoomContainer`, `LevelManager` and `Screenlayer` 
+The main scene holds the `RoomContainer`, `LevelManager`, `Screenlayers` and `TileMap`. Each of these elements contribut to the "background" elements that keep the game running, like a glaggle of cogs. Some are more poloshed than others.
+Throughout the documentation, I've referenced the `Main.gd` script but this section will disect it's contents more thoroughly.
+
 <br>
 
 <!-- ITEMS SECTION -->
