@@ -247,12 +247,17 @@ func place_object() -> void:
 
 
 ## Main
-The following section will be covering the main node of the project, encompassing maze generation, file structure and how a level is presented to the player. Generally, everything found in the main scene.
+I've made sure to name the folder it's stored in `00_main` in order to keep the main scene at the top for ease of access.
 
 <img src="assets/screenshots/Main_structure_screenshot.png">
 
-The main scene holds the `RoomContainer`, `LevelManager`, `Screenlayers` and `TileMap`. Each of these elements contribut to the "background" elements that keep the game running, like a glaggle of cogs. Some are more poloshed than others.
-Throughout the documentation, I've referenced the `Main.gd` script but this section will disect it's contents more thoroughly.
+Opening `main.tscn`, you find it holds the `RoomContainer`, `LevelManager`, `Screenlayers` and `TileMap`. 
+<br>
+Each of these elements contribute to the "background" elements that keep the game running, like a cog to a larger machine. In this case, some cogs are more polished than others.
+I've referenced the `Main.gd` script here and there but this section will disect it's contents more thoroughly.
+
+### Main script
+
 
 <br>
 
