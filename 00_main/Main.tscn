@@ -17,6 +17,9 @@ current_map = ExtResource("3_h3sfl")
 
 [node name="RoomContainer" type="Node" parent="."]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.1, 0.1)
+
 [node name="TileMap" type="TileMap" parent="."]
 show_behind_parent = true
 position = Vector2(0, 4)
