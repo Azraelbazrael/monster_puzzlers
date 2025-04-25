@@ -244,8 +244,12 @@ func place_object() -> void:
 <br>
 
 <!-- MAIN SECTION -->
+
+
 ## Main
 The following section will be covering the main node of the project, encompassing maze generation, file structure and how a level is presented to the player. Generally, everything found in the main scene.
+
+<img src="assets/screenshots/Main_structure_screenshot.png">
 
 <br>
 
