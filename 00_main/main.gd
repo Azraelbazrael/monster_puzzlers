@@ -14,8 +14,8 @@ var tile_size = 32 ## size of tiles
 var num_rooms = 20 ## number of total rooms generated
 var min_size = 4 ## min room size in tiles
 var max_size = 15 ## max room size in tiles
-var h_spread = 25 ## horizontal spread in pixels
-var v_spread = 25 ## vertical spread in pixels
+var h_spread = 2500 ## horizontal spread in pixels
+var v_spread = 2500 ## vertical spread in pixels
 
 var path: AStar2D ## for Astar pathfinding (corridors)
 var start_room = null
@@ -47,6 +47,7 @@ func _ready():
 func make_rooms():
 	for n in $RoomContainer.get_children():
 		n.queue_free()
+		
 	Map = $TileMap ## makes the map take into the placeholder one for now LOL
 	textbox.end_button.disabled = true
 	
@@ -152,7 +153,7 @@ func make_map():
 	var full_rect = Rect2()
 	
 	for room in $RoomContainer.get_children():
-		var r = Rect2(room.position-room.size, room.get_node("CollisionShape2D").shape.extents*2)
+		var r = Rect2(room.position-room.size, room.get_node("CollisionShape2D").shape.extents*4)
 		full_rect = full_rect.merge(r)
 
 	var top_left = Map.local_to_map(full_rect.position)
