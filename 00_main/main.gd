@@ -13,9 +13,9 @@ var evil_rock = preload("res://item_test_scenes/evil_rock.tscn")
 var tile_size = 32 ## size of tiles
 var num_rooms = 20 ## number of total rooms generated
 var min_size = 4 ## min room size in tiles
-var max_size = 10 ## max room size in tiles
-var h_spread = 400 ## horizontal spread in pixels
-var v_spread =	400 ## vertical spread in pixels
+var max_size = 15 ## max room size in tiles
+var h_spread = 2000 ## horizontal spread in pixels
+var v_spread =	800 ## vertical spread in pixels
 
 var path: AStar2D ## for Astar pathfinding (corridors)
 var start_room = null
@@ -59,7 +59,7 @@ func make_rooms():
 
 		
 	for i in range(num_rooms):
-		var pos = Vector2((randi_range(-h_spread, h_spread)),0)
+		var pos = Vector2((randi_range(-h_spread, h_spread)),(randi_range(-v_spread, v_spread)))
 		var r = Room.instantiate()
 		var w = min_size + randi() % (max_size - min_size)
 		var h = min_size + randi() % (max_size - min_size)
@@ -67,7 +67,7 @@ func make_rooms():
 		$RoomContainer.add_child(r)
 		
 	## wait for rooms to stop moving
-	await(get_tree().create_timer(1.1).timeout) ## make faster load times later 
+	await(get_tree().create_timer(1.1).timeout) 
 	await get_tree().process_frame
 	for room in $RoomContainer.get_children():
 			room_positions.append(Vector2(room.position.x, room.position.y))
