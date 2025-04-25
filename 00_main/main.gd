@@ -51,7 +51,7 @@ func make_rooms():
 	Map = $TileMap ## makes the map take into the placeholder one for now LOL
 	textbox.end_button.disabled = true
 	
-	get_node("Camera2D").enabled = true
+	#get_node("Camera2D").enabled = true
 	
 	
 			
@@ -270,7 +270,7 @@ func _on_game_over() -> void:
 func _on_game_start() -> void:
 	
 	play_mode = true 
-	get_node("Camera2D").enabled = false
+#	get_node("Camera2D").enabled = false
 	screen_layer.hide()
 	
 
