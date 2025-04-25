@@ -256,10 +256,48 @@ Opening `main.tscn`, you find it holds the `RoomContainer`, `LevelManager`, `Scr
 Each of these elements contribute to the "background" elements that keep the game running, like a cog to a larger machine. In this case, some cogs are more polished than others.
 I've referenced the `Main.gd` script here and there but this section will disect it's contents more thoroughly.
 
-### Main script
+### Main Node
+
+Some variables present were for testing purposes and have since been commented out. There are still reminants to what these variables refer to within the code, but we'll get there when we get there.
+
+```sh
+extends Node2D
+class_name MainNode
+## MAIN VARIABLES
+
+var Room = preload("res://dungeon_generator/Room.tscn")
+var Player = preload("res://Playable_character/character.tscn")
+var font = preload("res://assets/fonts/RobotoBold24.tres")
+var evil_rock = preload("res://item_test_scenes/evil_rock.tscn")
+```
+The beginning encompases the preloads. 
+* **Room** Holds the node that'll be instantiated in order to generate dungeons.
+* **Player** Contains the player scene with accompanying HUD
+* **Font** Carries the font resource used for text
+* **evil_rock** is weirdly named but functions as an end point the player meets in order to pass the level. Having this in the scene makes sure the player at least has a vauge goal throughout the prototype.
+
+  
+<br> 
+
+
+```sh
+@export var Map: TileMap
+@onready var screen_layer: CanvasLayer = $ScreenLayers
+@onready var textbox: MarginContainer = $ScreenLayers/textbox
+
+var tile_size = 32 ## size of tiles
+var num_rooms = 20 ## number of total rooms generated
+var min_size = 4 ## min room size in tiles
+var max_size = 15 ## max room size in tiles
+var h_spread = 2000 ## horizontal spread in pixels
+var v_spread =	800 ## vertical spread in pixels
+```
+This section covers the specifics of dungeon generating, from how many rooms there are in any given dungeon to the tileset used. This will be replaced with level management things in the future but is a pretty solid placeholder.
 
 
 <br>
+
+
 
 <!-- ITEMS SECTION -->
 ## Interactable Items
