@@ -153,7 +153,7 @@ func make_map():
 	var full_rect = Rect2()
 	
 	for room in $RoomContainer.get_children():
-		var r = Rect2(room.position-room.size, room.get_node("CollisionShape2D").shape.extents*4)
+		var r = Rect2(room.position-room.size, room.get_node("CollisionShape2D").shape.extents*2)
 		full_rect = full_rect.merge(r)
 
 	var top_left = Map.local_to_map(full_rect.position)
