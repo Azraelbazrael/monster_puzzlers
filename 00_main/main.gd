@@ -19,8 +19,8 @@ var h_spread = 2000 ## horizontal spread in pixels
 var v_spread =	800 ## vertical spread in pixels
 
 var path: AStar2D ## for Astar pathfinding (corridors)
-var start_room = null
-var end_room = null
+var start_room = null ## now unused
+var end_room = null ## now unused
 var play_mode: bool
 var player = null
 var end_box = null
