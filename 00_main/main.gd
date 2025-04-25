@@ -1,6 +1,7 @@
 extends Node2D
-
+class_name MainNode
 ## MAIN VARIABLES
+
 var Room = preload("res://dungeon_generator/Room.tscn")
 var Player = preload("res://Playable_character/character.tscn")
 var font = preload("res://assets/fonts/RobotoBold24.tres")
