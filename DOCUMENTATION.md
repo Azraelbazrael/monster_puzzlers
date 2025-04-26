@@ -344,7 +344,14 @@ func level_proceed() -> void:
 `_on_game_over` as a function toggles off the play mode and removes the player and rock items from the scene. From there it shows the canvas layer, this conveys to the player that they've passed and presents them with a button to continue.
 
 <br>
-`
+
+#### Dungeon Generation
+How a dungeon is randomly generated is broken down into three steps. 
+* Spawning the rooms
+* Connecting the rooms
+* Filling in the map with tiles.
+
+  
 
 <!-- ITEMS SECTION -->
 ## Interactable Items
