@@ -246,7 +246,7 @@ func place_object() -> void:
 <!-- MAIN SECTION -->
 
 
-## Main
+## Main Scene
 I've made sure to name the folder it's stored in `00_main` in order to keep the main scene at the top for ease of access.
 
 <img src="assets/screenshots/Main_structure_screenshot.png">
@@ -256,10 +256,102 @@ Opening `main.tscn`, you find it holds the `RoomContainer`, `LevelManager`, `Scr
 Each of these elements contribute to the "background" elements that keep the game running, like a cog to a larger machine. In this case, some cogs are more polished than others.
 I've referenced the `Main.gd` script here and there but this section will disect it's contents more thoroughly.
 
-### Main script
+### Main Node
+
+Some variables present were for testing purposes and have since been commented out. There are still reminants to what these variables refer to within the code, but we'll get there when we get there.
+
+```sh
+extends Node2D
+class_name MainNode
+## MAIN VARIABLES
+
+var Room = preload("res://dungeon_generator/Room.tscn")
+var Player = preload("res://Playable_character/character.tscn")
+var font = preload("res://assets/fonts/RobotoBold24.tres")
+var evil_rock = preload("res://item_test_scenes/evil_rock.tscn")
+```
+The beginning encompases the preloads. 
+* **Room**: Holds the node that'll be instantiated in order to generate dungeons.
+* **Player**: Contains the player scene with accompanying HUD
+* **Font**: Carries the font resource used for text
+* **evil_rock**: is weirdly named but functions as an end point the player meets in order to pass the level. Having this in the scene makes sure the player at least has a vauge goal throughout the prototype.
+
+  
+<br> 
+
+
+```sh
+@export var Map: TileMap
+@onready var screen_layer: CanvasLayer = $ScreenLayers
+@onready var textbox: MarginContainer = $ScreenLayers/textbox
+
+var tile_size = 32 ## size of tiles
+var num_rooms = 20 ## number of total rooms generated
+var min_size = 4 ## min room size in tiles
+var max_size = 15 ## max room size in tiles
+var h_spread = 2000 ## horizontal spread in pixels
+var v_spread =	800 ## vertical spread in pixels
+```
+This section covers the specifics of dungeon generating, from how many rooms there are in any given dungeon to the tileset used. This will be replaced with level management things in the future works a pretty solid placeholder.
 
 
 <br>
+
+```sh
+func _ready():
+	Global.connect("game_start", _on_game_start)
+	Global.connect("game_over", _on_game_over)
+	Global.connect("player_died", retry)
+	Global.connect("generate_dungeon", make_rooms)
+	Global.connect("level_passed", level_proceed)
+	
+	randomize()
+	make_rooms()
+```
+When ready is called, the function listens for the established global signals and connects them to functions to the bottom of the script. 
+<br>
+These signals tell the program:
+* **Game_start**: hen the level is generated
+* **Game_over**: when a level needs to stop
+* **Player_Died**: When a player has lost all it's health
+* **Generate_dungeon**: to generate a dungeon
+* **Level_passed**: to pass to the next level
+
+<br>
+
+```sh
+func _on_game_over() -> void:
+	play_mode = false
+	player.queue_free()
+	end_box.queue_free()
+	screen_layer.show()
+	
+func _on_game_start() -> void:
+	
+	play_mode = true 
+	get_node("Camera2D").enabled = false
+	screen_layer.hide()
+	
+
+func retry() -> void:
+	_on_game_over()
+	Global.current_level = 0 
+
+func level_proceed() -> void:
+	Global.current_level += 1
+```
+
+`_on_game_over` as a function toggles off the play mode and removes the player and rock items from the scene. From there it shows the canvas layer, this conveys to the player that they've passed and presents them with a button to continue.
+
+<br>
+
+#### Dungeon Generation
+How a dungeon is randomly generated is broken down into three steps. 
+* Spawning the rooms
+* Connecting the rooms
+* Filling in the map with tiles.
+
+  
 
 <!-- ITEMS SECTION -->
 ## Interactable Items
