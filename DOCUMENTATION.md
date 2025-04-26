@@ -445,6 +445,7 @@ func remove_item(item : Item_resource):
 `remove_item` functions almost identically to `add_item` and serves to remove the items from individual slots or, in the future, discard the item all together. 
 You can read more about the way an item is picked up in game <a href="#interactable-items">here</a>.
 <br>
+
 ```sh
 func is_available(item):
 	for i in get_children():
