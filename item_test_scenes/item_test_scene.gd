@@ -22,6 +22,7 @@ var i_rock
 func _ready() -> void:
 	Global.connect("game_over", show_screenlayer)
 	Global.connect("generate_dungeon", hide_screenlayer)
+	#Global.connect("player_died", retry)
 	
 func _input(event):
 	
@@ -35,16 +36,24 @@ func _input(event):
 	
 func gen_items():
 	player_c = player.instantiate()
+	chaser_c = chaser.instantiate()
 	
 	add_child(player_c)	
 	Global.emit_signal("obj_placed")
 	player_c.position = map.rand_point * 32
 	
+	
+	add_child(chaser_c)	
+	Global.emit_signal("obj_placed")
+	chaser_c.position = map.rand_point * 32
+	
 func show_screenlayer():
 	$ScreenLayers.show()
+	#$ScreenLayers/textbox/NinePatchRect/VBoxContainer/Button.disabled = false
 	
 func hide_screenlayer():
 	$ScreenLayers.hide()
 	
-
+#func retry():
+	#show_screenlayer()
 	
