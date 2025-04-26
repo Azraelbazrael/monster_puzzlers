@@ -144,8 +144,8 @@ func find_mst(nodes):
 
 func make_map():
 	##finds start and end rooms
-	find_start_room()
-	find_end_room()
+	#find_start_room()
+	#find_end_room()
 	print(Global.current_level)
 	## creates tilemap based off of the rooms and paths made 
 	corridors.clear()
