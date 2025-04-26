@@ -318,6 +318,7 @@ These signals tell the program:
 * **Level_passed**: to pass to the next level
 
 <br>
+
 ```sh
 func _on_game_over() -> void:
 	play_mode = false
@@ -339,6 +340,7 @@ func retry() -> void:
 func level_proceed() -> void:
 	Global.current_level += 1
 ```
+
 `_on_game_over` as a function toggles off the play mode and removes the player and rock items from the scene. From there it shows the canvas layer, this conveys to the player that they've passed and presents them with a button to continue.
 
 <br>
