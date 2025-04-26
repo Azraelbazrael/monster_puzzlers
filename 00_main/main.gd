@@ -53,11 +53,11 @@ func make_rooms(): ## makes rooms
 	Map = $TileMap ## makes the map take into the placeholder one for now LOL
 	textbox.end_button.disabled = true
 	
-	get_node("Camera2D").enabled = true
+	get_node("Camera2D").enabled = true #to view the whole map before the level
 	
 	
 			
-	start_room = null
+	start_room = null ## no longer relevant
 
 		
 	for i in range(num_rooms):
@@ -284,5 +284,5 @@ func level_proceed() -> void:
 	Global.current_level += 1
 	
 
-func reset_counter() -> void:
-	Global.current_level = 0
+#func reset_counter() -> void:
+	#Global.current_level = 0
