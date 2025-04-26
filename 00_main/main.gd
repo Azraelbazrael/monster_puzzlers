@@ -31,8 +31,8 @@ var end_box = null
 var room_positions = [] ## array to store room positions
 var corridors = [] ## one corridor per connection
 
-#var start ## now unused
-#var end ## now unused
+var start ## now unused
+var end ## now unused
 
 
 func _ready():
