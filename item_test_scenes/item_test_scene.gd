@@ -43,9 +43,9 @@ func gen_items():
 	player_c.position = map.rand_point * 32
 	
 	
-	add_child(chaser_c)	
-	Global.emit_signal("obj_placed")
-	chaser_c.position = map.rand_point * 32
+	#add_child(chaser_c)	
+	#Global.emit_signal("obj_placed")
+	#chaser_c.position = map.rand_point * 32
 	
 func show_screenlayer():
 	$ScreenLayers.show()
