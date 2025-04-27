@@ -247,7 +247,7 @@ func start_playing():
 	
 	
 	
-func player_to_end_room():
+func player_to_end_room(): ##rename this later
 	player.position = end_box.position
 
 
