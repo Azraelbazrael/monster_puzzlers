@@ -348,7 +348,7 @@ func level_proceed() -> void:
 	Global.current_level += 1
 ```
 
-`_on_game_over` as a function toggles off the play mode and removes the player and rock items from the scene. From there it shows the canvas layer, this conveys to the player that they've passed and presents them with a button to continue.
+`_on_game_over` as a function toggles off the play mode and removes the player and rock items from the scene. From there it shows the canvas layer, this conveys to the player that they've passed and presents them with a button to continue. 
 
 <br>
 
@@ -399,9 +399,111 @@ The function begins by removing any rooms that might've been generated prior, es
 ```
 I've commented the uses for the individual strings. Essentially this part takes the established variables into account and spawns rooms based on the v/h spreads and grabs a size based on the min and max values, making them all children under the room container node.
 <br>
-Because of the room's custom solver bias, this takes a moment to fully settle, thus needing a short pause between generations. This action is usually covered by the canvas screen, apart from inital generation.
+Because of the room's custom solver bias, this takes a moment to fully settle, thus needing a short pause between generations. This action is usually covered by the canvas screen, apart from inital generation. It takes a moment for the draw function to fully process the rooms all in place, this is a bandaid fix to ensure that the player doesn't have any broken maps where rooms can't be accessed.
 
+```sh
+func find_mst(nodes):
+	##prims algorithym
+	path = AStar2D.new()
+	path.add_point(path.get_available_point_id(), nodes.pop_front()) ##YOU
+	## repeat until no more nodes remain
+	
+	while nodes:
+		var min_dist = INF ## min distance so far
+		var min_p = null ## tracks position of nodes
+		var p = null ## current position
+		var p3
+		
+		## loop through all points in path
+		for p1 in path.get_point_ids():
+			p3 = path.get_point_position(p1)
+			for p2 in nodes:
+				if p3.distance_to(p2) < min_dist:
+					min_dist = p3.distance_to(p2)
+					min_p = p2
+					p = p1
+					
+		var n = path.get_available_point_id()
+		path.add_point(n, min_p)
+		path.connect_points(p,n)
+		
+		## Remove the node from the array so it isn't visited again
+		nodes.erase(min_p)
+	return path
+```
 
+This function grabs takes the assigned value when called and creates a path between the different points. It tracks the positions of the given value, puts them all into an algorithm and cycles through each point in order to form a path. This creates a more literal path for the player to traverse through from room to room.
+
+```sh
+func _draw():
+		
+	if play_mode:
+		return
+		
+	for room in $RoomContainer.get_children():
+		draw_rect(Rect2(room.position - room.size, room.size * 2), Color(32,228,0), false)
+		
+	if path:
+		for p in path.get_point_ids():
+			for c in path.get_point_connections(p):
+				var pp = path.get_point_position(p)
+				var cp = path.get_point_position(c)
+				draw_line(pp,cp,
+						  Color(1, 1, 0), 15, true)
+		
+func _process(_delta):
+	queue_redraw()
+```
+The draw function serves to check where all the room-rects are, drawing a box in each of their places. If this changes, the process function calls for a redraw. Once a path is established for the rooms, the dunction draws the points between each room, creating a line for each.
+
+```sh
+func make_map():
+	print(Global.current_level)
+	## creates tilemap based off of the rooms and paths made 
+	corridors.clear()
+	Map.clear()
+	
+	## fill tilemap with walls, carve out the shapes with grass tiles
+	var full_rect = Rect2()
+	
+	for room in $RoomContainer.get_children():
+		var r = Rect2(room.position-room.size, room.get_node("CollisionShape2D").shape.extents*2)
+		full_rect = full_rect.merge(r)
+
+	var top_left = Map.local_to_map(full_rect.position)
+	var bottom_right = Map.local_to_map(full_rect.end)
+	for x in range(top_left.x,bottom_right.x):
+		for y in range(top_left.y,bottom_right.y):
+			Map.set_cell(0, Vector2i(x, y), 1, Vector2i(0, 0), 0)
+			
+			
+
+	for room in $RoomContainer.get_children():
+		var s = (room.size/tile_size).floor()
+		var ul = (room.position/ tile_size).floor() - s
+		for x in range(2, s.x * 2 - 1):
+			for y in range(2, s.y * 2 - 1):
+				Map.set_cell(0, Vector2i(ul.x + x, ul.y + y), 0, Vector2i(0, 0), 0)#
+				#print(Vector2i(ul.x + x, ul.y + y))
+		room.collision.disabled = true
+		
+
+		var p = path.get_closest_point(room.position) 
+		
+		for conn in path.get_point_connections(p):
+			if not conn in corridors:
+				start = Map.local_to_map(Vector2(path.get_point_position(p).x, path.get_point_position(p).y))
+				end = Map.local_to_map(Vector2(path.get_point_position(conn).x, path.get_point_position(conn).y))									
+				carve_path(start, end)
+		corridors.append(p) 
+	
+	
+	if corridors:
+		start_playing()	
+```
+Essentially, this portion of dungeon generation creates the room tiles on the screen. It proccesses the information built up to this point in order to fill in the tiles on the tilemap. Once drawing in the tiles, the function disables the collisions that made sure the boxes spread apart in the first place, ensuring the player can move around within them. Towards the end, `make_map` adds each point to the corridor array, before checking if there's anything in there. 
+<br>
+Once all is set, the level begins for the player.
 
 <!-- ITEMS SECTION -->
 ## Interactable Items
