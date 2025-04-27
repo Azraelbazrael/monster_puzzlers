@@ -540,6 +540,55 @@ Each corridor is widened, given how the player is currently one tile big, an ide
 Once all is set, the player's level begins.
 
 #### "Playable levels"
+In order to progress through the dungeons, the player must traverse the map and look for a specific rock to break, revealing the next area. Without proper implementations of enemies or environmental dressing, the following is a very barebones way to present this goal.
+
+```sh
+func start_playing():
+	Global.emit_signal("game_start")
+
+	player = Player.instantiate()
+	Global.emit_signal("obj_placed")
+	
+	add_child(player)
+	player.position = Map.rand_point * 32
+	await get_tree().process_frame
+	gen_rand_end_rock()
+	
+	
+	
+func player_to_end_room(): ##rename this later
+	player.position = end_box.position
+
+
+
+func gen_rand_end_rock():
+	Global.emit_signal("obj_placed")
+	Global.emit_signal("level_passed")
+	
+	end_box = evil_rock.instantiate()
+	end_box.position = Map.rand_point * 32 
+
+	add_child(end_box)
+	#print(end_box.position)
+
+```
+Once the game begins, it emits the game start signal, instantiating the player onto the scene. From there the player's position is determined by the random point held in the `tile_map`*. 
+<br>
+The "end_rock" is placed on the map soon after, which sends a signal that notifies the rest of the project that a level has been generated. Further along the project, I plan for the objects to be handled elsewhere to better take advantage of the blogal signals and avoid having to instantiate it directly on the map generation.
+
+```sh
+func _input(event):
+	## have generating a room be reduced to one button press
+		
+	if event.is_action_pressed('ui_select'): ## space_bar
+		
+		gen_rand_end_rock()
+		
+	if event.is_action_pressed('ui_focus_next') && path: ##tab
+		player_to_end_room()
+
+```
+In order to test the map's random positioning and the ending flags triggers, I've added these inputs in order to save myself the time. 
 
 <!-- ITEMS SECTION -->
 ## Interactable Items
