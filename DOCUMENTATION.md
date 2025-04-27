@@ -503,7 +503,92 @@ func make_map():
 ```
 Essentially, this portion of dungeon generation creates the room tiles on the screen. It proccesses the information built up to this point in order to fill in the tiles on the tilemap. Once drawing in the tiles, the function disables the collisions that made sure the boxes spread apart in the first place, ensuring the player can move around within them. Towards the end, `make_map` adds each point to the corridor array, before checking if there's anything in there. 
 <br>
-Once all is set, the level begins for the player.
+
+```sh
+func carve_path(pos1, pos2):
+
+	## carve a path between two different points
+	var x_diff = sign(pos2.x - pos1.x)
+	var y_diff = sign(pos2.y - pos1.y)
+	
+	
+	if x_diff == 0: 
+		x_diff = pow(-1.0, randi() % 2)
+	if y_diff == 0: 
+		y_diff = pow(-1.0, randi() % 2)
+	#
+	##choose either y/x or x/y
+	var x_y = pos1
+	var y_x = pos2
+	
+	if (randi() % 5) > 0:
+		x_y = pos2
+		y_x = pos1
+		
+	for x in range(pos1.x, pos2.x, x_diff):
+		Map.set_cells_terrain_connect(0, [Vector2i(x, y_x.y)], 0, 0)
+		Map.set_cells_terrain_connect(0, [Vector2i(x, y_x.y + y_diff)], 0, 0)  # widen the corridor
+	
+	for y in range(pos1.y, pos2.y, y_diff):
+		Map.set_cells_terrain_connect(0, [Vector2i(x_y.x, y)], 0, 0);
+		Map.set_cells_terrain_connect(0, [Vector2i(x_y.x + x_diff, y)], 0, 0)
+```
+Path carving is the "corridor" equivalent to map making. What this does is *carve* the *path* for the corridors, setting the cells within the lines to have the player walk through from room to room.
+Each corridor is widened, given how the player is currently one tile big, an ideal way to travel shouldn't be a tight squeeze.
+
+<br>
+Once all is set, the player's level begins.
+
+#### "Playable levels"
+In order to progress through the dungeons, the player must traverse the map and look for a specific rock to break, revealing the next area. Without proper implementations of enemies or environmental dressing, the following is a very barebones way to present this goal.
+
+```sh
+func start_playing():
+	Global.emit_signal("game_start")
+
+	player = Player.instantiate()
+	Global.emit_signal("obj_placed")
+	
+	add_child(player)
+	player.position = Map.rand_point * 32
+	await get_tree().process_frame
+	gen_rand_end_rock()
+	
+	
+	
+func player_to_end_room(): ##rename this later
+	player.position = end_box.position
+
+
+
+func gen_rand_end_rock():
+	Global.emit_signal("obj_placed")
+	Global.emit_signal("level_passed")
+	
+	end_box = evil_rock.instantiate()
+	end_box.position = Map.rand_point * 32 
+
+	add_child(end_box)
+	#print(end_box.position)
+
+```
+Once the game begins, it emits the game start signal, instantiating the player onto the scene. From there the player's position is determined by the random point held in the `tile_map`*. 
+<br>
+The "end_rock" is placed on the map soon after, which sends a signal that notifies the rest of the project that a level has been generated. Further along the project, I plan for the objects to be handled elsewhere to better take advantage of the blogal signals and avoid having to instantiate it directly on the map generation.
+
+```sh
+func _input(event):
+	## have generating a room be reduced to one button press
+		
+	if event.is_action_pressed('ui_select'): ## space_bar
+		
+		gen_rand_end_rock()
+		
+	if event.is_action_pressed('ui_focus_next') && path: ##tab
+		player_to_end_room()
+
+```
+In order to test the map's random positioning and the ending flags triggers, I've added these inputs in order to save myself the time. 
 
 <!-- ITEMS SECTION -->
 ## Interactable Items
