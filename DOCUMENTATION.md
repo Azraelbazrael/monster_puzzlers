@@ -5,6 +5,13 @@
 
 <br>
 
+## Video Demos
+
+* [Maze Generation + basic level demo](https://youtu.be/iiFiIZqrvmA)
+* [Enemy states demo](https://youtu.be/mJAVivYK1Vc)
+* [Item drops demo](https://youtu.be/dtQhh4FrpNI)
+
+  
 ## Important Resources
 Resources in Godot 4.4 act as data containers, nodes pull from them in order to do things like hold variables and arrays and lists. The ability to create custom resources is a very valuable tool in the arsenal of any godot dev. <br> In this section, I'll go over the prominent resources I've created and used through out the project and where I've used them to get a better picture of how each part plays into the larger project. 
 
@@ -351,7 +358,50 @@ How a dungeon is randomly generated is broken down into three steps.
 * Connecting the rooms
 * Filling in the map with tiles.
 
-  
+```sh
+func make_rooms(): ## makes rooms
+	for n in $RoomContainer.get_children():
+		n.queue_free()
+		
+	Map = $TileMap ## makes the map take into the placeholder one for now LOL
+	textbox.end_button.disabled = true
+	
+	get_node("Camera2D").enabled = true #to view the whole map before the level
+	
+	
+			
+	start_room = null ## no longer relevant
+```
+
+The function begins by removing any rooms that might've been generated prior, establishing what tilemap will be used, and ensuring that the camera in the native scene can see the full map. The Map variable being more open ended is so the tilemaps can be swapped for different tiles later on in development when new maps and areas are needed.
+
+```sh
+	for i in range(num_rooms):
+		var pos = Vector2((randi_range(-h_spread, h_spread)),(randi_range(-v_spread, v_spread))) ## chooses random position based on the vertical and horizontal spread
+		var r = Room.instantiate()
+		var w = min_size + randi() % (max_size - min_size)
+		var h = min_size + randi() % (max_size - min_size)
+		r.make_room(pos, Vector2(w,h) * tile_size)
+		$RoomContainer.add_child(r) ## adds child to room container
+		
+	## wait for rooms to stop moving
+	await(get_tree().create_timer(1.1).timeout) 
+	await get_tree().process_frame
+	for room in $RoomContainer.get_children():
+			room_positions.append(Vector2(room.position.x, room.position.y))
+			
+	await get_tree().process_frame
+
+	## generate a minimum standing tree connecting rooms
+	
+	path = find_mst(room_positions)
+	make_map()
+```
+I've commented the uses for the individual strings. Essentially this part takes the established variables into account and spawns rooms based on the v/h spreads and grabs a size based on the min and max values, making them all children under the room container node.
+<br>
+Because of the room's custom solver bias, this takes a moment to fully settle, thus needing a short pause between generations. This action is usually covered by the canvas screen, apart from inital generation.
+
+
 
 <!-- ITEMS SECTION -->
 ## Interactable Items
