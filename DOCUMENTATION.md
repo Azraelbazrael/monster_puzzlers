@@ -590,6 +590,32 @@ func _input(event):
 ```
 In order to test the map's random positioning and the ending flags triggers, I've added these inputs in order to save myself the time. 
 
+
+### Room Nodes
+```sh
+extends RigidBody2D
+
+var size
+@onready var collision: CollisionShape2D = $CollisionShape2D
+
+func make_room(_pos, _size):
+	position = _pos
+	size = _size
+	var s = RectangleShape2D.new()
+	s.custom_solver_bias = 1
+	s.extents = size
+	$CollisionShape2D.shape = s
+
+```
+
+As a preloaded scene, the Room is somewhat self explanatory. When `make_room` is called, it make the 2D collision shape as a rectangle. The following size and positions is determined by assigned values. Extents is used in place of the size outright to make the rooms more manageable and small.
+
+### Level Manager
+
+**TBA***
+
+
+
 <!-- ITEMS SECTION -->
 ## Interactable Items
 Interactable items refers to the collectables that a player can pick up on their journey, these can be small pieces of loot, ore for crafting. The ptoject handles loose items by having one central pickup item code and changes the sprite texture based on the resource attached to the node via code.
