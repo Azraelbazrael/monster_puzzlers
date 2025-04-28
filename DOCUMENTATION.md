@@ -609,6 +609,7 @@ func make_room(_pos, _size):
 ```
 
 As a preloaded scene, the Room is somewhat self explanatory. When `make_room` is called, it make the 2D collision shape as a rectangle. The following size and positions is determined by assigned values. Extents is used in place of the size outright to make the rooms more manageable and small.
+<br> Each room is instantiated in the main scene as the child of the `RoomContainer`
 
 ### Level Manager
 
