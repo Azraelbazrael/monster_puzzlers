@@ -1,9 +1,3 @@
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-</details>
-
-<br>
 
 ## Video Demos
 
@@ -539,7 +533,7 @@ Each corridor is widened, given how the player is currently one tile big, an ide
 <br>
 Once all is set, the player's level begins.
 
-#### "Playable levels"
+#### Playable levels
 In order to progress through the dungeons, the player must traverse the map and look for a specific rock to break, revealing the next area. Without proper implementations of enemies or environmental dressing, the following is a very barebones way to present this goal.
 
 ```sh
@@ -685,6 +679,46 @@ func _physics_process(delta):
 when an enemy drops an item, each item has velocity and bounce to it. This makes sure that the objects are not only not static, but add life to the project.
 
 ### Equipping an Item
+```sh
+class_name Slot
+extends PanelContainer
+var recipe_handler = null 
+@export var texture_rect: TextureRect
+@export var item: Item_resource = null:
+	set(value):
+		item = value
+		
+		if get_parent().name == "Player_inventory":
+			get_parent().equip(item)	
+		
+			
+		if value !=null:
+			texture_rect.texture = value.art
+		else:
+			texture_rect.texture = null
+```
+In the `slot.gd` script, at the top, the node checks if the parent is the player inventory slot. If not, proceed as usual.
+
+```sh
+extends GridContainer
+
+signal item_changed
+
+func equip(item):
+	var character_child = get_tree().current_scene.get_node("Character")
+	if item !=null:
+		if character_child:
+			character_child.current_item = item
+		else:
+			get_tree().current_scene.current_item = item
+			print(item.name)
+	else:
+		character_child.remove_child(character_child.current_weapon)
+		character_child.current_item = null
+		return
+```
+
+The equip function found in the `player_inventory` script takes the information hovered over the panel and passes that infromation along to the player script. I have the function look for the player in the current scene with a variable.
 
 ### Inventory
 Here we'll be going over functions related to the inventory and crafting system. This covers dragging and dropping items, checking the inventory for recipe requirements and how crafting functions.
@@ -724,5 +758,6 @@ func is_available(item):
 <!-- ENEMIES SECTION -->
 ## Enemies
 An enemy is an important obstacle for this time of gameplay loop. There is no monster taming without any monsters
+
 
 ### State Machines
