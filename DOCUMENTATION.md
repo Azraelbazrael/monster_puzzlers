@@ -757,7 +757,69 @@ func is_available(item):
 
 <!-- ENEMIES SECTION -->
 ## Enemies
-An enemy is an important obstacle for this time of gameplay loop. There is no monster taming without any monsters
+An enemy is an important obstacle for this time of gameplay loop. There is no monster taming without any monsters.
+<br>
+<img src="assets/screenshots/enemy_structure_screenshot.png">
+<br>
+above is an example of a basic monster, any following monster should take from this. The root node of this scene contains the script that all monsters inherit from, encompassing damage dealing, damage taking and dying.
+```sh
+extends CharacterBody2D
+class_name EnemyCharacter
+
+signal dead_enemy
+signal taking_dmg
+var damaged: bool
+
+@export var stats: Stats: set = set_stats
+@export var damage_label: PackedScene
+@export var hitbox: Area2D
+@export var knockback_mod: float = 0.1
+#var knockback_modifier
+
+func _ready():
+	$Sprite2D.texture = stats.art
+
+func set_stats(value: Stats) -> void:
+	stats = value.create_instance()
+	update_monster()
+
+func update_monster() -> void:
+	if stats is not Stats:
+		return
+	if not is_inside_tree():
+		await ready	
+```
+The top of the script establishes the following signals:
+* **dead_enemy**: When an enemie's Health stat reaches zero
+* **taking_dmg**: When an enemy is currently being hit
+<br>
+
+```sh
+
+func take_damage(amount):
+	emit_signal("taking_dmg")
+	stats.take_damage(amount)
+	damaged = true
+	var damage = damage_label.instantiate()
+	
+	damage.find_child("Label").text = str(amount)
+	damage.position = position
+	get_tree().current_scene.add_child(damage)
+	damaged = false
+
+
+func _process(_delta):
+	if stats.health == 0:
+		emit_signal("dead_enemy")
+		
+	if velocity.x < 0:
+			$Sprite2D.flip_h = true
+
+	elif velocity.x > 0:
+			$Sprite2D.flip_h = false
+```
+
+
 
 
 ### State Machines
