@@ -760,6 +760,7 @@ func is_available(item):
 An enemy is an important obstacle for this time of gameplay loop. There is no monster taming without any monsters.
 <br>
 <img src="assets/screenshots/enemy_structure_screenshot.png">
+<br>
 above is an example of a basic monster, any following monster should take from this. The root node of this scene contains the script that all monsters inherit from, encompassing damage dealing, damage taking and dying.
 ```sh
 extends CharacterBody2D
