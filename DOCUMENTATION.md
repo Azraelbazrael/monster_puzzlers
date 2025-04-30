@@ -893,6 +893,7 @@ func on_child_transition(state, new_state_name):
 Attached to the `StateMachine` node is a script that manages the child nodes attached to it. This keeps track of the different states the enemy has, what state the enemy is currently in and when to transition between states.
 
 <br>
+
 ```sh
 func randomize_wander():
 	#gonna make a seperate prefab for the idle state and have the chaser a walk along a specific path
@@ -918,6 +919,7 @@ func Physics_Update(delta: float):
 		if direction.length() < 90:
 			Transitioned.emit(self,"chase")
 ```
+
 Above is a very simple idle state. What this does is
 * Randomize walking in different directions under a small timer
 * Randomize in a different direction when the timer is over
