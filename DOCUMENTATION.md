@@ -926,3 +926,29 @@ Above is a very simple idle state. What this does is
 * Check if the *player* is within range, and to switch states under that condition
 
 This is just to "hold down the fort" and doesn't include changing directions when an enemy hits a wall and can cause them to continuously walk into one from time to time.
+
+
+```sh
+func Enter():
+	
+	player = get_tree().get_first_node_in_group("Player")
+	
+func Physics_Update(delta: float):
+	var direction = player.global_position - enemy.global_position 
+	if direction.length() > 50:
+		enemy.velocity = move_speed * direction.normalized()
+	else:
+		enemy.velocity = Vector2()
+	
+	if direction.length() > 200:
+		Transitioned.emit(self,"idle")
+
+```
+
+When the chase state is entered, the first thing the state does is establish a "player" by checking the scene tree.
+<br> 
+After that, it all comes down to the physics process. The direction the parent node is put in is calculated between the enemy and player's position. If the player and enemy are in close enough proximenty, the velocity of the enemy is changed so it can approacg the player rapidly. 
+<br> 
+When the player is far enough away from the monster, switch back to the idle state. 
+
+That's pretty much the basis for this small state machine. 
