@@ -41,7 +41,7 @@ func _process(_delta):
 	if stats.health == 0:
 		emit_signal("dead_enemy")
 		
-	if velocity.x < 0:
+	if velocity.x < 0: ## flips sprite based on direction
 			$Sprite2D.flip_h = true
 
 	elif velocity.x > 0:
