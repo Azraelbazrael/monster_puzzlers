@@ -809,7 +809,7 @@ func take_damage(amount):
 
 
 func _process(_delta):
-	if stats.health == 0:
+	if stats.health == 0: ## flips enemies based on direction
 		emit_signal("dead_enemy")
 		
 	if velocity.x < 0:
@@ -818,8 +818,109 @@ func _process(_delta):
 	elif velocity.x > 0:
 			$Sprite2D.flip_h = false
 ```
+`take_damage` takes in a variable when called, an amount that's passed to another callable function placed in the stats assigned to the node. From there, the damaged bool is turned on and a label is instantiated onto the scene displaying the damage amount.
+
+
+<br>
+
+<img src= "asset/screenshots/chaser_structure_screenshot.png">
+
+An individual monster's structure looks a bit different than the base scene's. For one, this scene has an area2D with collision shapes that listen for signals opposed to the just the collision. Along with this, this specific monster has a state machine. This part of the section will cover some of the differences in this node's script before moving onto state machines in depth.
+
+```sh
+extends EnemyCharacter
+class_name ChaserEnemy
+
+
+func _on_dead_enemy() -> void:
+	self.queue_free()
+
+func _physics_process(delta: float) -> void:
+	move_and_collide(velocity * delta)
 
 
 
+func _on_hurtbox_area_entered(hitbox: Area2D) -> void:
+	if hitbox.get_parent().is_in_group("Weapon"):
+		knockback(hitbox.get_parent().global_position, hitbox.get_parent().hitbox.damage)
+```
+Using the established hitbox, when something enters the area2D, it checks if the collision is in the "weapon" group. 
+If this is the case, knockback ensues and damage is passed along to the parent node.
 
 ### State Machines
+
+```sh
+extends Node
+@export var initial_state : State
+
+var current_state : State
+var states : Dictionary = {}
+
+func _ready():
+	for child in get_children():
+		if child is State:
+			states[child.name.to_lower()] = child
+			child.Transitioned.connect(on_child_transition)
+	if initial_state:
+		initial_state.Enter()
+		current_state = initial_state
+			
+func _process(delta):
+	if current_state:
+		current_state.Update(delta)
+
+		
+func _physics_process(delta):
+	if current_state:
+		current_state.Physics_Update(delta)
+		
+		
+func on_child_transition(state, new_state_name):
+	if state != current_state:
+		return
+		
+	var new_state = states.get(new_state_name.to_lower())
+	if !new_state:
+		return
+		
+	if current_state:
+		current_state.Exit()
+	
+	new_state.Enter()
+	current_state = new_state
+
+```
+Attached to the `StateMachine` node is a script that manages the child nodes attached to it. This keeps track of the different states the enemy has, what state the enemy is currently in and when to transition between states.
+
+<br>
+```sh
+func randomize_wander():
+	#gonna make a seperate prefab for the idle state and have the chaser a walk along a specific path
+	move_direction = Vector2(randf_range(-1,1), randf_range(-1,1)).normalized()
+	wander_time = randf_range(1,3)
+
+func Enter():
+	player = get_tree().get_first_node_in_group("Player")
+	randomize_wander()
+
+func Update(delta: float):
+	if wander_time > 0:
+		wander_time -= delta
+	else:
+		randomize_wander()
+
+func Physics_Update(delta: float):
+	if enemy:
+		enemy.velocity = move_direction * move_speed
+		
+	if player:
+		var direction = player.global_position - enemy.global_position 
+		if direction.length() < 90:
+			Transitioned.emit(self,"chase")
+```
+Above is a very simple idle state. What this does is
+* Randomize walking in different directions under a small timer
+* Randomize in a different direction when the timer is over
+* Check if the *player* is within range, and to switch states under that condition
+
+This is just to "hold down the fort" and doesn't include changing directions when an enemy hits a wall and can cause them to continuously walk into one from time to time.
