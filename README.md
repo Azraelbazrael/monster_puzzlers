@@ -7,7 +7,7 @@ Monster puzzlers is a monster-taming dungeon crawler currently in development. N
 ### Built with
 
 - <a href="https://godotengine.org/">Godot 4.4 </a>
-    - wirtten in GDscript
+    - written in GDscript
 
 ### Installation
 1. Clone the repo
