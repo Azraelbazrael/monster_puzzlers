@@ -26,7 +26,7 @@ Monster puzzlers is a monster-taming dungeon crawler currently in development. N
 
 <br> 
 
-## Road Map
+# Road Map
 
 - [ ] environment
     - [ ] implement multiple tilemaps
@@ -68,8 +68,10 @@ Monster puzzlers is a monster-taming dungeon crawler currently in development. N
     - [x] enemy can kill player
     - [ ] player can befriend monsters
 
-## Credits
-* [Weapon pack artwork](https://umoral.itch.io/daggers-pack)
+# Credits
+
+- **ADDITIONAL SPRITEWORK**
+  - [Weapon pack artwork](https://umoral.itch.io/daggers-pack)
 
 <p align="right">(For more information please refer to the <a href="https://github.com/Azraelbazrael/monster_puzzlers/blob/main/DOCUMENTATION.md">documentation</a>)</p>
 
