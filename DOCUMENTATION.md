@@ -1,26 +1,26 @@
 
-## Video Demos
+# Video Demos
 
 * [Maze Generation + basic level demo](https://youtu.be/iiFiIZqrvmA)
 * [Enemy states demo](https://youtu.be/mJAVivYK1Vc)
 * [Item drops demo](https://youtu.be/dtQhh4FrpNI)
 
   
-## Important Resources
+# Important Resources
 Resources in Godot 4.4 act as data containers, nodes pull from them in order to do things like hold variables and arrays and lists. The ability to create custom resources is a very valuable tool in the arsenal of any godot dev. <br> In this section, I'll go over the prominent resources I've created and used through out the project and where I've used them to get a better picture of how each part plays into the larger project. 
 
-### Reoccurring variables
+## Reoccurring variables
 Present in these resources are two types of labels, with the same functions. For brevity's sake, I'll define them before delving deeper.
 
 * **Type**: A type of list holding strings of information, usually what kind of object the resource is attached to.
 * **Art**: The short hand for 2D texture, to be grabbed later by the object's script.
 
-### Stats
+## Stats
 
 
 The stats resource class holds components related to the node's it'll be attached to later on. If it's got "health" to speak of, it has data from or inheriting from this resource.  
 <br>
-#### Variables
+### Variables
  ```sh
 class_name Stats	
 extends Resource
@@ -37,7 +37,7 @@ The exported variables represent these things as follows:
 * **Damage**: How much an (unarmed) attack will deal upon contact
 
 
-#### Export group
+### Export group
 
 ```sh
 @export_group("Item drops")
@@ -48,7 +48,7 @@ Not all objects with the stats resource attached to them have items that it can 
 <p>read more about <a href="#Dropdata">DropData</a> here</p>
 
 
-#### Health
+### Health
 ```sh
 var health: int : set = set_health ## CURRENT health, different from total health
 
@@ -73,7 +73,7 @@ func create_instance() -> Resource:
 ```
 <p>By duplicating the resource here, I can instance the data into the scene. This allows it to be modified and used for multiple objects without messing with the original container. When duplicating these stats, the function makes sure the object's health is at the maximum.</p>
 
-#### Player's stats
+### Player's stats
 ```sh
 class_name Character_stats
 extends Stats
@@ -114,7 +114,7 @@ One new function present in the character stats is the addition of healing. It s
 <br>
 
 
-## Items
+# Items
 Items refers to collectables and weapons the player can interact with and craft. This section talks about the data the items generally hold for future reference. 
 <p>Read more about <a href="#interactable-items">Interactable items</a> here.</p>
 
@@ -138,7 +138,7 @@ enum Type{COLLECTABLE, WEAPON}
 * animation: item's animation name (if applicable)
 
   
-### Weapon
+## Weapon
 ```sh
 @export var cost: int
 @export var damage: float
@@ -155,7 +155,7 @@ func use_cost(char_stats: Character_stats) -> void:
 * **rock_damage**: How much damage does this inflict on chests/rocks as opposed to enemies?
 * **recipe**: An array of existing item resources needed in order to craft the object
 
-### Dropdata
+## Dropdata
 ```sh
 class_name DropData 
 extends Resource
@@ -182,10 +182,10 @@ If so, return the function, do not proceed. Otherwise, return a new random inter
 <br>
 <!-- SIGNALS -->
 
-## Signals
+# Signals
 In Godot, Signals are little messages emitted in order to indicate something's happening. There are multiple ways a signal could be listened for and used and overall make working within GDscript less of a headache. 
 
-### Global Signals
+## Global Signals
 Godot offers a way to automatically load nodes at the base of your scene globally, making for an easy way to access certain signals without having to define new ones for similar uses. this section overs the following  examples.
 
 ```sh
@@ -210,7 +210,7 @@ func _ready():
 	Global.connect("generate_dungeon", make_rooms)
 ```
 
-### Position Generation
+## Position Generation
 as a randomly-generated dungeon is created for the level's map, it's important that the items, enemy spawns and player position is generated at random as well. Signals are used to indicate when a new random position needs to be pulled up, opposed to the same position being used multiple times otherwise.
 <br>
 Below is code used on the main tilemaps for dungeon generation. This is located in `tile_map.gd` and can be seen attached to the tilemap node of the same name.
@@ -247,7 +247,7 @@ func place_object() -> void:
 <!-- MAIN SECTION -->
 
 
-## Main Scene
+# Main Scene
 I've made sure to name the folder it's stored in `00_main` in order to keep the main scene at the top for ease of access.
 
 <img src="assets/screenshots/Main_structure_screenshot.png">
@@ -257,7 +257,7 @@ Opening `main.tscn`, you find it holds the `RoomContainer`, `LevelManager`, `Scr
 Each of these elements contribute to the "background" elements that keep the game running, like a cog to a larger machine. In this case, some cogs are more polished than others.
 I've referenced the `Main.gd` script here and there but this section will disect it's contents more thoroughly.
 
-### Main Node
+## Main Node
 
 Some variables present were for testing purposes and have since been commented out. There are still reminants to what these variables refer to within the code, but we'll get there when we get there.
 
@@ -346,7 +346,7 @@ func level_proceed() -> void:
 
 <br>
 
-#### Dungeon Generation
+### Dungeon Generation
 How a dungeon is randomly generated is broken down into three steps. 
 * Spawning the rooms
 * Connecting the rooms
@@ -585,7 +585,7 @@ func _input(event):
 In order to test the map's random positioning and the ending flags triggers, I've added these inputs in order to save myself the time. 
 
 
-### Room Nodes
+## Room Nodes
 ```sh
 extends RigidBody2D
 
@@ -605,14 +605,14 @@ func make_room(_pos, _size):
 As a preloaded scene, the Room is somewhat self explanatory. When `make_room` is called, it make the 2D collision shape as a rectangle. The following size and positions is determined by assigned values. Extents is used in place of the size outright to make the rooms more manageable and small.
 <br> Each room is instantiated in the main scene as the child of the `RoomContainer`.
 
-### Level Manager
+## Level Manager
 
 **TBA***
 
 
 
 <!-- ITEMS SECTION -->
-## Interactable Items
+# Interactable Items
 Interactable items refers to the collectables that a player can pick up on their journey, these can be small pieces of loot, ore for crafting. The ptoject handles loose items by having one central pickup item code and changes the sprite texture based on the resource attached to the node via code.
 ```sh
 extends CharacterBody2D
@@ -664,7 +664,7 @@ func add_item(item : Item_resource):
 	print("Can't add any more item...")
 
 ```
-### Items in the Overworld
+## Items in the Overworld
 Items do not currently spawn in the overworld in the main scenes, what's in this section details what's present in the projects test scenes. I felt it's important this game had a specific system where items in the map resources arrays show up and spawn randomly as opposed to having them all plop in individually. The latter is inflexible and cannot work for the type of game this is. 
 <br>
 ```sh
@@ -678,7 +678,7 @@ func _physics_process(delta):
 
 when an enemy drops an item, each item has velocity and bounce to it. This makes sure that the objects are not only not static, but add life to the project.
 
-### Equipping an Item
+## Equipping an Item
 ```sh
 class_name Slot
 extends PanelContainer
@@ -720,7 +720,7 @@ func equip(item):
 
 The equip function found in the `player_inventory` script takes the information hovered over the panel and passes that infromation along to the player script. I have the function look for the player in the current scene with a variable.
 
-### Inventory
+## Inventory
 Here we'll be going over functions related to the inventory and crafting system. This covers dragging and dropping items, checking the inventory for recipe requirements and how crafting functions.
 
 ```sh
@@ -756,7 +756,7 @@ func is_available(item):
 
 
 <!-- ENEMIES SECTION -->
-## Enemies
+# Enemies
 An enemy is an important obstacle for this time of gameplay loop. There is no monster taming without any monsters.
 <br>
 <img src="assets/screenshots/enemy_structure_screenshot.png">
@@ -847,7 +847,7 @@ func _on_hurtbox_area_entered(hitbox: Area2D) -> void:
 Using the established hitbox, when something enters the area2D, it checks if the collision is in the "weapon" group. 
 If this is the case, knockback ensues and damage is passed along to the parent node.
 
-### State Machines
+## State Machines
 
 ```sh
 extends Node
