@@ -1,9 +1,10 @@
 
 # Video Demos
 
-* [Maze Generation + basic level demo](https://youtu.be/iiFiIZqrvmA)
-* [Enemy states demo](https://youtu.be/mJAVivYK1Vc)
-* [Item drops demo](https://youtu.be/dtQhh4FrpNI)
+- [Maze Generation + basic level demo](https://youtu.be/iiFiIZqrvmA)
+- [Enemy states demo](https://youtu.be/mJAVivYK1Vc)
+- [Item drops demo](https://youtu.be/dtQhh4FrpNI)
+
 
   
 # Important Resources
