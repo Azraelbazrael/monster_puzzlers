@@ -13,7 +13,8 @@ var damaged: bool
 
 func _ready():
 	$Sprite2D.texture = stats.art
-
+	knockback_mod = stats.knockbak_mod
+	
 func set_stats(value: Stats) -> void:
 	stats = value.create_instance()
 	update_monster()
@@ -50,7 +51,8 @@ func _process(_delta):
 
 
 func _on_dead_enemy() -> void:
-	pass
+	visible = false
+	queue_free()
 
 
 func knockback(dmg_source_pos: Vector2, received_dmg: float):
@@ -62,4 +64,5 @@ func knockback(dmg_source_pos: Vector2, received_dmg: float):
 
 	
 func _on_hurtbox_area_entered(hitbox: Area2D) -> void:
-	pass
+	if hitbox.get_parent().is_in_group("Weapon"):
+		knockback(hitbox.get_parent().global_position, hitbox.get_parent().hitbox.damage)

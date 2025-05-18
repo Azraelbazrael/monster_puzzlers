@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Stats" load_steps=3 format=3 uid="uid://dnbj2d2k1t0o4"]
+[gd_resource type="Resource" script_class="Stats" load_steps=4 format=3 uid="uid://dnbj2d2k1t0o4"]
 
-[ext_resource type="Script" uid="uid://bo3ep8hogvh5p" path="res://resources/stats.gd" id="1_klj2t"]
+[ext_resource type="Script" uid="uid://bo3ep8hogvh5p" path="res://custom_resources/stats/stats.gd" id="1_klj2t"]
 [ext_resource type="Texture2D" uid="uid://u71ar8fmr4sj" path="res://assets/jackalope_enemy.png" id="1_wlg7t"]
+[ext_resource type="Script" uid="uid://dj70fcnkrrk5y" path="res://custom_resources/items/dropdata.gd" id="2_c8wrx"]
 
 [resource]
 script = ExtResource("1_klj2t")
@@ -9,4 +10,6 @@ type = 1
 max_health = 100
 art = ExtResource("1_wlg7t")
 damage = 3.0
+knockbak_mod = 0.5
+drops = Array[ExtResource("2_c8wrx")]([])
 metadata/_custom_type_script = "uid://bo3ep8hogvh5p"

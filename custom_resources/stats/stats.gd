@@ -7,6 +7,7 @@ enum Type{PLAYER,MONSTER,INTERACTABLE}
 @export var max_health := 1
 @export var art: Texture
 @export var damage: float
+@export var knockbak_mod: float
 
 @export_group("Item drops")
 @export var drops: Array[DropData]
@@ -26,5 +27,3 @@ func create_instance() -> Resource:
 	var instance: Stats = self.duplicate()
 	instance.health = max_health
 	return instance
-
-

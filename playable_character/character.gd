@@ -110,7 +110,7 @@ func check_hitbox():
 				damage.find_child("Label").text = str(amount)
 				damage.position = position
 				get_tree().current_scene.add_child(damage)
-				take_damage_cooldown(0.5)
+				take_damage_cooldown(0.8)
 
 func take_damage_cooldown(wait_time):
 	can_be_damaged = false
