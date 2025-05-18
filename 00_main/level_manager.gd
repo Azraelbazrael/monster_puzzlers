@@ -33,7 +33,9 @@ func add_map_items():
 			var item : PickableItem = m_item.instantiate() as PickableItem
 			item.item_data = current_map.map_items[ i ].items
 			m_items.append(item)
-			add_child(item)
+			get_tree().root.call_deferred("add_child", item)
+			Global.emit_signal("obj_placed")
+			item.global_position = $"../TileMap".rand_point * 32
 			print(item.position)
 			
 			
