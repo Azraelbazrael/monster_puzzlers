@@ -10,7 +10,8 @@ var m_enemies: Array[Node2D]
 
 func _ready() -> void:
 	$"../TileMap".map = current_map
-	Global.connect("game_start", add_map_items)
+	Global.connect("game_start", add_map_obj)
+	Global.connect("level_passed", clear_arrays)
 	
 func set_map(Map: map_resource):
 	current_map = Map
@@ -21,7 +22,12 @@ func update_map():
 		return
 	if not is_inside_tree():
 		await ready	
-
+		
+		
+func add_map_obj():
+	add_map_items()
+	add_map_enemies()
+	
 func add_map_items():
 	if current_map.map_items.size() == 0:
 		return
@@ -36,9 +42,30 @@ func add_map_items():
 			get_tree().root.call_deferred("add_child", item)
 			Global.emit_signal("obj_placed")
 			item.global_position = $"../TileMap".rand_point * 32
-			print(item.position)
 			
+
+func add_map_enemies():
+	if current_map.map_enemies.size() == 0:
+		return
+	for i in current_map.map_enemies.size():
+		if current_map.map_enemies[ i ] == null or current_map.map_enemies[ i ].enemy == null:
+			continue
+		var enemy_count : int = current_map.map_enemies[ i ].get_drop_count()
+		for j in enemy_count:
+			var enemy : EnemyCharacter = m_enemy.instantiate() as EnemyCharacter
+			enemy.stats = current_map.map_enemies[ i ].enemy
+			m_items.append(enemy)
+			get_tree().root.call_deferred("add_child", enemy)
+			Global.emit_signal("obj_placed")
+			enemy.global_position = $"../TileMap".rand_point * 32
+
+func clear_arrays():
+	m_items.clear()
+	for i in m_items:
+		i.queue_free()
 			
-			
+	m_enemies.clear()		
+	for e in m_enemies:
+		e.queue_free()		
 			
 			
