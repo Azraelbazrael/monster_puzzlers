@@ -16,6 +16,6 @@ metadata/_custom_type_script = "uid://djdrgpjq3yspg"
 [resource]
 script = ExtResource("3_ydqdw")
 tileset = ExtResource("2_b0adn")
-map_enemies = Array[Object]([SubResource("Resource_c0r2y")])
+map_enemies = Array[ExtResource("2_ydqdw")]([SubResource("Resource_c0r2y")])
 map_items = null
 metadata/_custom_type_script = "uid://ci4glncunbf0j"
