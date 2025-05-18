@@ -1,10 +1,42 @@
 extends Node
 class_name level_manager
-@export var current_map: map_resource
+@export var current_map: map_resource: set = set_map
+
+const m_item = preload("res://item_test_scenes/interactable_items/PickableItem.tscn")
+const m_enemy = preload("res://enemy_characters/Enemy_Character.tscn")
+
+var m_items: Array[Node2D]
+var m_enemies: Array[Node2D]
 
 func _ready() -> void:
 	$"../TileMap".map = current_map
+	Global.connect("game_start", add_map_items)
 	
-	
-## have a function that calls from main that checks which map resource to load
-## have functions that instantiate the enemies and items to the scene.. rolling between max and min in orfer to have a random spawn of enemies
+func set_map(Map: map_resource):
+	current_map = Map
+	update_map()
+
+func update_map():
+	if current_map is not map_resource:
+		return
+	if not is_inside_tree():
+		await ready	
+
+func add_map_items():
+	if current_map.map_items.size() == 0:
+		return
+	for i in current_map.map_items.size():
+		if current_map.map_items[ i ] == null or current_map.map_items[ i ].items == null:
+			continue
+		var item_count : int = current_map.map_items[ i ].get_drop_count()
+		for j in item_count:
+			var item : PickableItem = m_item.instantiate() as PickableItem
+			item.item_data = current_map.map_items[ i ].items
+			m_items.append(item)
+			add_child(item)
+			print(item.position)
+			
+			
+			
+			
+			
