@@ -1,18 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfcmdo4rjimke"]
+[gd_scene load_steps=7 format=3 uid="uid://cfcmdo4rjimke"]
 
 [ext_resource type="Script" uid="uid://decr12pcq5vju" path="res://enemy_characters/enemy_character.gd" id="1_fq3j4"]
 [ext_resource type="PackedScene" uid="uid://7wtngh11pph" path="res://UI_layers/floating_text.tscn" id="2_4y350"]
+[ext_resource type="Script" uid="uid://bvpsio45nj0r7" path="res://states/state_machine.gd" id="3_hdpj2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eytep"]
 size = Vector2(50, 51)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nsbh1"]
+size = Vector2(72, 73)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4y350"]
 size = Vector2(57, 60)
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox") groups=["Enemy"]]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox") groups=["Enemy"]]
 script = ExtResource("1_fq3j4")
 damage_label = ExtResource("2_4y350")
-hitbox = NodePath("Hurtbox")
+hurtbox = NodePath("Hurtbox")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1, 0)
@@ -23,11 +27,22 @@ flip_v = true
 position = Vector2(-1, -0.5)
 shape = SubResource("RectangleShape2D_eytep")
 
+[node name="PlayerDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2(-1, 0.5)
+shape = SubResource("RectangleShape2D_nsbh1")
+
 [node name="Hurtbox" type="Area2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(-1.5, -1)
 shape = SubResource("RectangleShape2D_4y350")
+metadata/_edit_lock_ = true
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_hdpj2")
 
 [connection signal="dead_enemy" from="." to="." method="_on_dead_enemy"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

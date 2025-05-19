@@ -7,7 +7,7 @@ var damaged: bool
 
 @export var stats: Stats: set = set_stats
 @export var damage_label: PackedScene
-@export var hitbox: Area2D
+@export var hurtbox: Area2D
 @export var knockback_mod: float = 0.1
 #var knockback_modifier
 
@@ -48,7 +48,8 @@ func _process(_delta):
 	elif velocity.x > 0:
 			$Sprite2D.flip_h = false
 
-
+func _physics_process(delta: float) -> void:
+	move_and_collide(velocity * delta)
 
 func _on_dead_enemy() -> void:
 	visible = false

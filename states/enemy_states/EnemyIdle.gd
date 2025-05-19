@@ -10,7 +10,6 @@ var move_direction : Vector2
 var wander_time : float
 
 func randomize_wander():
-	#gonna make a seperate prefab for the idle state and have the chaser a walk along a specific path
 	move_direction = Vector2(randf_range(-1,1), randf_range(-1,1)).normalized()
 	wander_time = randf_range(1,3)
 
