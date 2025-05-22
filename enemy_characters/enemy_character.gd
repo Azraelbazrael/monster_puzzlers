@@ -19,6 +19,7 @@ func set_stats(value: Stats) -> void:
 	stats = value.create_instance()
 	update_monster()
 
+
 func update_monster() -> void:
 	if stats is not Stats:
 		return
@@ -57,7 +58,8 @@ func _on_dead_enemy() -> void:
 
 
 
-
+func add_states() -> void:
+	pass
 			
 
 func knockback(dmg_source_pos: Vector2, received_dmg: float):

@@ -14,7 +14,7 @@ enum Type{PLAYER,MONSTER,INTERACTABLE}
 @export var drops: Array[DropData]
 
 @export_group("States")
-@export var states: Array[String]
+@export var states: Dictionary[StringName, State] = {}
 
 var health: int : set = set_health ## CURRENT health, different from total health
 
