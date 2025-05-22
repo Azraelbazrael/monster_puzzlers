@@ -62,7 +62,8 @@ func _on_dead_enemy() -> void:
 func add_states() -> void:
 	stateMachine.actor = self
 	stateMachine.states = stats.states
-			
+
+
 
 func knockback(dmg_source_pos: Vector2, received_dmg: float):
 	var knockback_dir = dmg_source_pos.direction_to(self.global_position)

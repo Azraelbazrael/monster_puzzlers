@@ -17,13 +17,18 @@ func _ready() -> void:
 			states[state].actor = actor
 			states[state].state_name = state
 			states[state].target = player
- 	
-			#print(states[state].target)
+			states[state].create_instance()
+			
+			
 	default_state.actor = actor
 	default_state.target = player
 	default_state.transition.connect(_on_state_transition)
+	default_state.create_instance()
+	
 	change_state(default_state)
- 
+ 	
+
+
 func change_state(new_state : State):
 	if current_state:
 		current_state._exit_state()
