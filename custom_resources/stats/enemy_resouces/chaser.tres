@@ -12,4 +12,5 @@ art = ExtResource("1_wlg7t")
 damage = 3.0
 knockbak_mod = 0.5
 drops = Array[ExtResource("2_c8wrx")]([])
+states = Array[String]([])
 metadata/_custom_type_script = "uid://bo3ep8hogvh5p"

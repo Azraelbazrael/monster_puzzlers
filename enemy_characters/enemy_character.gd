@@ -9,7 +9,7 @@ var damaged: bool
 @export var damage_label: PackedScene
 @export var hurtbox: Area2D
 @export var knockback_mod: float = 0.1
-#var knockback_modifier
+@export var stateMachine: Node
 
 func _ready():
 	$Sprite2D.texture = stats.art
@@ -55,6 +55,10 @@ func _on_dead_enemy() -> void:
 	visible = false
 	queue_free()
 
+
+
+
+			
 
 func knockback(dmg_source_pos: Vector2, received_dmg: float):
 	var knockback_dir = dmg_source_pos.direction_to(self.global_position)

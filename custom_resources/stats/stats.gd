@@ -9,8 +9,12 @@ enum Type{PLAYER,MONSTER,INTERACTABLE}
 @export var damage: float
 @export var knockbak_mod: float
 
+
 @export_group("Item drops")
 @export var drops: Array[DropData]
+
+@export_group("States")
+@export var states: Array[String]
 
 var health: int : set = set_health ## CURRENT health, different from total health
 

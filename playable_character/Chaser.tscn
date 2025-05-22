@@ -13,11 +13,10 @@ size = Vector2(50, 51)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ch4rf"]
 size = Vector2(60, 60)
 
-[node name="Chaser" type="CharacterBody2D" node_paths=PackedStringArray("hitbox") groups=["Enemy"]]
+[node name="Chaser" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_i2vdt")
 stats = ExtResource("2_ecse2")
 damage_label = ExtResource("3_iutq5")
-hitbox = NodePath("Hurtbox")
 knockback_mod = 0.4
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
