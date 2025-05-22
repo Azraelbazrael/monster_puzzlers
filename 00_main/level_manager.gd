@@ -70,4 +70,5 @@ func clear_arrays():
 	if m_enemies.size() != 0:	
 		for e in m_enemies:
 			e.queue_free()	
+			
 ##fix this later

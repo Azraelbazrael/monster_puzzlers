@@ -14,7 +14,7 @@ size = Vector2(72, 73)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4y350"]
 size = Vector2(57, 60)
 
-[sub_resource type="Resource" id="Resource_hdpj2"]
+[sub_resource type="Resource" id="Resource_p3l1p"]
 script = ExtResource("4_p3l1p")
 metadata/_custom_type_script = "uid://b4s8tn8fsuqku"
 
@@ -50,7 +50,7 @@ metadata/_edit_lock_ = true
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_nsbh1")
-default_state = SubResource("Resource_hdpj2")
+default_state = SubResource("Resource_p3l1p")
 
 [connection signal="dead_enemy" from="." to="." method="_on_dead_enemy"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

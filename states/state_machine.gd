@@ -10,14 +10,17 @@ var previous_state: State
 @export var states : Dictionary[StringName, State] = {}
 
 func _ready() -> void:
+	var player = get_tree().get_first_node_in_group("Player")
 	if states.size() > 0:
 		for state : StringName in states.keys():
 			states[state].transition.connect(_on_state_transition)
 			states[state].actor = actor
 			states[state].state_name = state
-			states[state].create_instance()
- 
+			states[state].target = player
+ 	
+			#print(states[state].target)
 	default_state.actor = actor
+	default_state.target = player
 	default_state.transition.connect(_on_state_transition)
 	change_state(default_state)
  
@@ -43,4 +46,4 @@ func _process(delta):
 func _physics_process(delta) -> void:
 	if current_state:
 		current_state.physics_update(delta)
-		
+		#print(current_state)
