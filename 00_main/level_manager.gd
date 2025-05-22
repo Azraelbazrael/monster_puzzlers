@@ -63,10 +63,9 @@ func add_map_enemies():
 
 
 func clear_arrays():
-	
 	for i in m_items:
 		i.queue_free()
-	
+		
 	for e in m_enemies:
 		e.queue_free()	
 ##fix this later

@@ -18,6 +18,7 @@ func _ready():
 func set_stats(value: Stats) -> void:
 	stats = value.create_instance()
 	update_monster()
+	add_states()
 
 
 func update_monster() -> void:
@@ -59,7 +60,9 @@ func _on_dead_enemy() -> void:
 
 
 func add_states() -> void:
-	pass
+	stateMachine.actor = self
+	stateMachine.states = stats.states
+	#stateMachine.default_state = stats.default_state
 			
 
 func knockback(dmg_source_pos: Vector2, received_dmg: float):

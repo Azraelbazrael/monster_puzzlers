@@ -2,7 +2,7 @@ extends Node
 class_name FiniteStateMachine
 
 @export var default_state: State
-@export var actor = Stats
+@export var actor: EnemyCharacter
 
 
 var current_state : State
@@ -15,6 +15,7 @@ func _ready() -> void:
 			states[state].transition.connect(_on_state_transition)
 			states[state].actor = actor
 			states[state].state_name = state
+			states[state].create_instance()
  
 	default_state.actor = actor
 	default_state.transition.connect(_on_state_transition)
@@ -36,6 +37,7 @@ func _on_state_transition(next_state : StringName):
  
 func _process(delta):
 	if current_state:
+		
 		current_state.frame_update(delta)
  
 func _physics_process(delta) -> void:

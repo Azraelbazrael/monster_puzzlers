@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cfcmdo4rjimke"]
+[gd_scene load_steps=9 format=3 uid="uid://cfcmdo4rjimke"]
 
 [ext_resource type="Script" uid="uid://decr12pcq5vju" path="res://enemy_characters/enemy_character.gd" id="1_fq3j4"]
 [ext_resource type="PackedScene" uid="uid://7wtngh11pph" path="res://UI_layers/floating_text.tscn" id="2_4y350"]
 [ext_resource type="Script" uid="uid://bvpsio45nj0r7" path="res://states/state_machine.gd" id="3_nsbh1"]
+[ext_resource type="Script" uid="uid://b4s8tn8fsuqku" path="res://custom_resources/state_resources/enemy_idle.gd" id="4_p3l1p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eytep"]
 size = Vector2(50, 51)
@@ -12,6 +13,10 @@ size = Vector2(72, 73)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4y350"]
 size = Vector2(57, 60)
+
+[sub_resource type="Resource" id="Resource_hdpj2"]
+script = ExtResource("4_p3l1p")
+metadata/_custom_type_script = "uid://b4s8tn8fsuqku"
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "stateMachine") groups=["Enemy"]]
 script = ExtResource("1_fq3j4")
@@ -44,6 +49,7 @@ metadata/_edit_lock_ = true
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_nsbh1")
+default_state = SubResource("Resource_hdpj2")
 
 [connection signal="dead_enemy" from="." to="." method="_on_dead_enemy"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
