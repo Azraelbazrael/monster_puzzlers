@@ -15,4 +15,4 @@ func physics_update(_delta : float):
 		else:
 			actor.velocity = Vector2()
 		if direction.length() > 200:
-			transition.emit("res://custom_resources/stats/enemy_resouces/chaser.tres::Resource_bv0bu")
+			transition.emit("EnemyIdle")

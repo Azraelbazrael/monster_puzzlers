@@ -19,7 +19,7 @@ func physics_update(_delta : float):
 	if target:
 		var direction = target.global_position - actor.global_position 
 		if direction.length() < 90:
-			transition.emit("res://custom_resources/stats/enemy_resouces/chaser.tres::Resource_2bt41")
+			transition.emit("EnemyChase")
 	
 func frame_update(_delta : float):
 	if wander_time > 0:
