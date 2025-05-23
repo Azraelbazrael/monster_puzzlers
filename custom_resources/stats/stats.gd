@@ -14,7 +14,8 @@ enum Type{PLAYER,MONSTER,INTERACTABLE}
 @export var drops: Array[DropData]
 
 @export_group("States")
-@export var states: Dictionary[StringName, State] = {}
+
+@export var states: Array[State]
 
 var health: int : set = set_health ## CURRENT health, different from total health
 
@@ -31,3 +32,8 @@ func create_instance() -> Resource:
 	var instance: Stats = self.duplicate()
 	instance.health = max_health
 	return instance
+
+#func create_states() -> Resource:
+	#var new_states: State = states.duplicate()
+	#return new_states
+	

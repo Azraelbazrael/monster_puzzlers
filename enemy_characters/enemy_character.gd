@@ -17,8 +17,10 @@ func _ready():
 	
 func set_stats(value: Stats) -> void:
 	stats = value.create_instance()
+	stateMachine.actor = self
+	stateMachine.states = stats.states
 	update_monster()
-	add_states()
+
 
 
 func update_monster() -> void:
@@ -58,10 +60,7 @@ func _on_dead_enemy() -> void:
 	queue_free()
 
 
-
-func add_states() -> void:
-	stateMachine.actor = self
-	stateMachine.states = stats.states
+	
 
 
 

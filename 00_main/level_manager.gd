@@ -53,13 +53,13 @@ func add_map_enemies():
 			continue
 		var enemy_count : int = current_map.map_enemies[ i ].get_drop_count()
 		for j in enemy_count:
-			
-			var enemy : EnemyCharacter = m_enemy.instantiate()
+			var enemy : EnemyCharacter = m_enemy.instantiate() as EnemyCharacter
 			enemy.stats = current_map.map_enemies[ i ].enemy
 			m_enemies.append(enemy)
 			get_tree().root.call_deferred("add_child", enemy)
 			Global.emit_signal("obj_placed")
 			enemy.global_position = $"../TileMap".rand_point * 32
+
 
 
 func clear_arrays():
