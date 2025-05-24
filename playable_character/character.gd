@@ -43,9 +43,9 @@ func update_character() -> void:
 
 
 func set_held_item(value: Item_resource) -> void:
-	$Weapon.weapon = current_item
-	$Weapon.texture = current_item.art
-	$Weapon.position = $right_pos.position
+	$Weapon/Weapon.weapon = current_item
+	$Weapon/Weapon.texture = current_item.art
+	$Weapon/Weapon.position = $Weapon/right_pos.position
 	Global.emit_signal("weapon_changed")
 	
 	
@@ -78,7 +78,7 @@ func get_input():
 	velocity = input_dir * speed
 	if Input.is_action_just_pressed('click'):
 		if current_item != null:
-			$Weapon.use_weapon()
+			$Weapon/Weapon.use_weapon()
 			current_item.use_cost(character_stats)
 
 		
@@ -96,21 +96,21 @@ func _process(delta: float) -> void:
 
 	
 func check_hitbox():
-	var hitbox_areas = $Hurtbox.get_overlapping_areas()
+	#var hitbox_areas = $Hurtbox.get_overlapping_areas()
 	var damage = damage_label.instantiate()
 	
-	var amount: float
-	if hitbox_areas:
-		var hitbox = hitbox_areas.front()
-		if hitbox.get_parent() is EnemyCharacter:
-			var enemy = hitbox.get_parent()
-			amount = hitbox.get_parent().stats.damage
-			if can_be_damaged && !enemy.damaged:
-				character_stats.take_damage(amount)	
-				damage.find_child("Label").text = str(amount)
-				damage.position = position
-				get_tree().current_scene.add_child(damage)
-				take_damage_cooldown(0.8)
+	#var amount: float
+	#if hitbox_areas:
+	#	var hitbox = hitbox_areas.front()
+	#	if hitbox.get_parent() is EnemyCharacter:
+		#	var enemy = hitbox.get_parent()
+		#	amount = hitbox.get_parent().stats.damage
+			#if can_be_damaged && !enemy.damaged:
+			#	character_stats.take_damage(amount)	
+			#	damage.find_child("Label").text = str(amount)
+			#	damage.position = position
+			#	get_tree().current_scene.add_child(damage)
+				#take_damage_cooldown(1.5)
 
 func take_damage_cooldown(wait_time):
 	can_be_damaged = false
@@ -127,18 +127,18 @@ func _physics_process(delta):
 	if velocity.x < 0:
 			$Sprite2D.flip_h = true
 			if current_item !=null:
-				$Weapon.position = $left_pos.position
-				$Weapon.scale.x = -1
+				$Weapon/Weapon.position = $Weapon/left_pos.position
+				$Weapon/Weapon.scale.x = -1
 	elif velocity.x > 0:
 			$Sprite2D.flip_h = false
 			if current_item !=null:
-				$Weapon.position = $right_pos.position
-				$Weapon.scale.x = 1
+				$Weapon/Weapon.position = $Weapon/right_pos.position
+				$Weapon/Weapon.scale.x = 1
 
 			
 func set_damage(amount):
 	if current_item != null:
-		$Weapon/Hitbox.damage = amount
+		$Weapon/Weapon/Hitbox.damage = amount
 	else:
 		pass 
 		

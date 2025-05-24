@@ -7,13 +7,13 @@
 [ext_resource type="Script" uid="uid://dg5cpt0maie22" path="res://custom_resources/state_resources/state_resource.gd" id="4_np2q1"]
 [ext_resource type="Script" uid="uid://cudkvqu2m4a52" path="res://custom_resources/state_resources/enemy_chase.gd" id="6_bv0bu"]
 
-[sub_resource type="Resource" id="Resource_cqay4"]
-script = ExtResource("2_cqay4")
-metadata/_custom_type_script = "uid://b4s8tn8fsuqku"
-
 [sub_resource type="Resource" id="Resource_bv0bu"]
 script = ExtResource("6_bv0bu")
 metadata/_custom_type_script = "uid://cudkvqu2m4a52"
+
+[sub_resource type="Resource" id="Resource_cqay4"]
+script = ExtResource("2_cqay4")
+metadata/_custom_type_script = "uid://b4s8tn8fsuqku"
 
 [resource]
 script = ExtResource("1_klj2t")

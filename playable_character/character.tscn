@@ -55,21 +55,24 @@ libraries = {
 &"": SubResource("AnimationLibrary_f4jrc")
 }
 
-[node name="right_pos" type="Marker2D" parent="."]
-position = Vector2(34, 0)
-
-[node name="left_pos" type="Marker2D" parent="."]
-position = Vector2(-35, 0)
-
 [node name="Hurtbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(-1.5, -1)
 shape = SubResource("RectangleShape2D_gpoms")
 
-[node name="Weapon" parent="." instance=ExtResource("5_h2glg")]
+[node name="Weapon" type="Node" parent="."]
+
+[node name="Weapon" parent="Weapon" instance=ExtResource("5_h2glg")]
+
+[node name="left_pos" type="Marker2D" parent="Weapon"]
+position = Vector2(-35, 0)
+
+[node name="right_pos" type="Marker2D" parent="Weapon"]
+position = Vector2(34, 0)
 
 [editable path="CanvasLayer/HUD_elements"]
 [editable path="CanvasLayer/HUD_elements/recipe_canvas"]
 [editable path="CanvasLayer/HUD_elements/recipe_canvas/PanelContainer/RecipeMarginContainer/VBoxContainer/RecipeContainers/MarginContainer/Craft_grid/craft_slot2"]
 [editable path="CanvasLayer/HUD_elements/recipe_canvas/PanelContainer/RecipeMarginContainer/VBoxContainer/RecipeContainers/MarginContainer/Craft_grid/craft_slot"]
+[editable path="Weapon/Weapon"]

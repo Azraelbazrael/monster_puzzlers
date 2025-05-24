@@ -8,17 +8,21 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eytep"]
 size = Vector2(50, 51)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nsbh1"]
-size = Vector2(72, 73)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4y350"]
-size = Vector2(57, 60)
+size = Vector2(88, 90)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p3l1p"]
+radius = 110.114
 
 [sub_resource type="Resource" id="Resource_p3l1p"]
 script = ExtResource("4_p3l1p")
 metadata/_custom_type_script = "uid://b4s8tn8fsuqku"
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "stateMachine") groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 7
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_fq3j4")
 damage_label = ExtResource("2_4y350")
 hurtbox = NodePath("Hurtbox")
@@ -29,24 +33,25 @@ position = Vector2(-1, 0)
 scale = Vector2(0.8, 0.8)
 flip_v = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -0.5)
 shape = SubResource("RectangleShape2D_eytep")
-
-[node name="PlayerDetection" type="Area2D" parent="."]
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
-position = Vector2(-1, 0.5)
-shape = SubResource("RectangleShape2D_nsbh1")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-1.5, -1)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_4y350")
+debug_color = Color(0.622207, 0.533457, 3.85046e-07, 0.42)
 metadata/_edit_lock_ = true
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+shape = SubResource("CircleShape2D_p3l1p")
+debug_color = Color(0.862959, 0.000621079, 0.868247, 0.42)
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_nsbh1")
