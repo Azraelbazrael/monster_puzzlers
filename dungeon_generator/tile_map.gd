@@ -1,12 +1,13 @@
 extends TileMap
 
-var tiles_in_room = [] ##array of tiles
+#var tiles_in_room = [] ##array of tiles
 var rand_point
+const TILESIZE = 32
 @export var map: map_resource: set = set_map
 
 
 func _ready() -> void:
-	Global.connect("game_over", clear_tiles)
+	#Global.connect("game_over", clear_tiles)
 	Global.connect("obj_placed", place_object)
 
 
@@ -22,14 +23,9 @@ func update_map():
 		await ready	
 		
 		
-func clear_tiles():
-	tiles_in_room.clear()
+
 
 
 func place_object() -> void:
-	if tiles_in_room.is_empty():
-		for tile in get_used_cells_by_id(0,0):
-			tiles_in_room.append(tile) ##i'll figure something out later, this just puts the endbox on ANY tile the player can int with
-	else: 
-		pass
-	rand_point = tiles_in_room.pick_random()
+	var floor_tiles = get_used_cells_by_id(0,0)
+	rand_point = floor_tiles.pick_random() 

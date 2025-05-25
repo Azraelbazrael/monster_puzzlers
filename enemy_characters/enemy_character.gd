@@ -5,15 +5,38 @@ signal dead_enemy
 signal taking_dmg
 var damaged: bool
 
+
+@export var debug_line: Line2D
 @export var stats: Stats: set = set_stats
 @export var damage_label: PackedScene
 @export var hurtbox: Area2D
 @export var knockback_mod: float = 0.1
 @export var stateMachine: Node
 
+@export var targ_pos: Marker2D
+
+var tilemap: TileMap
+var astar_grid = AStarGrid2D.new()
+var current_path = []
+
 func _ready():
+	debug_line.global_position = Vector2(tilemap.TILESIZE/2, tilemap.TILESIZE/2)
 	$Sprite2D.texture = stats.art
 	knockback_mod = stats.knockbak_mod
+	
+	astar_grid.region = tilemap.get_used_rect()
+	astar_grid.cell_size = Vector2(tilemap.TILESIZE,tilemap.TILESIZE)
+	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
+	astar_grid.update()
+	
+	for cell in tilemap.get_used_cells_by_id(0,1):
+		astar_grid.set_point_solid(cell, true)
+	get_point_path()
+	
+func get_point_path():
+	current_path = astar_grid.get_point_path(global_position / tilemap.TILESIZE, targ_pos.global_position / tilemap.TILESIZE)	
+#	print(current_path.front())
+	#print(astar_grid.get_id_path(tilemap.local_to_map(global_position),tilemap.local_to_map(targ_pos.global_position)))
 	
 func set_stats(value: Stats) -> void:
 	stats = value.create_instance()
@@ -43,6 +66,7 @@ func take_damage(amount):
 
 
 func _process(_delta):
+	
 	if stats.health == 0:
 		emit_signal("dead_enemy")
 		
@@ -53,6 +77,7 @@ func _process(_delta):
 			$Sprite2D.flip_h = false
 
 func _physics_process(delta: float) -> void:
+
 	move_and_collide(velocity * delta)
 
 func _on_dead_enemy() -> void:

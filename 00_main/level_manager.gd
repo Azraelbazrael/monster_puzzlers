@@ -1,15 +1,25 @@
 extends Node
 class_name level_manager
+
 @export var current_map: map_resource: set = set_map
+@onready var tilemap = $"../TileMap"
+
 
 const m_item = preload("res://item_test_scenes/interactable_items/PickableItem.tscn")
 const m_enemy = preload("res://enemy_characters/Enemy_Character.tscn")
 
+
 var m_items: Array[Node2D]
 var m_enemies: Array[Node2D]
 
+
+
+#var debug_line = Line2D.new()
+
+
+
 func _ready() -> void:
-	$"../TileMap".map = current_map
+	tilemap.map = current_map
 	Global.connect("game_start", add_map_obj)
 	Global.connect("game_over", clear_arrays)
 	
@@ -25,10 +35,13 @@ func update_map():
 		
 		
 func add_map_obj():
+	#get_astar_grid()
 	add_map_items()
 	add_map_enemies()
-	print(m_items.size())
-	
+
+
+
+
 func add_map_items():
 	if current_map.map_items.size() == 0:
 		return
@@ -41,8 +54,9 @@ func add_map_items():
 			item.item_data = current_map.map_items[ i ].items
 			m_items.append(item)
 			get_tree().root.call_deferred("add_child", item)
+			
 			Global.emit_signal("obj_placed")
-			item.global_position = $"../TileMap".rand_point * 32
+			item.global_position = tilemap.rand_point * tilemap.TILESIZE
 			
 
 func add_map_enemies():
@@ -56,12 +70,14 @@ func add_map_enemies():
 			var enemy : EnemyCharacter = m_enemy.instantiate() as EnemyCharacter
 			enemy.stats = current_map.map_enemies[ i ].enemy
 			m_enemies.append(enemy)
+			enemy.tilemap = tilemap
 			get_tree().root.call_deferred("add_child", enemy)
 			Global.emit_signal("obj_placed")
-			enemy.global_position = $"../TileMap".rand_point * 32
-
-
-
+			enemy.global_position = tilemap.rand_point * tilemap.TILESIZE
+			Global.emit_signal("obj_placed")
+			enemy.targ_pos.global_position = tilemap.rand_point * tilemap.TILESIZE
+			
+			
 func clear_arrays():
 	if m_items.size() != 0:
 		for i in m_items:

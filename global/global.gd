@@ -9,6 +9,8 @@ signal game_start
 signal game_over
 signal level_passed
 
-signal enemy_dead(object) ## currently unused
+signal map_astar_grid(AStarGrid2D)
+
+#signal enemy_dead(object) ## currently unused
 
 var current_level = 0

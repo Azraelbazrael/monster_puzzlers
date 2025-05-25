@@ -25,14 +25,12 @@ var play_mode: bool
 var player = null
 var end_box = null
 
-#var s = null
-#var ul = null
+
 
 var room_positions = [] ## array to store room positions
 var corridors = [] ## one corridor per connection
 
-var astar_grid = AStarGrid2D.new()
-var grid_path = []
+#var grid_path = []
 
 var start ## now unused
 var end ## now unused
@@ -170,8 +168,6 @@ func make_map():
 		for y in range(top_left.y,bottom_right.y):
 			Map.set_cell(0, Vector2i(x, y), 1, Vector2i(0, 0), 0)
 			
-			
-	
 	
 	for room in $RoomContainer.get_children():
 		var s = (room.size/tile_size).floor()
@@ -191,15 +187,11 @@ func make_map():
 				carve_path(start, end)
 		corridors.append(p) 
 	
-	astar_grid.region = Map.get_used_rect()
-	astar_grid.cell_size = Vector2(32,32)
-	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
-	astar_grid.update()
-	for tile in Map.get_used_cells_by_id(0,1):
-		astar_grid.set_point_solid(tile, true)
 	
 	if corridors:
 		start_playing()	
+
+	
 	
 func carve_path(pos1, pos2):
 
