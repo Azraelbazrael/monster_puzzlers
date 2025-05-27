@@ -74,8 +74,7 @@ func add_map_enemies():
 			get_tree().root.call_deferred("add_child", enemy)
 			Global.emit_signal("obj_placed")
 			enemy.global_position = tilemap.rand_point * tilemap.TILESIZE
-			Global.emit_signal("obj_placed")
-			enemy.targ_pos.global_position = tilemap.rand_point * tilemap.TILESIZE
+
 			
 			
 func clear_arrays():

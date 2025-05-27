@@ -12,31 +12,35 @@ var damaged: bool
 @export var hurtbox: Area2D
 @export var knockback_mod: float = 0.1
 @export var stateMachine: Node
+@export var nav_agent: NavigationAgent2D
+@export var player_detect: Area2D
 
-@export var targ_pos: Marker2D
+#@export var targ_pos: Marker2D
 
+var target
 var tilemap: TileMap
 var astar_grid = AStarGrid2D.new()
-var current_path = []
+var current_path: Array[Vector2i]
+#var home_pos: Vector2i
+
+signal player_found
 
 func _ready():
-	debug_line.global_position = Vector2(tilemap.TILESIZE/2, tilemap.TILESIZE/2)
 	$Sprite2D.texture = stats.art
 	knockback_mod = stats.knockbak_mod
 	
 	astar_grid.region = tilemap.get_used_rect()
 	astar_grid.cell_size = Vector2(tilemap.TILESIZE,tilemap.TILESIZE)
-	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
+	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES
 	astar_grid.update()
+	
 	
 	for cell in tilemap.get_used_cells_by_id(0,1):
 		astar_grid.set_point_solid(cell, true)
-	get_point_path()
+	
 	
 func get_point_path():
-	current_path = astar_grid.get_point_path(global_position / tilemap.TILESIZE, targ_pos.global_position / tilemap.TILESIZE)	
-#	print(current_path.front())
-	#print(astar_grid.get_id_path(tilemap.local_to_map(global_position),tilemap.local_to_map(targ_pos.global_position)))
+	current_path = astar_grid.get_id_path(tilemap.local_to_map(global_position), tilemap.local_to_map(target.global_position))
 	
 func set_stats(value: Stats) -> void:
 	stats = value.create_instance()
@@ -67,6 +71,7 @@ func take_damage(amount):
 
 func _process(_delta):
 	
+	#debug_line.points = nav_agent.get_current_navigation_path()
 	if stats.health == 0:
 		emit_signal("dead_enemy")
 		
@@ -85,10 +90,6 @@ func _on_dead_enemy() -> void:
 	queue_free()
 
 
-	
-
-
-
 func knockback(dmg_source_pos: Vector2, received_dmg: float):
 	var knockback_dir = dmg_source_pos.direction_to(self.global_position)
 	var knockback_strng = received_dmg * knockback_mod
@@ -100,3 +101,20 @@ func knockback(dmg_source_pos: Vector2, received_dmg: float):
 func _on_hurtbox_area_entered(hitbox: Area2D) -> void:
 	if hitbox.get_parent().is_in_group("Weapon"):
 		knockback(hitbox.get_parent().global_position, hitbox.get_parent().hitbox.damage)
+
+
+func _on_player_detection_area_entered(targ_d: Area2D) -> void:
+	if targ_d.get_parent().is_in_group("Player"):
+		target = targ_d.get_parent()
+		get_point_path()
+		player_found.emit()
+		
+		print("entered: ", target)
+		
+
+
+func _on_player_detection_area_exited(targ_d: Area2D) -> void:
+	if targ_d.get_parent().is_in_group("Player"):
+		target = null
+		current_path.clear()
+		print("exited: ", target)

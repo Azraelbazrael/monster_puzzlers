@@ -3,36 +3,35 @@ class_name EnemyIdle
 
 var move_direction: Vector2
 var wander_time: float
-var move_speed := 4
+var move_speed := 50
 
 
 func _randomize_wander():
-	pass
-	#move_direction = Vector2(randf_range(-1,1), randf_range(-1,1)).normalized()
-	#wander_time = randf_range(1,3)
+	move_direction = Vector2(randf_range(-1,1), randf_range(-1,1)).normalized()
+	wander_time = randf_range(2,5)
 
 func _enter_state(_previous_state : State):
-	pass
-	#_randomize_wander()
+	print("current state: Idle")
+	if actor:
+		actor.connect("player_found", _found_player)
+		
+	_randomize_wander()
 	
 func physics_update(_delta : float):
-	
 	if actor:
-		
-		if actor.current_path.size() > 1:
-			actor.current_path.remove_at(0)
+		actor.velocity = Vector2(move_direction) * move_speed
+		var collision = actor.move_and_collide(actor.velocity * _delta)
+		if collision:
+			wander_time = 0
+			actor.velocity = actor.velocity.bounce(collision.get_normal())
 
-		var go_to_pos: Vector2 = actor.current_path[0] + Vector2(actor.tilemap.TILESIZE/2,actor.tilemap.TILESIZE/2)
-		actor.global_position = go_to_pos
-		
-		#actor.global_position = actor.global_position.move_toward(actor.targ_pos.global_position / actor.tilemap.TILESIZE , 5)
-		#actor.get_point_path()
-		#actor.velocity = move_direction * move_speed	
-
+func _found_player():
+	transition.emit("EnemyChase")
 	
+
+
 func frame_update(_delta : float):
-	pass
-	#if wander_time > 0:
-	#	wander_time -= _delta
-	#else:
-		#_randomize_wander()
+	if wander_time > 0:
+		wander_time -= _delta
+	else:
+		_randomize_wander()

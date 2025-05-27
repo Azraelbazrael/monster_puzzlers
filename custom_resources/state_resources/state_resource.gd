@@ -13,7 +13,7 @@ var transition_done : bool = false :
 	set(value):
 		transition_done = value
  
-signal transition(next_state : State)
+signal transition(next_state : StringName)
  
 func create_instance() -> Resource:
 	var instance: State = self.duplicate()	
