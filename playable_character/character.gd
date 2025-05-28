@@ -73,44 +73,31 @@ func start(_position, _direction):
 	velocity = Vector2.ZERO
 	
 
-func get_input():
-	var input_dir = Input.get_vector('ui_left', 'ui_right', 'ui_up', 'ui_down') 
-	velocity = input_dir * speed
-	if Input.is_action_just_pressed('click'):
-		if current_item != null:
-			$Weapon/Weapon.use_weapon()
-			current_item.use_cost(character_stats)
 
-		
+
+
+	
+	
 func _process(delta: float) -> void:
 	
+		
+		
 	if character_stats.health == 0:
 		Global.emit_signal("player_died")	
 		var screenlayer = get_tree().current_scene.get_node("ScreenLayers")
 		if screenlayer:
 			screenlayer.show()
 				
-	check_hitbox()
+	#check_hitbox()
 	update_stats()
 
 
 	
-func check_hitbox():
+#func check_hitbox():
 	#var hitbox_areas = $Hurtbox.get_overlapping_areas()
-	var damage = damage_label.instantiate()
+#	var damage = damage_label.instantiate()
 	
-	#var amount: float
-	#if hitbox_areas:
-	#	var hitbox = hitbox_areas.front()
-	#	if hitbox.get_parent() is EnemyCharacter:
-		#	var enemy = hitbox.get_parent()
-		#	amount = hitbox.get_parent().stats.damage
-			#if can_be_damaged && !enemy.damaged:
-			#	character_stats.take_damage(amount)	
-			#	damage.find_child("Label").text = str(amount)
-			#	damage.position = position
-			#	get_tree().current_scene.add_child(damage)
-				#take_damage_cooldown(1.5)
+
 
 func take_damage_cooldown(wait_time):
 	can_be_damaged = false
@@ -120,9 +107,12 @@ func take_damage_cooldown(wait_time):
 			
 func _physics_process(delta):
 	
-	get_input()
-	#
-	move_and_collide(velocity * delta) 
+	var input_vector: Vector2 = Vector2(
+		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
+		 Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	)
+	velocity = input_vector*15000*delta
+	move_and_slide()
 	
 	if velocity.x < 0:
 			$Sprite2D.flip_h = true

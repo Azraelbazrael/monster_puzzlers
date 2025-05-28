@@ -15,13 +15,12 @@ var damaged: bool
 @export var nav_agent: NavigationAgent2D
 @export var player_detect: Area2D
 
-#@export var targ_pos: Marker2D
+var home_pos = Vector2.ZERO
 
 var target
 var tilemap: TileMap
 var astar_grid = AStarGrid2D.new()
 var current_path: Array[Vector2i]
-#var home_pos: Vector2i
 
 signal player_found
 
@@ -40,8 +39,8 @@ func _ready():
 	
 	
 func get_point_path():
-	current_path = astar_grid.get_id_path(tilemap.local_to_map(global_position), tilemap.local_to_map(target.global_position))
-	
+	current_path = astar_grid.get_id_path(tilemap.local_to_map(global_position), tilemap.local_to_map(target.global_position), true)
+
 func set_stats(value: Stats) -> void:
 	stats = value.create_instance()
 	stateMachine.actor = self
@@ -71,7 +70,6 @@ func take_damage(amount):
 
 func _process(_delta):
 	
-	#debug_line.points = nav_agent.get_current_navigation_path()
 	if stats.health == 0:
 		emit_signal("dead_enemy")
 		
@@ -106,15 +104,13 @@ func _on_hurtbox_area_entered(hitbox: Area2D) -> void:
 func _on_player_detection_area_entered(targ_d: Area2D) -> void:
 	if targ_d.get_parent().is_in_group("Player"):
 		target = targ_d.get_parent()
-		get_point_path()
+		#get_point_path()
 		player_found.emit()
 		
-		print("entered: ", target)
-		
+
 
 
 func _on_player_detection_area_exited(targ_d: Area2D) -> void:
 	if targ_d.get_parent().is_in_group("Player"):
 		target = null
 		current_path.clear()
-		print("exited: ", target)

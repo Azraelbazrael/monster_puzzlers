@@ -1,20 +1,33 @@
 extends State
 class_name EnemyChase
 
-var move_speed := 100.0
+var move_speed := 40.0
 var recalc_time := 3.0
+
+
+
 func _enter_state(_previous_state : State):
 	print("current state: Chasing")
 	
 
 
 func physics_update(_delta : float):
-	if actor.current_path:
-		var target_pos = actor.tilemap.map_to_local(actor.current_path.front())
+
 		
-		actor.global_position = actor.global_position.move_toward(target_pos,5)
-		if actor.global_position == target_pos:
-			actor.current_path.pop_front()
-	else:
-		transition.emit("EnemyIdle")
+	if actor:
+		##DO ENEMY PATHFINDING LATER
+		if actor.target:
+			target= actor.target
+			var direction = target.global_position - actor.global_position
+			if direction.length() > 25:
+				actor.velocity = direction.normalized() * move_speed
+			else:
+				actor.velocity = Vector2()
+			
+		else:
+			transition.emit("EnemyIdle")
+			
 		
+		
+		actor.move_and_collide(actor.velocity * _delta)
+				

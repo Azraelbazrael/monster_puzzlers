@@ -24,7 +24,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gpoms"]
-size = Vector2(55, 58)
+size = Vector2(58, 60)
 
 [node name="Character" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_yq3e2")
@@ -58,7 +58,7 @@ libraries = {
 [node name="Hurtbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-1.5, -1)
+position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_gpoms")
 
 [node name="Weapon" type="Node" parent="."]
