@@ -2,7 +2,7 @@ extends Resource
 class_name State
 
 var previous_state : State
-var actor: EnemyCharacter
+var actor: CharacterBody2D
 var target: PlayerCharacter
 
 var state_name: StringName

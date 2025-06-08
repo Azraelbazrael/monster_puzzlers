@@ -10,8 +10,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eytep"]
 size = Vector2(50, 51)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4y350"]
-size = Vector2(88, 90)
+[sub_resource type="CircleShape2D" id="CircleShape2D_hdpj2"]
+radius = 50.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p3l1p"]
 radius = 110.114
@@ -33,22 +33,18 @@ player_detect = NodePath("PlayerDetection")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1, 0)
-scale = Vector2(0.8, 0.8)
 texture = SubResource("ExternalTexture_hdpj2")
 flip_v = true
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -0.5)
 shape = SubResource("RectangleShape2D_eytep")
+metadata/_edit_lock_ = true
 
 [node name="Hurtbox" type="Area2D" parent="."]
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_4y350")
+shape = SubResource("CircleShape2D_hdpj2")
 debug_color = Color(0.622207, 0.533457, 3.85046e-07, 0.42)
-metadata/_edit_lock_ = true
 
 [node name="PlayerDetection" type="Area2D" parent="."]
 scale = Vector2(1.52, 1.56)
@@ -65,6 +61,9 @@ light_mask = 5
 visibility_layer = 5
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigation"]
+
+[node name="text_pos" type="Marker2D" parent="."]
+position = Vector2(1, -68)
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_nsbh1")

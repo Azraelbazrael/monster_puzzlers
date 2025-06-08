@@ -16,4 +16,3 @@ func use_cost(char_stats: Character_stats) -> void:
 func create_instance() -> Resource:
 	var instance: Item_resource = self.duplicate()
 	return instance
-

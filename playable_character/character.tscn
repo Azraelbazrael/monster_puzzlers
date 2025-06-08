@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://clxu3pvvi21e8"]
+[gd_scene load_steps=15 format=3 uid="uid://clxu3pvvi21e8"]
 
 [ext_resource type="Script" uid="uid://cna6q07tdh7om" path="res://playable_character/character.gd" id="1_yq3e2"]
 [ext_resource type="Resource" uid="uid://dx84dtkbq66da" path="res://playable_character/Player.tres" id="2_6inmr"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://7wtngh11pph" path="res://UI_layers/floating_text.tscn" id="3_gpoms"]
 [ext_resource type="PackedScene" uid="uid://bn3g6m1yo6o5s" path="res://battle/Weapon.tscn" id="5_h2glg"]
 [ext_resource type="PackedScene" uid="uid://cfqed3nxels06" path="res://UI_layers/hud_elements.tscn" id="5_jqy6k"]
+[ext_resource type="Script" uid="uid://bvpsio45nj0r7" path="res://states/state_machine.gd" id="7_gpoms"]
+[ext_resource type="Script" uid="uid://b4r87fyx11t3n" path="res://custom_resources/state_resources/player_idle.gd" id="8_8xblr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xco0j"]
 size = Vector2(50, 51)
@@ -23,8 +25,12 @@ _data = {
 &"generic_attack": SubResource("Animation_mvwir")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gpoms"]
-size = Vector2(58, 60)
+[sub_resource type="CircleShape2D" id="CircleShape2D_gg6pd"]
+radius = 40.1995
+
+[sub_resource type="Resource" id="Resource_ytw7f"]
+script = ExtResource("8_8xblr")
+metadata/_custom_type_script = "uid://b4r87fyx11t3n"
 
 [node name="Character" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_yq3e2")
@@ -42,6 +48,18 @@ shape = SubResource("RectangleShape2D_xco0j")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="PlayerFX" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_f4jrc")
+}
+
+[node name="Hurtbox" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-1, -1)
+shape = SubResource("CircleShape2D_gg6pd")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD_elements" parent="CanvasLayer" instance=ExtResource("5_jqy6k")]
@@ -50,26 +68,32 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 metadata/_edit_lock_ = true
 
-[node name="PlayerFX" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_f4jrc")
-}
-
-[node name="Hurtbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-1, -1)
-shape = SubResource("RectangleShape2D_gpoms")
-
-[node name="Weapon" type="Node" parent="."]
+[node name="Weapon" type="Node2D" parent="."]
 
 [node name="Weapon" parent="Weapon" instance=ExtResource("5_h2glg")]
+
+[node name="CollisionShape2D" parent="Weapon/Weapon/Hitbox" index="0"]
+position = Vector2(-0.675676, 0.757576)
+debug_color = Color(0.857535, 0.000727929, 0.881787, 0.42)
 
 [node name="left_pos" type="Marker2D" parent="Weapon"]
 position = Vector2(-35, 0)
 
 [node name="right_pos" type="Marker2D" parent="Weapon"]
 position = Vector2(34, 0)
+
+[node name="text_pos" type="Marker2D" parent="."]
+position = Vector2(0, -26)
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("7_gpoms")
+default_state = SubResource("Resource_ytw7f")
+actor = NodePath("..")
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_check_hurtbox"]
+[connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_exited"]
+[connection signal="area_entered" from="Weapon/Weapon/Hitbox" to="." method="_on_hitbox_entered"]
+[connection signal="area_exited" from="Weapon/Weapon/Hitbox" to="." method="_on_hitbox_exited"]
 
 [editable path="CanvasLayer/HUD_elements"]
 [editable path="CanvasLayer/HUD_elements/recipe_canvas"]

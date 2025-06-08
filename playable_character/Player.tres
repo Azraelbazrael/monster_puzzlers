@@ -1,7 +1,24 @@
-[gd_resource type="Resource" script_class="Character_stats" load_steps=3 format=3 uid="uid://dx84dtkbq66da"]
+[gd_resource type="Resource" script_class="Character_stats" load_steps=11 format=3 uid="uid://dx84dtkbq66da"]
 
 [ext_resource type="Texture2D" uid="uid://bwf71r213qbk4" path="res://playable_character/icon.png" id="1_mneb5"]
-[ext_resource type="Script" uid="uid://brxclei3yhw1o" path="res://resources/character_stats.gd" id="1_rhevn"]
+[ext_resource type="Script" uid="uid://brxclei3yhw1o" path="res://custom_resources/stats/player_resources/character_stats.gd" id="1_rhevn"]
+[ext_resource type="Script" uid="uid://dj70fcnkrrk5y" path="res://custom_resources/items/dropdata.gd" id="2_vrgfc"]
+[ext_resource type="Script" uid="uid://dg5cpt0maie22" path="res://custom_resources/state_resources/state_resource.gd" id="4_mgdnr"]
+[ext_resource type="Script" uid="uid://b4r87fyx11t3n" path="res://custom_resources/state_resources/player_idle.gd" id="5_mgdnr"]
+[ext_resource type="Script" uid="uid://gixd6qnvlx0r" path="res://custom_resources/state_resources/player_damage.gd" id="6_ryvj4"]
+[ext_resource type="Script" uid="uid://der0srbom20iu" path="res://custom_resources/state_resources/player_attack.gd" id="7_557kk"]
+
+[sub_resource type="Resource" id="Resource_ryvj4"]
+script = ExtResource("5_mgdnr")
+metadata/_custom_type_script = "uid://b4r87fyx11t3n"
+
+[sub_resource type="Resource" id="Resource_557kk"]
+script = ExtResource("6_ryvj4")
+metadata/_custom_type_script = "uid://gixd6qnvlx0r"
+
+[sub_resource type="Resource" id="Resource_pgr83"]
+script = ExtResource("7_557kk")
+metadata/_custom_type_script = "uid://der0srbom20iu"
 
 [resource]
 script = ExtResource("1_rhevn")
@@ -9,3 +26,11 @@ max_stamina = 100
 type = 0
 max_health = 100
 art = ExtResource("1_mneb5")
+damage = 0.0
+knockbak_mod = 0.0
+drops = Array[ExtResource("2_vrgfc")]([])
+states = Dictionary[StringName, ExtResource("4_mgdnr")]({
+&"PlayerAttack": SubResource("Resource_pgr83"),
+&"PlayerDamage": SubResource("Resource_557kk"),
+&"PlayerIdle": SubResource("Resource_ryvj4")
+})

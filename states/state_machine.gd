@@ -2,7 +2,7 @@ extends Node
 class_name FiniteStateMachine
 
 @export var default_state: State
-@export var actor: EnemyCharacter
+@export var actor: CharacterBody2D
 
 
 var current_state : State

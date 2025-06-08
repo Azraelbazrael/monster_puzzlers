@@ -12,10 +12,8 @@ func _enter_state(_previous_state : State):
 
 
 func physics_update(_delta : float):
-
 		
 	if actor:
-		##DO ENEMY PATHFINDING LATER
 		if actor.target:
 			target= actor.target
 			var direction = target.global_position - actor.global_position

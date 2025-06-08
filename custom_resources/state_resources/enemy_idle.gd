@@ -3,7 +3,7 @@ class_name EnemyIdle
 
 var move_direction: Vector2
 var wander_time: float
-var move_speed := 50
+var move_speed := 30
 
 
 func _randomize_wander():

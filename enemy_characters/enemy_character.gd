@@ -28,18 +28,18 @@ func _ready():
 	$Sprite2D.texture = stats.art
 	knockback_mod = stats.knockbak_mod
 	
-	astar_grid.region = tilemap.get_used_rect()
-	astar_grid.cell_size = Vector2(tilemap.TILESIZE,tilemap.TILESIZE)
-	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES
-	astar_grid.update()
+	#astar_grid.region = tilemap.get_used_rect()
+	#astar_grid.cell_size = Vector2(tilemap.TILESIZE,tilemap.TILESIZE)
+	#astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES
+	#astar_grid.update()
 	
 	
-	for cell in tilemap.get_used_cells_by_id(0,1):
-		astar_grid.set_point_solid(cell, true)
+	#for cell in tilemap.get_used_cells_by_id(0,1):
+	#	astar_grid.set_point_solid(cell, true)
 	
 	
-func get_point_path():
-	current_path = astar_grid.get_id_path(tilemap.local_to_map(global_position), tilemap.local_to_map(target.global_position), true)
+#func get_point_path():
+#	current_path = astar_grid.get_id_path(tilemap.local_to_map(global_position), tilemap.local_to_map(target.global_position), true)
 
 func set_stats(value: Stats) -> void:
 	stats = value.create_instance()
@@ -61,10 +61,10 @@ func take_damage(amount):
 	stats.take_damage(amount)
 	damaged = true
 	var damage = damage_label.instantiate()
-	
 	damage.find_child("Label").text = str(amount)
-	damage.position = position
-	get_tree().current_scene.add_child(damage)
+	damage.position = $text_pos.position
+	add_child(damage)
+	#print("ow")
 	damaged = false
 
 
@@ -96,9 +96,9 @@ func knockback(dmg_source_pos: Vector2, received_dmg: float):
 	self.global_position += knckback
 
 	
-func _on_hurtbox_area_entered(hitbox: Area2D) -> void:
-	if hitbox.get_parent().is_in_group("Weapon"):
-		knockback(hitbox.get_parent().global_position, hitbox.get_parent().hitbox.damage)
+#func _on_hurtbox_area_entered(hitbox: Area2D) -> void:
+#	if hitbox.get_parent().is_in_group("Weapon"):
+#		knockback(hitbox.get_parent().global_position, hitbox.get_parent().hitbox.damage)
 
 
 func _on_player_detection_area_entered(targ_d: Area2D) -> void:

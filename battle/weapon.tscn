@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://bejq3cqs0dm6x" path="res://battle/weapon.gd" id="1_1soaq"]
 [ext_resource type="Script" uid="uid://47w13bhyrl1j" path="res://battle/weapon_hitbox.gd" id="2_njl78"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0lxp7"]
-size = Vector2(35, 26)
+[sub_resource type="CircleShape2D" id="CircleShape2D_1soaq"]
+radius = 43.4432
 
 [sub_resource type="Animation" id="Animation_st8dq"]
 length = 0.001
@@ -157,16 +157,17 @@ script = ExtResource("1_1soaq")
 
 [node name="Hitbox" type="Area2D" parent="."]
 scale = Vector2(1.48, 1.32)
+monitorable = false
 script = ExtResource("2_njl78")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 1.51515)
 scale = Vector2(0.690708, -0.837184)
-shape = SubResource("RectangleShape2D_0lxp7")
-disabled = true
+shape = SubResource("CircleShape2D_1soaq")
+debug_color = Color(0.765037, 0.168922, 1, 0.42)
 
 [node name="WeaponFX" type="AnimationPlayer" parent="."]
+active = false
 libraries = {
 &"": SubResource("AnimationLibrary_2050d")
 }
-
-[connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_body_entered"]

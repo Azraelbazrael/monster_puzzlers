@@ -11,21 +11,21 @@ var evil_rock = preload("res://item_test_scenes/evil_rock.tscn")
 @onready var screen_layer: CanvasLayer = $ScreenLayers
 @onready var textbox: MarginContainer = $ScreenLayers/textbox
 
-var tile_size = 32 ## size of tiles
-var num_rooms = 20 ## number of total rooms generated
-var min_size = 4 ## min room size in tiles
-var max_size = 15 ## max room size in tiles
-var h_spread = 2000 ## horizontal spread in pixels
-var v_spread =	800 ## vertical spread in pixels
+@export var tile_size: int = 32 ## size of tiles
+@export var num_rooms: int = 20 ## number of total rooms generated
+@export var min_size: int = 4 ## min room size in tiles
+@export var max_size: int = 15 ## max room size in tiles
+@export var h_spread: int = 2000 ## horizontal spread in pixels
+@export var v_spread: int =	800 ## vertical spread in pixels
 
 var path: AStar2D ## for Astar pathfinding (corridors)
 var start_room = null ## now unused
 var end_room = null ## now unused
 var play_mode: bool
 var player = null
-var end_box = null
+var end_rock = null
 
-
+var boss_time: bool = false
 
 var room_positions = [] ## array to store room positions
 var corridors = [] ## one corridor per connection
@@ -145,8 +145,8 @@ func find_mst(nodes):
 
 func make_map():
 	##finds start and end rooms
-	#find_start_room()
-	#find_end_room()
+	find_start_room()
+	find_end_room()
 	print(Global.current_level)
 	
 	## creates tilemap based off of the rooms and paths made 
@@ -238,6 +238,9 @@ func find_end_room():
 			max_x = room.position.x
 			print(end_room.position/tile_size)
 
+
+
+
 func start_playing():
 	Global.emit_signal("game_start")
 
@@ -245,14 +248,20 @@ func start_playing():
 	Global.emit_signal("obj_placed")
 	
 	add_child(player)
+	if boss_time == true:
+		player.position = start_room.position
+		
+		
 	player.position = Map.rand_point * 32
 	await get_tree().process_frame
+	
+	
 	gen_rand_end_rock()
 	
 	
 	
 func player_to_end_room(): ##rename this later
-	player.position = end_box.position
+	player.position = end_rock.position
 
 
 
@@ -260,17 +269,17 @@ func gen_rand_end_rock():
 	Global.emit_signal("obj_placed")
 	Global.emit_signal("level_passed")
 	
-	end_box = evil_rock.instantiate()
-	end_box.position = Map.rand_point * 32 
+	end_rock = evil_rock.instantiate()
+	end_rock.position = Map.rand_point * 32 
 
-	add_child(end_box)
+	add_child(end_rock)
 	#print(end_box.position)
 
 
 func _on_game_over() -> void:
 	play_mode = false
 	player.queue_free()
-	end_box.queue_free()
+	end_rock.queue_free()
 	screen_layer.show()
 	
 func _on_game_start() -> void:
@@ -286,7 +295,6 @@ func retry() -> void:
 
 func level_proceed() -> void:
 	Global.current_level += 1
+	if Global.current_level == 5:
+		boss_time = true
 	
-
-#func reset_counter() -> void:
-	#Global.current_level = 0
