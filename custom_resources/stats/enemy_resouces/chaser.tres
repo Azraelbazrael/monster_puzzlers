@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Stats" load_steps=13 format=3 uid="uid://dnbj2d2k1t0o4"]
+[gd_resource type="Resource" script_class="Stats" load_steps=11 format=3 uid="uid://dnbj2d2k1t0o4"]
 
 [ext_resource type="Script" uid="uid://bo3ep8hogvh5p" path="res://custom_resources/stats/stats.gd" id="1_klj2t"]
 [ext_resource type="Texture2D" uid="uid://u71ar8fmr4sj" path="res://assets/jackalope_enemy.png" id="1_wlg7t"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://dg5cpt0maie22" path="res://custom_resources/state_resources/state_resource.gd" id="4_np2q1"]
 [ext_resource type="Script" uid="uid://cudkvqu2m4a52" path="res://custom_resources/state_resources/enemy_chase.gd" id="6_bv0bu"]
 [ext_resource type="Script" uid="uid://djwywofo232lr" path="res://custom_resources/state_resources/enemy_damage.gd" id="7_2bt41"]
-[ext_resource type="Script" uid="uid://cre7jhy6emo2d" path="res://custom_resources/state_resources/enemy_attack.gd" id="8_rlxow"]
 
 [sub_resource type="Resource" id="Resource_bv0bu"]
 script = ExtResource("6_bv0bu")
@@ -21,10 +20,6 @@ metadata/_custom_type_script = "uid://b4s8tn8fsuqku"
 script = ExtResource("7_2bt41")
 metadata/_custom_type_script = "uid://djwywofo232lr"
 
-[sub_resource type="Resource" id="Resource_yjros"]
-script = ExtResource("8_rlxow")
-metadata/_custom_type_script = "uid://cre7jhy6emo2d"
-
 [resource]
 script = ExtResource("1_klj2t")
 type = 1
@@ -34,7 +29,6 @@ damage = 3.0
 knockbak_mod = 0.5
 drops = Array[ExtResource("2_c8wrx")]([])
 states = Dictionary[StringName, ExtResource("4_np2q1")]({
-&"EnemyAttack": SubResource("Resource_yjros"),
 &"EnemyChase": SubResource("Resource_bv0bu"),
 &"EnemyDamage": SubResource("Resource_rlxow"),
 &"EnemyIdle": SubResource("Resource_cqay4")
