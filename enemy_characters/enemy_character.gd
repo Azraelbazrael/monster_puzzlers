@@ -2,7 +2,10 @@ extends CharacterBody2D
 class_name EnemyCharacter
 
 signal dead_enemy
+signal attack_target
 signal taking_dmg
+signal no_dmg
+
 var damaged: bool
 
 
@@ -18,28 +21,16 @@ var damaged: bool
 var home_pos = Vector2.ZERO
 
 var target
+var weapon
 var tilemap: TileMap
-var astar_grid = AStarGrid2D.new()
+#v#ar astar_grid = AStarGrid2D.new()
 var current_path: Array[Vector2i]
 
 signal player_found
 
 func _ready():
 	$Sprite2D.texture = stats.art
-	knockback_mod = stats.knockbak_mod
 	
-	#astar_grid.region = tilemap.get_used_rect()
-	#astar_grid.cell_size = Vector2(tilemap.TILESIZE,tilemap.TILESIZE)
-	#astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES
-	#astar_grid.update()
-	
-	
-	#for cell in tilemap.get_used_cells_by_id(0,1):
-	#	astar_grid.set_point_solid(cell, true)
-	
-	
-#func get_point_path():
-#	current_path = astar_grid.get_id_path(tilemap.local_to_map(global_position), tilemap.local_to_map(target.global_position), true)
 
 func set_stats(value: Stats) -> void:
 	stats = value.create_instance()
@@ -56,16 +47,11 @@ func update_monster() -> void:
 		await ready	
 
 
-func take_damage(amount):
-	emit_signal("taking_dmg")
-	stats.take_damage(amount)
-	damaged = true
+func _add_dmg_label(amount: int):
 	var damage = damage_label.instantiate()
 	damage.find_child("Label").text = str(amount)
 	damage.position = $text_pos.position
 	add_child(damage)
-	#print("ow")
-	damaged = false
 
 
 func _process(_delta):
@@ -88,29 +74,25 @@ func _on_dead_enemy() -> void:
 	queue_free()
 
 
-func knockback(dmg_source_pos: Vector2, received_dmg: float):
-	var knockback_dir = dmg_source_pos.direction_to(self.global_position)
-	var knockback_strng = received_dmg * knockback_mod
-	var knckback = knockback_dir * knockback_strng
-	
-	self.global_position += knckback
-
-	
-#func _on_hurtbox_area_entered(hitbox: Area2D) -> void:
-#	if hitbox.get_parent().is_in_group("Weapon"):
-#		knockback(hitbox.get_parent().global_position, hitbox.get_parent().hitbox.damage)
-
-
 func _on_player_detection_area_entered(targ_d: Area2D) -> void:
 	if targ_d.get_parent().is_in_group("Player"):
 		target = targ_d.get_parent()
-		#get_point_path()
 		player_found.emit()
 		
-
-
 
 func _on_player_detection_area_exited(targ_d: Area2D) -> void:
 	if targ_d.get_parent().is_in_group("Player"):
 		target = null
-		current_path.clear()
+		#current_path.clear()
+
+func _on_hurtbox_entered(area: Area2D) -> void:
+	if area.get_parent().is_in_group("Player"):
+		weapon = area.get_parent()
+		
+
+
+func _on_hurtbox_exited(weapon: Area2D) -> void:
+
+	if weapon.get_parent().is_in_group("Weapon"):
+		weapon = null
+		no_dmg.emit()

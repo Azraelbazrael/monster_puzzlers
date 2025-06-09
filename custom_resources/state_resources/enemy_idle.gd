@@ -14,6 +14,8 @@ func _enter_state(_previous_state : State):
 	print("current state: Idle")
 	if actor:
 		actor.connect("player_found", _found_player)
+		actor.connect("taking_dmg", _recieve_damage)
+		actor.connect("attack_target", _attack_target)
 		
 	_randomize_wander()
 	
@@ -25,13 +27,18 @@ func physics_update(_delta : float):
 			wander_time = 0
 			actor.velocity = actor.velocity.bounce(collision.get_normal())
 
-func _found_player():
-	transition.emit("EnemyChase")
-	
-
-
 func frame_update(_delta : float):
 	if wander_time > 0:
 		wander_time -= _delta
 	else:
 		_randomize_wander()
+		
+		
+func _found_player():
+	transition.emit("EnemyChase")
+	
+func  _recieve_damage():
+	transition.emit("EnemyDamage")	
+
+func _attack_target():
+	transition.emit("EnemyAttack")

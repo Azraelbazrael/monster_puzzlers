@@ -36,7 +36,7 @@ position = Vector2(-1, 0)
 texture = SubResource("ExternalTexture_hdpj2")
 flip_v = true
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_eytep")
 metadata/_edit_lock_ = true
 
@@ -48,7 +48,6 @@ debug_color = Color(0.622207, 0.533457, 3.85046e-07, 0.42)
 
 [node name="PlayerDetection" type="Area2D" parent="."]
 scale = Vector2(1.52, 1.56)
-collision_layer = 0
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
@@ -75,6 +74,7 @@ width = 20.0
 default_color = Color(0.592927, 0, 0.265937, 1)
 
 [connection signal="dead_enemy" from="." to="." method="_on_dead_enemy"]
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_entered"]
+[connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_exited"]
 [connection signal="area_entered" from="PlayerDetection" to="." method="_on_player_detection_area_entered"]
 [connection signal="area_exited" from="PlayerDetection" to="." method="_on_player_detection_area_exited"]
