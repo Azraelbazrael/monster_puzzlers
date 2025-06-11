@@ -26,5 +26,8 @@ func create_instance() -> Resource:
 	var instance: Stats = self.duplicate()
 	instance.health = max_health
 	return instance
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes

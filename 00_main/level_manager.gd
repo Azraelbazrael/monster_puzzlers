@@ -11,6 +11,11 @@ func set_current_map(value: map_resource):
 =======
 @export var basic_maps: Dictionary[StringName, map_resource] = {}
 
+	
+## have a function that calls from main that checks which map resource to load
+## have functions that instantiate the enemies and items to the scene.. rolling between max and min in orfer to have a random spawn of enemies
+@export var basic_maps: Dictionary[StringName, map_resource] = {}
+
 @export var current_map: map_resource: set = set_map
 @onready var tilemap = $"../TileMap"
 
