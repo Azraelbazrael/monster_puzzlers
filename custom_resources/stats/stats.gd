@@ -8,7 +8,7 @@ enum Type{PLAYER,MONSTER,INTERACTABLE}
 @export var art: Texture
 @export var damage: float
 @export var knockbak_mod: float
-
+@export var is_special_rock: bool = false
 
 @export_group("Item drops")
 @export var drops: Array[DropData]
@@ -16,6 +16,8 @@ enum Type{PLAYER,MONSTER,INTERACTABLE}
 @export_group("States")
 
 @export var states: Dictionary[StringName, State] = {}
+
+
 
 var health: int : set = set_health ## CURRENT health, different from total health
 

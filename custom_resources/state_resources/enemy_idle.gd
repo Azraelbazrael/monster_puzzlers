@@ -15,7 +15,6 @@ func _enter_state(_previous_state : State):
 	if actor:
 		actor.connect("player_found", _found_player)
 		actor.connect("taking_dmg", _recieve_damage)
-		#actor.connect("attack_target", _attack_target)
 		
 	_randomize_wander()
 	
@@ -39,6 +38,3 @@ func _found_player():
 	
 func  _recieve_damage():
 	transition.emit("EnemyDamage")	
-
-#func _attack_target():
-	#transition.emit("EnemyAttack")

@@ -25,6 +25,8 @@ Player=""
 Enemy=""
 Weapon=""
 Slot=""
+Rock=""
+PickableItems=""
 
 [input]
 

@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Stats" load_steps=6 format=3 uid="uid://05jacqha5wwd"]
+[gd_resource type="Resource" script_class="Stats" load_steps=7 format=3 uid="uid://05jacqha5wwd"]
 
 [ext_resource type="Script" uid="uid://bo3ep8hogvh5p" path="res://custom_resources/stats/stats.gd" id="1_e83q6"]
 [ext_resource type="Texture2D" uid="uid://cdo81qnvud3xp" path="res://assets/rock.png" id="1_vaplt"]
 [ext_resource type="Script" uid="uid://dj70fcnkrrk5y" path="res://custom_resources/items/dropdata.gd" id="2_ltg2v"]
 [ext_resource type="Resource" uid="uid://cqxvomyfitgvp" path="res://custom_resources/items/collectable_items/iron_ore.tres" id="3_wux4o"]
+[ext_resource type="Script" uid="uid://dg5cpt0maie22" path="res://custom_resources/state_resources/state_resource.gd" id="5_tnjvy"]
 
 [sub_resource type="Resource" id="Resource_wux4o"]
 script = ExtResource("2_ltg2v")
@@ -19,5 +20,7 @@ type = 2
 max_health = 90
 art = ExtResource("1_vaplt")
 damage = 0.0
+knockbak_mod = 0.0
 drops = Array[ExtResource("2_ltg2v")]([SubResource("Resource_wux4o")])
+states = Dictionary[StringName, ExtResource("5_tnjvy")]({})
 metadata/_custom_type_script = "uid://bo3ep8hogvh5p"

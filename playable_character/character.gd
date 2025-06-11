@@ -19,7 +19,8 @@ signal player_unhurt
 		if current_item != null:
 			set_held_item(value)
 		else:
-			set_damage(1)
+			pass
+		#	set_damage(1)
 			
 @export var character_stats: Character_stats: set = set_character_stats
 #@export var s_timer := 1.5
@@ -34,7 +35,7 @@ var damage
 
 func _ready() -> void:
 	StateMachine.states = character_stats.states
-	
+	print(StateMachine.states)
 
 func set_character_stats(value: Character_stats) -> void:
 	character_stats = value.create_instance()
@@ -120,11 +121,11 @@ func _physics_process(delta):
 				$Weapon/Weapon.scale.x = 1
 
 			
-func set_damage(amount):
-	if current_item != null:
-		$Weapon/Weapon/Hitbox.damage = amount
-	else:
-		pass 
+#func set_damage(amount):
+#	if current_item != null:
+	#	$Weapon/Weapon/Hitbox.damage = amount
+	#else:
+	#	pass 
 
 		
 func add_item(item):
@@ -156,8 +157,12 @@ func _add_dmg_label():
 func _on_hitbox_entered(area: Area2D) -> void:
 	if area.get_parent().is_in_group("Enemy"):
 		target = area.get_parent()
-		
+	if area.get_parent().is_in_group("Rock"):
+		target = area.get_parent()
+		#print("HURTING", target)
 
 func _on_hitbox_exited(area: Area2D) -> void:
 	if area.get_parent().is_in_group("Enemy"):
+		target = null
+	if area.get_parent().is_in_group("Rock"):
 		target = null

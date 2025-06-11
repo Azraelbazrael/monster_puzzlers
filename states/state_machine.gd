@@ -18,7 +18,7 @@ func _ready() -> void:
 			states[state].transition.connect(_on_state_transition)
 			states[state].state_name = state
 			
-
+	#print(states)
 	change_state(default_state)
  	
 	
@@ -41,6 +41,7 @@ func _on_state_transition(next_state : StringName):
 	if current_state:
 		previous_state = current_state
 	change_state(states[next_state])
+	
  
  
 func _process(delta):

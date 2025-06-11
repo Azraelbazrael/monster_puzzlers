@@ -4,7 +4,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qe2la"]
 
-[node name="PickableItem" type="CharacterBody2D"]
+[node name="PickableItem" type="CharacterBody2D" groups=["PickableItems"]]
 script = ExtResource("1_mhem8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -12,13 +12,13 @@
 script = ExtResource("6_bv0bu")
 metadata/_custom_type_script = "uid://cudkvqu2m4a52"
 
-[sub_resource type="Resource" id="Resource_cqay4"]
-script = ExtResource("2_cqay4")
-metadata/_custom_type_script = "uid://b4s8tn8fsuqku"
-
 [sub_resource type="Resource" id="Resource_rlxow"]
 script = ExtResource("7_2bt41")
 metadata/_custom_type_script = "uid://djwywofo232lr"
+
+[sub_resource type="Resource" id="Resource_cqay4"]
+script = ExtResource("2_cqay4")
+metadata/_custom_type_script = "uid://b4s8tn8fsuqku"
 
 [resource]
 script = ExtResource("1_klj2t")

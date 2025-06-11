@@ -1,4 +1,4 @@
-extends rock
+extends Rock
 class_name iron_rock
 
 func broken_rock():

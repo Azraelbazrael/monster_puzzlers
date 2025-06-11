@@ -106,9 +106,9 @@ func _process(_delta):
 func _input(event):
 	## have generating a room be reduced to one button press
 		
-	if event.is_action_pressed('ui_select'): ## space_bar
+	#if event.is_action_pressed('ui_select'): ## space_bar
 		
-		gen_rand_end_rock()
+#		gen_rand_end_rock()
 		
 	if event.is_action_pressed('ui_focus_next') && path: ##tab
 		player_to_end_room()
@@ -256,7 +256,7 @@ func start_playing():
 	await get_tree().process_frame
 	
 	
-	gen_rand_end_rock()
+	#gen_rand_end_rock()
 	
 	
 	
@@ -265,21 +265,10 @@ func player_to_end_room(): ##rename this later
 
 
 
-func gen_rand_end_rock():
-	Global.emit_signal("obj_placed")
-	Global.emit_signal("level_passed")
-	
-	end_rock = evil_rock.instantiate()
-	end_rock.position = Map.rand_point * 32 
-
-	add_child(end_rock)
-	#print(end_box.position)
-
 
 func _on_game_over() -> void:
 	play_mode = false
 	player.queue_free()
-	end_rock.queue_free()
 	screen_layer.show()
 	
 func _on_game_start() -> void:

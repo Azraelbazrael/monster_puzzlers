@@ -7,10 +7,7 @@ class_name level_manager
 
 const m_item = preload("res://item_test_scenes/interactable_items/PickableItem.tscn")
 const m_enemy = preload("res://enemy_characters/Enemy_Character.tscn")
-
-
-var m_items: Array[Node2D]
-var m_enemies: Array[Node2D]
+const m_rock = preload("res://dungeon_generator/rock.tscn")
 
 
 
@@ -38,7 +35,7 @@ func add_map_obj():
 	#get_astar_grid()
 	add_map_items()
 	add_map_enemies()
-
+	add_map_rocks()
 
 
 
@@ -52,12 +49,26 @@ func add_map_items():
 		for j in item_count:
 			var item : PickableItem = m_item.instantiate() as PickableItem
 			item.item_data = current_map.map_items[ i ].items
-			m_items.append(item)
 			get_tree().root.call_deferred("add_child", item)
 			
 			Global.emit_signal("obj_placed")
 			item.global_position = tilemap.rand_point * tilemap.TILESIZE
+
+
+func add_map_rocks():
+	if current_map.map_rocks.size() == 0:
+		return
+	for i in current_map.map_rocks.size():
+		if current_map.map_rocks[ i ] == null or current_map.map_rocks[ i ].rock == null:
+			continue
+		var item_count : int = current_map.map_rocks[ i ].get_drop_count()
+		for j in item_count:
+			var rock : Rock = m_rock.instantiate() as Rock
+			rock.stats = current_map.map_rocks[ i ].rock
+			get_tree().root.call_deferred("add_child", rock)
 			
+			Global.emit_signal("obj_placed")
+			rock.global_position = tilemap.rand_point * tilemap.TILESIZE			
 
 func add_map_enemies():
 	if current_map.map_enemies.size() == 0:
@@ -69,7 +80,6 @@ func add_map_enemies():
 		for j in enemy_count:
 			var enemy : EnemyCharacter = m_enemy.instantiate() as EnemyCharacter
 			enemy.stats = current_map.map_enemies[ i ].enemy
-			m_enemies.append(enemy)
 			enemy.tilemap = tilemap
 			get_tree().root.call_deferred("add_child", enemy)
 			Global.emit_signal("obj_placed")
@@ -78,12 +88,15 @@ func add_map_enemies():
 			
 			
 func clear_arrays():
-	if m_items.size() != 0:
-		for i in m_items:
-			i.queue_free()
+	var items = get_tree().get_nodes_in_group("PickableItems")
+	var enemies = get_tree().get_nodes_in_group("Enemy")
+	var rocks = get_tree().get_nodes_in_group("Rock")
+	
+	for i in items:
+		i.queue_free()
 		
-	if m_enemies.size() != 0:	
-		for e in m_enemies:
-			e.queue_free()	
-			
-##fix this later
+	for e in enemies:
+		e.queue_free()
+		
+	for r in rocks:
+		r.queue_free()

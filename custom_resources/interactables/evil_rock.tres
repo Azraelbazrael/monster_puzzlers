@@ -1,8 +1,24 @@
-[gd_resource type="Resource" script_class="Stats" load_steps=4 format=3 uid="uid://cp34rnc1vqdut"]
+[gd_resource type="Resource" script_class="Stats" load_steps=11 format=3 uid="uid://cp34rnc1vqdut"]
 
 [ext_resource type="Texture2D" uid="uid://bm1xtdmdl2f3u" path="res://assets/evil_rock.png" id="1_di5lh"]
-[ext_resource type="Script" uid="uid://bo3ep8hogvh5p" path="res://resources/stats.gd" id="1_uumh4"]
-[ext_resource type="Script" uid="uid://dj70fcnkrrk5y" path="res://resources/dropdata.gd" id="2_421dt"]
+[ext_resource type="Script" uid="uid://bo3ep8hogvh5p" path="res://custom_resources/stats/stats.gd" id="1_uumh4"]
+[ext_resource type="Script" uid="uid://dj70fcnkrrk5y" path="res://custom_resources/items/dropdata.gd" id="2_421dt"]
+[ext_resource type="Script" uid="uid://dg5cpt0maie22" path="res://custom_resources/state_resources/state_resource.gd" id="4_dbkp0"]
+[ext_resource type="Script" uid="uid://dyfo0vatkdm0a" path="res://custom_resources/state_resources/rock_idle.gd" id="5_yg71h"]
+[ext_resource type="Script" uid="uid://c6ji4cmwcg07k" path="res://custom_resources/state_resources/rock_damage.gd" id="6_a2wls"]
+[ext_resource type="Script" uid="uid://cj3uknxku6uj" path="res://custom_resources/state_resources/rock_destroy.gd" id="7_akych"]
+
+[sub_resource type="Resource" id="Resource_bu5nd"]
+script = ExtResource("5_yg71h")
+metadata/_custom_type_script = "uid://dyfo0vatkdm0a"
+
+[sub_resource type="Resource" id="Resource_r2j4k"]
+script = ExtResource("6_a2wls")
+metadata/_custom_type_script = "uid://c6ji4cmwcg07k"
+
+[sub_resource type="Resource" id="Resource_o2o4e"]
+script = ExtResource("7_akych")
+metadata/_custom_type_script = "uid://cj3uknxku6uj"
 
 [resource]
 script = ExtResource("1_uumh4")
@@ -10,5 +26,12 @@ type = 2
 max_health = 90
 art = ExtResource("1_di5lh")
 damage = 0.0
+knockbak_mod = 0.0
+is_special_rock = true
 drops = Array[ExtResource("2_421dt")]([])
+states = Dictionary[StringName, ExtResource("4_dbkp0")]({
+&"RockDamage": SubResource("Resource_r2j4k"),
+&"RockDestroy": SubResource("Resource_o2o4e"),
+&"RockIdle": SubResource("Resource_bu5nd")
+})
 metadata/_custom_type_script = "uid://bo3ep8hogvh5p"

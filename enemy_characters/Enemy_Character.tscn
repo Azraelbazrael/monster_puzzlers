@@ -64,14 +64,14 @@ visibility_layer = 5
 [node name="text_pos" type="Marker2D" parent="."]
 position = Vector2(1, -68)
 
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource("3_nsbh1")
-default_state = SubResource("Resource_p3l1p")
-
 [node name="Line2D" type="Line2D" parent="."]
 light_mask = 0
 width = 20.0
 default_color = Color(0.592927, 0, 0.265937, 1)
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_nsbh1")
+default_state = SubResource("Resource_p3l1p")
 
 [connection signal="dead_enemy" from="." to="." method="_on_dead_enemy"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_entered"]

@@ -8,7 +8,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hgul4"]
 
-[node name="iron_rock" type="CharacterBody2D"]
+[node name="iron_rock" type="CharacterBody2D" groups=["Rock"]]
 script = ExtResource("1_x0uj8")
 stats = ExtResource("2_0hcm7")
 damage_label = ExtResource("3_hgul4")
