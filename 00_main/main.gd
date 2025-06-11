@@ -272,7 +272,7 @@ func _on_game_over() -> void:
 	screen_layer.show()
 	
 func _on_game_start() -> void:
-	
+	Global.emit_signal("level_passed")
 	play_mode = true 
 	get_node("Camera2D").enabled = false
 	screen_layer.hide()
