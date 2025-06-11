@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2m7qg2uvtfhi"]
+
+[ext_resource type="Script" uid="uid://nsiytofi40ht" path="res://00_main/main.gd" id="1_eg6d5"]
+[ext_resource type="Script" uid="uid://dlkslglqrr775" path="res://00_main/level_manager.gd" id="2_esoif"]
+[ext_resource type="PackedScene" uid="uid://hicct6hwqhhn" path="res://UI_layers/textbox.tscn" id="3_qqp57"]
+[ext_resource type="Script" uid="uid://c1utxc45fejt8" path="res://dungeon_generator/screen_layers.gd" id="4_vhq5f"]
+[ext_resource type="Script" uid="uid://b8wwvbrj3t4ge" path="res://dungeon_generator/tile_map.gd" id="5_h3sfl"]
+[ext_resource type="Resource" uid="uid://dsg2y24ieqm3f" path="res://custom_resources/maps/sand_map.tres" id="5_ko1dt"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_eg6d5")
+tile_size = null
+num_rooms = null
+min_size = null
+max_size = null
+h_spread = null
+v_spread = null
+
+[node name="LevelManager" type="Node" parent="."]
+script = ExtResource("2_esoif")
+current_map = ExtResource("5_ko1dt")
+
+[node name="RoomContainer" type="Node" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.1, 0.1)
+
+[node name="TileMap" type="TileMap" parent="."]
+show_behind_parent = true
+position = Vector2(0, 4)
+format = 2
+script = ExtResource("5_h3sfl")
+
+[node name="Layer1" type="TileMapLayer" parent="TileMap"]
+use_parent_material = true
+
+[node name="ScreenLayers" type="CanvasLayer" parent="." node_paths=PackedStringArray("text")]
+layer = 2
+visible = false
+script = ExtResource("4_vhq5f")
+text = NodePath("textbox/NinePatchRect/VBoxContainer/RichTextLabel")
+
+[node name="textbox" parent="ScreenLayers" instance=ExtResource("3_qqp57")]
+
+[connection signal="visibility_changed" from="ScreenLayers" to="ScreenLayers" method="_on_visibility_changed"]
+
+[editable path="ScreenLayers/textbox"]

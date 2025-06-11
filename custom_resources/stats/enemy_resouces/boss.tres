@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Stats" load_steps=5 format=3 uid="uid://bi53t6k1rjriu"]
+
+[ext_resource type="Script" uid="uid://dj70fcnkrrk5y" path="res://custom_resources/items/dropdata.gd" id="1_3c0ea"]
+[ext_resource type="Texture2D" uid="uid://bnce2njwhkyj2" path="res://enemy_characters/small_texture.png" id="1_vr1oo"]
+[ext_resource type="Script" uid="uid://bo3ep8hogvh5p" path="res://custom_resources/stats/stats.gd" id="2_vr1oo"]
+[ext_resource type="Script" uid="uid://dg5cpt0maie22" path="res://custom_resources/state_resources/state_resource.gd" id="3_pwbjd"]
+
+[resource]
+script = ExtResource("2_vr1oo")
+type = 1
+max_health = 200
+art = ExtResource("1_vr1oo")
+damage = 0.0
+knockbak_mod = 0.0
+drops = Array[ExtResource("1_3c0ea")]([])
+states = Dictionary[StringName, ExtResource("3_pwbjd")]({})
+metadata/_custom_type_script = "uid://bo3ep8hogvh5p"

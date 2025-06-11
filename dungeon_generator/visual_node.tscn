@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn36b8f6eqo1b"]
+
+[ext_resource type="Script" uid="uid://yv1p6db8imrh" path="res://dungeon_generator/visual_node.gd" id="1_gytv7"]
+[ext_resource type="Texture2D" uid="uid://cbqjx6gnhuoae" path="res://assets/circle_texture.png" id="2_gytv7"]
+
+[node name="VisualNode" type="Node2D" node_paths=PackedStringArray("sprite")]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_gytv7")
+color = 1
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_gytv7")
