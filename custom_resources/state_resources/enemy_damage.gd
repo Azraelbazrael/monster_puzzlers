@@ -4,7 +4,7 @@ class_name EnemyDamage
 var dmg_time: float = 1.5
 
 func _enter_state(_previous_state : State):
-	print("current state: Damaged")
+	#print("current state: Damaged")
 	if actor:
 		_damage_enemy()
 		actor.connect("no_dmg", _undamage)

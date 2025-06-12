@@ -5,7 +5,7 @@ var dmg_time: float = 3
 
 func _enter_state(_previous_state : State):
 	if actor.target:
-		print("Current State: Attack")
+		#print("Current State: Attack")
 		_damage_target()
 		if actor.target == null:
 			actor.connect("no_dmg", _unhurt_target)

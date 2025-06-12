@@ -7,8 +7,8 @@ var recalc_time := 3.0
 
 
 func _enter_state(_previous_state : State):
-	print("current state: Chasing")
-	
+	#print("current state: Chasing")
+	pass
 
 
 func physics_update(_delta : float):
