@@ -8,10 +8,6 @@
 [ext_resource type="Script" uid="uid://c6ji4cmwcg07k" path="res://custom_resources/state_resources/rock_damage.gd" id="6_a2wls"]
 [ext_resource type="Script" uid="uid://cj3uknxku6uj" path="res://custom_resources/state_resources/rock_destroy.gd" id="7_akych"]
 
-[sub_resource type="Resource" id="Resource_bu5nd"]
-script = ExtResource("5_yg71h")
-metadata/_custom_type_script = "uid://dyfo0vatkdm0a"
-
 [sub_resource type="Resource" id="Resource_r2j4k"]
 script = ExtResource("6_a2wls")
 metadata/_custom_type_script = "uid://c6ji4cmwcg07k"
@@ -19,6 +15,10 @@ metadata/_custom_type_script = "uid://c6ji4cmwcg07k"
 [sub_resource type="Resource" id="Resource_o2o4e"]
 script = ExtResource("7_akych")
 metadata/_custom_type_script = "uid://cj3uknxku6uj"
+
+[sub_resource type="Resource" id="Resource_bu5nd"]
+script = ExtResource("5_yg71h")
+metadata/_custom_type_script = "uid://dyfo0vatkdm0a"
 
 [resource]
 script = ExtResource("1_uumh4")

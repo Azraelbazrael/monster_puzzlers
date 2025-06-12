@@ -27,6 +27,7 @@ max_health = 100
 art = ExtResource("1_wlg7t")
 damage = 3.0
 knockbak_mod = 0.5
+is_special_rock = false
 drops = Array[ExtResource("2_c8wrx")]([])
 states = Dictionary[StringName, ExtResource("4_np2q1")]({
 &"EnemyChase": SubResource("Resource_bv0bu"),
