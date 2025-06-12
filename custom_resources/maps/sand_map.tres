@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="map_resource" load_steps=12 format=3 uid="uid://dsg2y24ieqm3f"]
+[gd_resource type="Resource" script_class="map_resource" load_steps=14 format=3 uid="uid://dsg2y24ieqm3f"]
 
 [ext_resource type="TileSet" uid="uid://clr01r8bc543d" path="res://assets/tiles.tres" id="2_b0adn"]
 [ext_resource type="Resource" uid="uid://dnbj2d2k1t0o4" path="res://custom_resources/stats/enemy_resouces/chaser.tres" id="2_c0r2y"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://cqxvomyfitgvp" path="res://custom_resources/items/collectable_items/iron_ore.tres" id="4_245f2"]
 [ext_resource type="Script" uid="uid://b0287kpevj45s" path="res://custom_resources/maps/map_rocks.gd" id="5_a7bsj"]
 [ext_resource type="Resource" uid="uid://cp34rnc1vqdut" path="res://custom_resources/interactables/evil_rock.tres" id="6_aysvu"]
+[ext_resource type="Resource" uid="uid://05jacqha5wwd" path="res://custom_resources/interactables/regular_rock.tres" id="7_aysvu"]
 
 [sub_resource type="Resource" id="Resource_245f2"]
 script = ExtResource("2_ydqdw")
@@ -33,10 +34,19 @@ min_amount = 1
 max_amount = 1
 metadata/_custom_type_script = "uid://b0287kpevj45s"
 
+[sub_resource type="Resource" id="Resource_mnydi"]
+script = ExtResource("5_a7bsj")
+rock = ExtResource("7_aysvu")
+probability = 100.0
+min_amount = 1
+max_amount = 1
+metadata/_custom_type_script = "uid://b0287kpevj45s"
+
 [resource]
 script = ExtResource("3_ydqdw")
 tileset = ExtResource("2_b0adn")
 map_enemies = Array[ExtResource("2_ydqdw")]([SubResource("Resource_245f2")])
 map_items = Array[ExtResource("3_c0r2y")]([SubResource("Resource_a7bsj")])
-map_rocks = Array[ExtResource("5_a7bsj")]([SubResource("Resource_atvmo")])
+map_rocks = Array[ExtResource("5_a7bsj")]([SubResource("Resource_atvmo"), SubResource("Resource_mnydi")])
+map_bosses = Array[ExtResource("2_ydqdw")]([])
 metadata/_custom_type_script = "uid://ci4glncunbf0j"

@@ -12,6 +12,7 @@ max_health = 200
 art = ExtResource("1_vr1oo")
 damage = 0.0
 knockbak_mod = 0.0
+is_special_rock = false
 drops = Array[ExtResource("1_3c0ea")]([])
 states = Dictionary[StringName, ExtResource("3_pwbjd")]({})
 metadata/_custom_type_script = "uid://bo3ep8hogvh5p"

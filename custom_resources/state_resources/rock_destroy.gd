@@ -9,4 +9,4 @@ func _enter_state(_previous_state : State):
 		else:
 			actor.visible = false
 			actor.emit_signal("item_drop")
-	
+			actor.queue_free()

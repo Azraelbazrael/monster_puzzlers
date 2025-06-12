@@ -12,6 +12,7 @@ enum Type{PLAYER,MONSTER,INTERACTABLE}
 
 @export_group("Item drops")
 @export var drops: Array[DropData]
+@export var bullets: Array[projectile_resource]
 
 @export_group("States")
 

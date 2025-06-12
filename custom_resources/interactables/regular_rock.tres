@@ -1,18 +1,34 @@
-[gd_resource type="Resource" script_class="Stats" load_steps=7 format=3 uid="uid://05jacqha5wwd"]
+[gd_resource type="Resource" script_class="Stats" load_steps=14 format=3 uid="uid://05jacqha5wwd"]
 
 [ext_resource type="Script" uid="uid://bo3ep8hogvh5p" path="res://custom_resources/stats/stats.gd" id="1_e83q6"]
 [ext_resource type="Texture2D" uid="uid://cdo81qnvud3xp" path="res://assets/rock.png" id="1_vaplt"]
+[ext_resource type="Script" uid="uid://bd4axb5en01gi" path="res://custom_resources/items/projectile/projectile.gd" id="2_ejhlt"]
 [ext_resource type="Script" uid="uid://dj70fcnkrrk5y" path="res://custom_resources/items/dropdata.gd" id="2_ltg2v"]
 [ext_resource type="Resource" uid="uid://cqxvomyfitgvp" path="res://custom_resources/items/collectable_items/iron_ore.tres" id="3_wux4o"]
 [ext_resource type="Script" uid="uid://dg5cpt0maie22" path="res://custom_resources/state_resources/state_resource.gd" id="5_tnjvy"]
+[ext_resource type="Script" uid="uid://dyfo0vatkdm0a" path="res://custom_resources/state_resources/rock_idle.gd" id="7_pjmlb"]
+[ext_resource type="Script" uid="uid://c6ji4cmwcg07k" path="res://custom_resources/state_resources/rock_damage.gd" id="8_v6cjh"]
+[ext_resource type="Script" uid="uid://cj3uknxku6uj" path="res://custom_resources/state_resources/rock_destroy.gd" id="9_v6cjh"]
 
 [sub_resource type="Resource" id="Resource_wux4o"]
 script = ExtResource("2_ltg2v")
 item = ExtResource("3_wux4o")
 probability = 100.0
 min_amount = 2
-max_amount = 4
+max_amount = 3
 metadata/_custom_type_script = "uid://dj70fcnkrrk5y"
+
+[sub_resource type="Resource" id="Resource_cqf68"]
+script = ExtResource("7_pjmlb")
+metadata/_custom_type_script = "uid://dyfo0vatkdm0a"
+
+[sub_resource type="Resource" id="Resource_uc7jx"]
+script = ExtResource("8_v6cjh")
+metadata/_custom_type_script = "uid://c6ji4cmwcg07k"
+
+[sub_resource type="Resource" id="Resource_kc4ff"]
+script = ExtResource("9_v6cjh")
+metadata/_custom_type_script = "uid://cj3uknxku6uj"
 
 [resource]
 script = ExtResource("1_e83q6")
@@ -21,6 +37,12 @@ max_health = 90
 art = ExtResource("1_vaplt")
 damage = 0.0
 knockbak_mod = 0.0
+is_special_rock = false
 drops = Array[ExtResource("2_ltg2v")]([SubResource("Resource_wux4o")])
-states = Dictionary[StringName, ExtResource("5_tnjvy")]({})
+bullets = Array[ExtResource("2_ejhlt")]([])
+states = Dictionary[StringName, ExtResource("5_tnjvy")]({
+&"RockDamage": SubResource("Resource_uc7jx"),
+&"RockDestroy": SubResource("Resource_kc4ff"),
+&"RockIdle": SubResource("Resource_cqf68")
+})
 metadata/_custom_type_script = "uid://bo3ep8hogvh5p"
