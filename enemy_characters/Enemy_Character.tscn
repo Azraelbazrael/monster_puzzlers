@@ -1,11 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cfcmdo4rjimke"]
+[gd_scene load_steps=9 format=3 uid="uid://cfcmdo4rjimke"]
 
 [ext_resource type="Script" uid="uid://decr12pcq5vju" path="res://enemy_characters/enemy_character.gd" id="1_fq3j4"]
 [ext_resource type="PackedScene" uid="uid://7wtngh11pph" path="res://UI_layers/floating_text.tscn" id="2_4y350"]
 [ext_resource type="Script" uid="uid://bvpsio45nj0r7" path="res://states/state_machine.gd" id="3_nsbh1"]
 [ext_resource type="Script" uid="uid://b4s8tn8fsuqku" path="res://custom_resources/state_resources/enemy_idle.gd" id="4_p3l1p"]
-
-[sub_resource type="ExternalTexture" id="ExternalTexture_hdpj2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eytep"]
 size = Vector2(50, 51)
@@ -20,20 +18,17 @@ radius = 110.114
 script = ExtResource("4_p3l1p")
 metadata/_custom_type_script = "uid://b4s8tn8fsuqku"
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("debug_line", "hurtbox", "stateMachine", "nav_agent", "player_detect") groups=["Enemy"]]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "stateMachine", "player_detect") groups=["Enemy"]]
+collision_layer = 6
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_fq3j4")
-debug_line = NodePath("Line2D")
 damage_label = ExtResource("2_4y350")
 hurtbox = NodePath("Hurtbox")
 stateMachine = NodePath("StateMachine")
-nav_agent = NodePath("Navigation/NavigationAgent2D")
 player_detect = NodePath("PlayerDetection")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1, 0)
-texture = SubResource("ExternalTexture_hdpj2")
 flip_v = true
 
 [node name="Collision" type="CollisionShape2D" parent="."]
@@ -54,20 +49,8 @@ monitorable = false
 shape = SubResource("CircleShape2D_p3l1p")
 debug_color = Color(0.862959, 0.000621079, 0.868247, 0.42)
 
-[node name="Navigation" type="Node2D" parent="."]
-top_level = true
-light_mask = 5
-visibility_layer = 5
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigation"]
-
 [node name="text_pos" type="Marker2D" parent="."]
 position = Vector2(1, -68)
-
-[node name="Line2D" type="Line2D" parent="."]
-light_mask = 0
-width = 20.0
-default_color = Color(0.592927, 0, 0.265937, 1)
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_nsbh1")

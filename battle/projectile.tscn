@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cehoglt8i8wvk"]
+
+[ext_resource type="Script" uid="uid://cs2sfipe01np2" path="res://battle/projectile.gd" id="1_cr2pl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_du37v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cr2pl"]
+radius = 15.0333
+
+[node name="Projectile" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_cr2pl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_du37v")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_cr2pl")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

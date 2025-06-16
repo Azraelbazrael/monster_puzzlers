@@ -5,12 +5,15 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qe2la"]
 
 [node name="PickableItem" type="CharacterBody2D" groups=["PickableItems"]]
+collision_layer = 5
+collision_mask = 5
 script = ExtResource("1_mhem8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_qe2la")

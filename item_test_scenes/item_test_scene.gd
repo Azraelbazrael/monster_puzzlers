@@ -4,8 +4,8 @@ extends Node2D
 
 var evil_rock = preload("res://item_test_scenes/evil_rock.tscn")
 var player = preload("res://Playable_character/character.tscn")
-var enemy = preload("res://enemy_characters/Dummy.tscn")
-var chaser = preload("res://enemy_characters/Chaser.tscn")
+#var enemy = preload("res://enemy_characters/Dummy.tscn")
+#var chaser = preload("res://enemy_characters/Chaser.tscn")
 var iron_rock = preload("res://item_test_scenes/iron_rock.tscn")
 
 var player_c
@@ -36,7 +36,7 @@ func _input(event):
 	
 func gen_items():
 	player_c = player.instantiate()
-	chaser_c = chaser.instantiate()
+	#chaser_c = chaser.instantiate()
 	
 	add_child(player_c)	
 	Global.emit_signal("obj_placed")

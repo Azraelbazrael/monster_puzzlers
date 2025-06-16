@@ -8,7 +8,7 @@ class_name level_manager
 const m_item = preload("res://item_test_scenes/interactable_items/PickableItem.tscn")
 const m_enemy = preload("res://enemy_characters/Enemy_Character.tscn")
 const m_rock = preload("res://dungeon_generator/rock.tscn")
-
+const m_boss = preload("res://enemy_characters/Boss_Character.tscn")
 
 
 #var debug_line = Line2D.new()
@@ -32,12 +32,25 @@ func update_map():
 		
 		
 func add_map_obj():
-	#get_astar_grid()
 	add_map_items()
 	add_map_enemies()
 	add_map_rocks()
+	add_map_bosses()
 
-
+func add_map_bosses():
+	if current_map.map_bosses.size() == 0:
+		return
+	for i in current_map.map_bosses.size():
+		if current_map.map_bosses[ i ] == null or current_map.map_bosses[ i ].enemy == null:
+			continue
+		var boss_count : int = current_map.map_bosses[ i ].get_drop_count()
+		for j in boss_count:
+			var boss : BossEnemy = m_boss.instantiate() as BossEnemy
+			boss.stats = current_map.map_bosses[ i ].enemy
+			get_tree().root.call_deferred("add_child", boss)
+			
+			Global.emit_signal("obj_placed")
+			boss.global_position = tilemap.rand_point * tilemap.TILESIZE
 
 func add_map_items():
 	if current_map.map_items.size() == 0:

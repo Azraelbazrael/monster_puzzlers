@@ -1,9 +1,22 @@
-[gd_resource type="Resource" script_class="Stats" load_steps=5 format=3 uid="uid://bi53t6k1rjriu"]
+[gd_resource type="Resource" script_class="Stats" load_steps=10 format=3 uid="uid://bi53t6k1rjriu"]
 
 [ext_resource type="Script" uid="uid://dj70fcnkrrk5y" path="res://custom_resources/items/dropdata.gd" id="1_3c0ea"]
 [ext_resource type="Texture2D" uid="uid://bnce2njwhkyj2" path="res://enemy_characters/small_texture.png" id="1_vr1oo"]
+[ext_resource type="Script" uid="uid://bd4axb5en01gi" path="res://custom_resources/items/projectile/projectile.gd" id="2_pwbjd"]
 [ext_resource type="Script" uid="uid://bo3ep8hogvh5p" path="res://custom_resources/stats/stats.gd" id="2_vr1oo"]
+[ext_resource type="Texture2D" uid="uid://bdywcsgkd4cj5" path="res://assets/iron_ore.png" id="3_33pi6"]
 [ext_resource type="Script" uid="uid://dg5cpt0maie22" path="res://custom_resources/state_resources/state_resource.gd" id="3_pwbjd"]
+[ext_resource type="Script" uid="uid://c7643ki3epl27" path="res://custom_resources/state_resources/enemy_shoot.gd" id="7_5vd3d"]
+
+[sub_resource type="Resource" id="Resource_ly2h1"]
+script = ExtResource("2_pwbjd")
+art = ExtResource("3_33pi6")
+damage = 20.0
+metadata/_custom_type_script = "uid://bd4axb5en01gi"
+
+[sub_resource type="Resource" id="Resource_mcgpg"]
+script = ExtResource("7_5vd3d")
+metadata/_custom_type_script = "uid://c7643ki3epl27"
 
 [resource]
 script = ExtResource("2_vr1oo")
@@ -14,5 +27,8 @@ damage = 0.0
 knockbak_mod = 0.0
 is_special_rock = false
 drops = Array[ExtResource("1_3c0ea")]([])
-states = Dictionary[StringName, ExtResource("3_pwbjd")]({})
+bullets = Array[ExtResource("2_pwbjd")]([SubResource("Resource_ly2h1")])
+states = Dictionary[StringName, ExtResource("3_pwbjd")]({
+&"EnemyShoot": SubResource("Resource_mcgpg")
+})
 metadata/_custom_type_script = "uid://bo3ep8hogvh5p"

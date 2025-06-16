@@ -9,13 +9,11 @@ signal no_dmg
 var damaged: bool
 
 
-@export var debug_line: Line2D
 @export var stats: Stats: set = set_stats
 @export var damage_label: PackedScene
 @export var hurtbox: Area2D
 @export var knockback_mod: float = 0.1
 @export var stateMachine: Node
-@export var nav_agent: NavigationAgent2D
 @export var player_detect: Area2D
 
 var home_pos = Vector2.ZERO
@@ -23,7 +21,6 @@ var home_pos = Vector2.ZERO
 var target
 var weapon
 var tilemap: TileMap
-#v#ar astar_grid = AStarGrid2D.new()
 var current_path: Array[Vector2i]
 
 signal player_found
@@ -83,7 +80,6 @@ func _on_player_detection_area_entered(targ_d: Area2D) -> void:
 func _on_player_detection_area_exited(targ_d: Area2D) -> void:
 	if targ_d.get_parent().is_in_group("Player"):
 		target = null
-		#current_path.clear()
 
 func _on_hurtbox_entered(area: Area2D) -> void:
 	if area.get_parent().is_in_group("Player"):

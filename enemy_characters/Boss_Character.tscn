@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://cc5mq5k65kyi7"]
+
+[ext_resource type="Script" uid="uid://c2mm1pc26blvy" path="res://enemy_characters/Boss_enemy.gd" id="1_aaexn"]
+[ext_resource type="PackedScene" uid="uid://7wtngh11pph" path="res://UI_layers/floating_text.tscn" id="2_0ggnu"]
+[ext_resource type="Script" uid="uid://bvpsio45nj0r7" path="res://states/state_machine.gd" id="3_2wox6"]
+[ext_resource type="Script" uid="uid://c7643ki3epl27" path="res://custom_resources/state_resources/enemy_shoot.gd" id="4_ccvxg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aaexn"]
+size = Vector2(29, 31)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ggnu"]
+radius = 28.1603
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2wox6"]
+radius = 122.873
+
+[sub_resource type="Resource" id="Resource_ccvxg"]
+script = ExtResource("4_ccvxg")
+metadata/_custom_type_script = "uid://c7643ki3epl27"
+
+[node name="BossEnemy" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "stateMachine", "player_detect") groups=["Enemy"]]
+z_index = 1
+scale = Vector2(1.5, 1.5)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_aaexn")
+damage_label = ExtResource("2_0ggnu")
+hurtbox = NodePath("Hurtbox")
+stateMachine = NodePath("StateMachine")
+player_detect = NodePath("PlayerDetection")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_aaexn")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_0ggnu")
+debug_color = Color(0.910161, 0.000106273, 0.730944, 0.42)
+metadata/_edit_lock_ = true
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_2wox6")
+debug_color = Color(0.555546, 0.561738, 7.70092e-07, 0.42)
+metadata/_edit_lock_ = true
+
+[node name="text_pos" type="Marker2D" parent="."]
+position = Vector2(0, -10)
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_2wox6")
+default_state = SubResource("Resource_ccvxg")
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_entered"]
+[connection signal="area_entered" from="PlayerDetection" to="." method="_on_player_detection_area_entered"]
+[connection signal="area_exited" from="PlayerDetection" to="." method="_on_player_detection_area_exited"]

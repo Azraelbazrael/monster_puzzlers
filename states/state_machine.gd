@@ -18,10 +18,10 @@ func _ready() -> void:
 			states[state].transition.connect(_on_state_transition)
 			states[state].state_name = state
 			
-	#print(states)
+	#print(default_state)
 	change_state(default_state)
  	
-	
+	"res://custom_resources/state_resources/enemy_shoot.gd"
 
 func change_state(new_state : State):
 	var n_state = new_state.create_instance()

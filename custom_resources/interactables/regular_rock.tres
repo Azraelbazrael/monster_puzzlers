@@ -18,10 +18,6 @@ min_amount = 2
 max_amount = 3
 metadata/_custom_type_script = "uid://dj70fcnkrrk5y"
 
-[sub_resource type="Resource" id="Resource_cqf68"]
-script = ExtResource("7_pjmlb")
-metadata/_custom_type_script = "uid://dyfo0vatkdm0a"
-
 [sub_resource type="Resource" id="Resource_uc7jx"]
 script = ExtResource("8_v6cjh")
 metadata/_custom_type_script = "uid://c6ji4cmwcg07k"
@@ -29,6 +25,10 @@ metadata/_custom_type_script = "uid://c6ji4cmwcg07k"
 [sub_resource type="Resource" id="Resource_kc4ff"]
 script = ExtResource("9_v6cjh")
 metadata/_custom_type_script = "uid://cj3uknxku6uj"
+
+[sub_resource type="Resource" id="Resource_cqf68"]
+script = ExtResource("7_pjmlb")
+metadata/_custom_type_script = "uid://dyfo0vatkdm0a"
 
 [resource]
 script = ExtResource("1_e83q6")
