@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Projectile
 
-var bullet_data: projectile_resource
+var stats: projectile_resource
 var SPEED = 300
 
 var dir: float
@@ -12,7 +12,7 @@ var life: float
 
 func _ready() -> void:
 	life = 3
-	$Sprite2D.texture = bullet_data.art
+	$Sprite2D.texture = stats.art
 	global_position = spawn_pos
 	global_rotation = spawn_rot
 	z_index = zdex

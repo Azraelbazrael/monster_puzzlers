@@ -27,6 +27,7 @@ Weapon=""
 Slot=""
 Rock=""
 PickableItems=""
+Projectile=""
 
 [input]
 

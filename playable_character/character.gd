@@ -140,7 +140,10 @@ func _check_hurtbox(area: Area2D) -> void:
 	if area.get_parent().is_in_group("Enemy"):
 		hurt_by = area.get_parent()
 		emit_signal("player_hurt")
-	
+		
+	elif area.get_parent().is_in_group("Projectile"):
+		hurt_by = area.get_parent()
+		emit_signal("player_hurt")
 
 func _on_hurtbox_exited(area: Area2D) -> void:
 	if area.get_parent().is_in_group("Enemy"):

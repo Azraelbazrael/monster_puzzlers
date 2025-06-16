@@ -9,7 +9,7 @@ func _shoot():
 		cooldown_time = 0.3
 		for b in actor.stats.bullets.size():
 			var bullet: Projectile = actor.projectiles.instantiate() as Projectile
-			bullet.bullet_data = actor.stats.bullets[b]
+			bullet.stats = actor.stats.bullets[b]
 			bullet.dir = actor.rotation
 			bullet.spawn_pos = actor.global_position
 			bullet.spawn_rot = actor.rotation
