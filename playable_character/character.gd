@@ -35,7 +35,7 @@ var damage
 
 func _ready() -> void:
 	StateMachine.states = character_stats.states
-	print(StateMachine.states)
+	#print(StateMachine.states)
 
 func set_character_stats(value: Character_stats) -> void:
 	character_stats = value.create_instance()
@@ -121,12 +121,6 @@ func _physics_process(delta):
 				$Weapon/Weapon.scale.x = 1
 
 			
-#func set_damage(amount):
-#	if current_item != null:
-	#	$Weapon/Weapon/Hitbox.damage = amount
-	#else:
-	#	pass 
-
 		
 func add_item(item):
 	var inventory = $CanvasLayer/HUD_elements/BottomContainer/VboxContainer/MarginContainer/Inventory/Slot_Container/Inventory_Slots
@@ -136,7 +130,7 @@ func add_item(item):
 
 
 func _check_hurtbox(area: Area2D) -> void:
-	
+
 	if area.get_parent().is_in_group("Enemy"):
 		hurt_by = area.get_parent()
 		emit_signal("player_hurt")
@@ -158,6 +152,7 @@ func _add_dmg_label():
 
 
 func _on_hitbox_entered(area: Area2D) -> void:
+	#print("b")
 	if area.get_parent().is_in_group("Enemy"):
 		target = area.get_parent()
 	if area.get_parent().is_in_group("Rock"):

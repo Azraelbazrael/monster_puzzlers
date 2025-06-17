@@ -9,7 +9,7 @@
 size = Vector2(29, 31)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ggnu"]
-radius = 28.1603
+radius = 55.3333
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2wox6"]
 radius = 122.873
@@ -21,8 +21,7 @@ metadata/_custom_type_script = "uid://c7643ki3epl27"
 [node name="BossEnemy" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "stateMachine", "player_detect") groups=["Enemy"]]
 z_index = 1
 scale = Vector2(1.5, 1.5)
-collision_layer = 2
-collision_mask = 5
+collision_layer = 6
 script = ExtResource("1_aaexn")
 damage_label = ExtResource("2_0ggnu")
 hurtbox = NodePath("Hurtbox")
@@ -35,12 +34,10 @@ player_detect = NodePath("PlayerDetection")
 shape = SubResource("RectangleShape2D_aaexn")
 
 [node name="Hurtbox" type="Area2D" parent="."]
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_0ggnu")
 debug_color = Color(0.910161, 0.000106273, 0.730944, 0.42)
-metadata/_edit_lock_ = true
 
 [node name="PlayerDetection" type="Area2D" parent="."]
 monitorable = false

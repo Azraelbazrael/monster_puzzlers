@@ -36,7 +36,6 @@ func _process(delta: float) -> void:
 
 	
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	#print("?")
 	if "Enemy" in body.name:
 		pass
 	else:

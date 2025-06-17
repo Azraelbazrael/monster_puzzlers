@@ -4,8 +4,6 @@ extends Node2D
 
 var evil_rock = preload("res://item_test_scenes/evil_rock.tscn")
 var player = preload("res://Playable_character/character.tscn")
-#var enemy = preload("res://enemy_characters/Dummy.tscn")
-#var chaser = preload("res://enemy_characters/Chaser.tscn")
 var iron_rock = preload("res://item_test_scenes/iron_rock.tscn")
 
 var player_c

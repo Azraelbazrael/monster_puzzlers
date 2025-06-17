@@ -15,7 +15,7 @@ func _damage_target():
 	if actor.target:
 		dmg_time = 1.5
 		actor.target.emit_signal("taking_dmg")
-		actor.current_item.use_cost(actor.character_stats)
+		
 
 func frame_update(_delta : float):
 	if dmg_time > 0:

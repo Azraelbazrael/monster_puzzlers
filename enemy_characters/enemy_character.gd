@@ -83,6 +83,7 @@ func _on_player_detection_area_exited(targ_d: Area2D) -> void:
 
 func _on_hurtbox_entered(area: Area2D) -> void:
 	if area.get_parent().is_in_group("Player"):
+		#print("a")
 		weapon = area.get_parent()
 		
 
