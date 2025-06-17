@@ -151,6 +151,7 @@ _data = {
 }
 
 [node name="Weapon" type="Sprite2D" groups=["Weapon"]]
+z_index = 1
 texture_filter = 1
 position = Vector2(0, -2)
 script = ExtResource("1_1soaq")

@@ -9,5 +9,5 @@ func _ready() -> void:
 	$Sprite2D.texture = stats.art
 	
 
-func _physics_process(delta: float) -> void:
-	rotation_degrees += 50 * delta
+#func _physics_process(delta: float) -> void:
+	#rotation_degrees += 50 * delta
