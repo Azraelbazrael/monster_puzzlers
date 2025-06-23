@@ -5,7 +5,7 @@ class_name MainNode
 var Room = preload("res://dungeon_generator/Room.tscn")
 var Player = preload("res://Playable_character/character.tscn")
 var font = preload("res://assets/fonts/RobotoBold24.tres")
-var evil_rock = preload("res://item_test_scenes/evil_rock.tscn")
+var boss_level = preload("res://dungeon_generator/boss_levels.tscn").instantiate()
 
 @export var Map: TileMap
 @onready var screen_layer: CanvasLayer = $ScreenLayers
@@ -19,8 +19,8 @@ var evil_rock = preload("res://item_test_scenes/evil_rock.tscn")
 @export var v_spread: int =	800 ## vertical spread in pixels
 
 var path: AStar2D ## for Astar pathfinding (corridors)
-var start_room = null ## now unused
-var end_room = null ## now unused
+#var start_room = null ## now unused
+#var end_room = null ## now unused
 var play_mode: bool
 var player = null
 var end_rock = null
@@ -37,17 +37,19 @@ var end ## now unused
 
 
 func _ready():
-	Global.connect("game_start", _on_game_start)
-	Global.connect("game_over", _on_game_over)
-	Global.connect("player_died", retry)
-	Global.connect("generate_dungeon", make_rooms)
-	Global.connect("level_passed", level_proceed)
+	if is_inside_tree():
+		Global.connect("game_start", _on_game_start)
+		Global.connect("game_over", _on_game_over)
+		Global.connect("player_died", retry)
+		Global.connect("generate_dungeon", make_rooms)
+		Global.connect("boss_time",start_boss_level)
 	
 	randomize()
 	make_rooms()
 	
 	
 func make_rooms(): ## makes rooms
+	
 	for n in $RoomContainer.get_children():
 		n.queue_free()
 		
@@ -58,7 +60,7 @@ func make_rooms(): ## makes rooms
 	
 	
 			
-	start_room = null ## no longer relevant
+	#start_room = null ## no longer relevant
 
 		
 	for i in range(num_rooms):
@@ -103,15 +105,15 @@ func _process(_delta):
 	queue_redraw()
 	
 	
-func _input(event):
+#func _input(event):
 	## have generating a room be reduced to one button press
 		
 	#if event.is_action_pressed('ui_select'): ## space_bar
 		
 #		gen_rand_end_rock()
 		
-	if event.is_action_pressed('ui_focus_next') && path: ##tab
-		player_to_end_room()
+	#if event.is_action_pressed('ui_focus_next') && path: ##tab
+		#player_to_end_room()
 
 #
 func find_mst(nodes):
@@ -145,9 +147,10 @@ func find_mst(nodes):
 
 func make_map():
 	##finds start and end rooms
+	level_proceed()
 	find_start_room()
 	find_end_room()
-	print(Global.current_level)
+	#print(Global.current_level)
 	
 	## creates tilemap based off of the rooms and paths made 
 	corridors.clear()
@@ -226,7 +229,7 @@ func find_start_room():
 	var min_x = INF 
 	for room in $RoomContainer.get_children():
 		if room.position.x < min_x: 
-			start_room = room
+			#start_room = room
 			min_x = room.position.x
 
 
@@ -234,9 +237,9 @@ func find_end_room():
 	var max_x = -INF
 	for room in $RoomContainer.get_children():
 		if room.position.x > max_x:
-			end_room = room
+			#end_room = room
 			max_x = room.position.x
-			print(end_room.position/tile_size)
+			#print(end_room.position/tile_size)
 
 
 
@@ -248,21 +251,15 @@ func start_playing():
 	Global.emit_signal("obj_placed")
 	
 	add_child(player)
-	if boss_time == true:
-		player.position = start_room.position
+	#if boss_time == true:
+		#player.position = start_room.position
 		
 		
 	player.position = Map.rand_point * 32
-	await get_tree().process_frame
+	if is_inside_tree():
+		await get_tree().process_frame
 	
 	
-	#gen_rand_end_rock()
-	
-	
-	
-func player_to_end_room(): ##rename this later
-	player.position = end_rock.position
-
 
 
 
@@ -272,7 +269,6 @@ func _on_game_over() -> void:
 	screen_layer.show()
 	
 func _on_game_start() -> void:
-	Global.emit_signal("level_passed")
 	play_mode = true 
 	get_node("Camera2D").enabled = false
 	screen_layer.hide()
@@ -283,7 +279,12 @@ func retry() -> void:
 	Global.current_level = 0 
 
 func level_proceed() -> void:
-	Global.current_level += 1
-	if Global.current_level == 5:
-		boss_time = true
 	
+		
+	Global.current_level += 1
+	
+	if Global.current_level == 2:
+		Global.emit_signal("boss_time")
+
+func start_boss_level():
+	get_tree().change_scene_to_file("res://dungeon_generator/boss_levels.tscn")

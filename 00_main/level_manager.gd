@@ -1,7 +1,13 @@
 extends Node
 class_name level_manager
 
+@export var map_list: Array[map_resource]
+
 @export var current_map: map_resource: set = set_map
+
+			
+#@export var boss_map: map_resource
+
 @onready var tilemap = $"../TileMap"
 
 
@@ -11,33 +17,41 @@ const m_rock = preload("res://dungeon_generator/rock.tscn")
 const m_boss = preload("res://enemy_characters/Boss_Character.tscn")
 
 
-#var debug_line = Line2D.new()
 
 
 
 func _ready() -> void:
+	update_map()
 	tilemap.map = current_map
 	Global.connect("game_start", add_map_obj)
 	Global.connect("game_over", clear_arrays)
-	
+
+
+
 func set_map(Map: map_resource):
 	current_map = Map
 	update_map()
 
+
+	
+	
 func update_map():
 	if current_map is not map_resource:
 		return
 	if not is_inside_tree():
 		await ready	
-		
+
+
 		
 func add_map_obj():
-	add_map_items()
-	add_map_enemies()
-	add_map_rocks()
-	add_map_bosses()
+	if is_inside_tree():
+		add_map_items()
+		add_map_enemies()
+		add_map_rocks()
+		add_map_bosses()
 
 func add_map_bosses():
+	
 	if current_map.map_bosses.size() == 0:
 		return
 	for i in current_map.map_bosses.size():
@@ -51,6 +65,7 @@ func add_map_bosses():
 			
 			Global.emit_signal("obj_placed")
 			boss.global_position = tilemap.rand_point * tilemap.TILESIZE
+			#print(boss.global_position)
 
 func add_map_items():
 	if current_map.map_items.size() == 0:
@@ -87,17 +102,19 @@ func add_map_enemies():
 	if current_map.map_enemies.size() == 0:
 		return
 	for i in current_map.map_enemies.size():
-		if current_map.map_enemies[ i ] == null or current_map.map_enemies[ i ].enemy == null:
-			continue
-		var enemy_count : int = current_map.map_enemies[ i ].get_drop_count()
-		for j in enemy_count:
-			var enemy : EnemyCharacter = m_enemy.instantiate() as EnemyCharacter
-			enemy.stats = current_map.map_enemies[ i ].enemy
-			enemy.tilemap = tilemap
-			get_tree().root.call_deferred("add_child", enemy)
-			Global.emit_signal("obj_placed")
-			enemy.global_position = tilemap.rand_point * tilemap.TILESIZE
-
+		if get_tree().root:
+			if current_map.map_enemies[ i ] == null or current_map.map_enemies[ i ].enemy == null:
+				continue
+			var enemy_count : int = current_map.map_enemies[ i ].get_drop_count()
+			for j in enemy_count:
+				var enemy : EnemyCharacter = m_enemy.instantiate() as EnemyCharacter
+				enemy.stats = current_map.map_enemies[ i ].enemy
+				enemy.tilemap = tilemap
+				get_tree().root.call_deferred("add_child", enemy)
+				Global.emit_signal("obj_placed")
+				enemy.global_position = tilemap.rand_point * tilemap.TILESIZE
+		else:
+			pass
 			
 			
 func clear_arrays():

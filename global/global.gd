@@ -9,7 +9,10 @@ signal game_start
 signal game_over
 signal level_passed
 
-signal map_astar_grid(AStarGrid2D)
+signal boss_time
+var boss_level: bool = false
+
+#signal map_astar_grid(AStarGrid2D)
 
 #signal enemy_dead(object) ## currently unused
 

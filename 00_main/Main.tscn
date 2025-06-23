@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2m7qg2uvtfhi"]
+[gd_scene load_steps=8 format=3 uid="uid://c2m7qg2uvtfhi"]
 
 [ext_resource type="Script" uid="uid://nsiytofi40ht" path="res://00_main/main.gd" id="1_eg6d5"]
 [ext_resource type="Script" uid="uid://dlkslglqrr775" path="res://00_main/level_manager.gd" id="2_esoif"]
+[ext_resource type="Script" uid="uid://ci4glncunbf0j" path="res://custom_resources/maps/map.gd" id="3_ko1dt"]
 [ext_resource type="PackedScene" uid="uid://hicct6hwqhhn" path="res://UI_layers/textbox.tscn" id="3_qqp57"]
 [ext_resource type="Script" uid="uid://c1utxc45fejt8" path="res://dungeon_generator/screen_layers.gd" id="4_vhq5f"]
 [ext_resource type="Script" uid="uid://b8wwvbrj3t4ge" path="res://dungeon_generator/tile_map.gd" id="5_h3sfl"]
@@ -12,6 +13,7 @@ script = ExtResource("1_eg6d5")
 
 [node name="LevelManager" type="Node" parent="."]
 script = ExtResource("2_esoif")
+map_list = Array[ExtResource("3_ko1dt")]([ExtResource("5_ko1dt"), null])
 current_map = ExtResource("5_ko1dt")
 
 [node name="RoomContainer" type="Node" parent="."]

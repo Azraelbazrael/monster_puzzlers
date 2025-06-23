@@ -16,13 +16,13 @@ art = ExtResource("3_33pi6")
 damage = 20.0
 metadata/_custom_type_script = "uid://bd4axb5en01gi"
 
-[sub_resource type="Resource" id="Resource_mcgpg"]
-script = ExtResource("7_5vd3d")
-metadata/_custom_type_script = "uid://c7643ki3epl27"
-
 [sub_resource type="Resource" id="Resource_fs06c"]
 script = ExtResource("9_33pi6")
 metadata/_custom_type_script = "uid://dyfo0vatkdm0a"
+
+[sub_resource type="Resource" id="Resource_mcgpg"]
+script = ExtResource("7_5vd3d")
+metadata/_custom_type_script = "uid://c7643ki3epl27"
 
 [sub_resource type="Resource" id="Resource_33pi6"]
 script = ExtResource("8_ly2h1")

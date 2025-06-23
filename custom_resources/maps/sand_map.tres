@@ -1,24 +1,15 @@
-[gd_resource type="Resource" script_class="map_resource" load_steps=17 format=3 uid="uid://dsg2y24ieqm3f"]
+[gd_resource type="Resource" script_class="map_resource" load_steps=15 format=3 uid="uid://dsg2y24ieqm3f"]
 
 [ext_resource type="Script" uid="uid://dpvgp764w0f1p" path="res://custom_resources/maps/map_bosses.gd" id="1_mnydi"]
 [ext_resource type="TileSet" uid="uid://clr01r8bc543d" path="res://assets/tiles.tres" id="2_b0adn"]
 [ext_resource type="Resource" uid="uid://dnbj2d2k1t0o4" path="res://custom_resources/stats/enemy_resouces/chaser.tres" id="2_c0r2y"]
 [ext_resource type="Script" uid="uid://djdrgpjq3yspg" path="res://custom_resources/maps/map_enemies.gd" id="2_ydqdw"]
-[ext_resource type="Resource" uid="uid://bi53t6k1rjriu" path="res://custom_resources/stats/enemy_resouces/boss.tres" id="3_atvmo"]
 [ext_resource type="Script" uid="uid://brfqgjwepweny" path="res://custom_resources/maps/map_items.gd" id="3_c0r2y"]
 [ext_resource type="Script" uid="uid://ci4glncunbf0j" path="res://custom_resources/maps/map.gd" id="3_ydqdw"]
 [ext_resource type="Resource" uid="uid://cqxvomyfitgvp" path="res://custom_resources/items/collectable_items/iron_ore.tres" id="4_245f2"]
 [ext_resource type="Script" uid="uid://b0287kpevj45s" path="res://custom_resources/maps/map_rocks.gd" id="5_a7bsj"]
 [ext_resource type="Resource" uid="uid://cp34rnc1vqdut" path="res://custom_resources/interactables/evil_rock.tres" id="6_aysvu"]
 [ext_resource type="Resource" uid="uid://05jacqha5wwd" path="res://custom_resources/interactables/regular_rock.tres" id="7_aysvu"]
-
-[sub_resource type="Resource" id="Resource_2jn1i"]
-script = ExtResource("1_mnydi")
-enemy = ExtResource("3_atvmo")
-probability = 100.0
-min_amount = 1
-max_amount = 1
-metadata/_custom_type_script = "uid://dpvgp764w0f1p"
 
 [sub_resource type="Resource" id="Resource_245f2"]
 script = ExtResource("2_ydqdw")
@@ -58,5 +49,5 @@ tileset = ExtResource("2_b0adn")
 map_enemies = Array[ExtResource("2_ydqdw")]([SubResource("Resource_245f2")])
 map_items = Array[ExtResource("3_c0r2y")]([SubResource("Resource_a7bsj")])
 map_rocks = Array[ExtResource("5_a7bsj")]([SubResource("Resource_atvmo"), SubResource("Resource_mnydi")])
-map_bosses = Array[ExtResource("1_mnydi")]([SubResource("Resource_2jn1i")])
+map_bosses = Array[ExtResource("1_mnydi")]([])
 metadata/_custom_type_script = "uid://ci4glncunbf0j"

@@ -7,13 +7,13 @@ const TILESIZE = 32
 
 
 func _ready() -> void:
-	#Global.connect("game_over", clear_tiles)
+	tile_set = map.tileset
 	Global.connect("obj_placed", place_object)
 
 
 func set_map(Map: map_resource):
 	map = Map
-	tile_set = map.tileset
+	
 	update_map()
 
 func update_map():
