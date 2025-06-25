@@ -281,7 +281,7 @@ func retry() -> void:
 func level_proceed() -> void:	
 	Global.current_level += 1
 	
-	if Global.current_level == 2:
+	if Global.current_level == 10:
 		Global.emit_signal("boss_time")
 
 func start_boss_level():

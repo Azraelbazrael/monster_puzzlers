@@ -7,8 +7,6 @@ func _ready() -> void:
 	
 	
 
-func broken_rock():
-	Global.emit_signal("game_over")
 
 func _break_rock():
 	print("rock hit!")

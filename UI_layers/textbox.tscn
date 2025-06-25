@@ -33,7 +33,6 @@ layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 38
 bbcode_enabled = true
-text = "[center]You won!"
 fit_content = true
 scroll_active = false
 tab_size = 5
@@ -41,6 +40,6 @@ tab_size = 5
 [node name="Button" type="Button" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
 disabled = true
-text = "Try again?"
+text = "Onwards?"
 
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/Button" to="." method="_on_button_pressed"]

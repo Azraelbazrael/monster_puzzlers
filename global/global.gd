@@ -11,6 +11,8 @@ signal level_passed
 signal game_complete
 
 signal boss_time
+
+var map_name: StringName
 var boss_level: bool = false
 
 #signal map_astar_grid(AStarGrid2D)

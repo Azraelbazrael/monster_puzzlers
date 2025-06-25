@@ -21,8 +21,11 @@ const m_boss = preload("res://enemy_characters/Boss_Character.tscn")
 
 
 func _ready() -> void:
+	change_map()
 	update_map()
-	tilemap.map = current_map
+	
+	#Global.map_name = current_map.name
+	#tilemap.map = current_map
 	Global.connect("game_start", add_map_obj)
 	Global.connect("game_over", clear_arrays)
 
@@ -30,6 +33,7 @@ func _ready() -> void:
 
 func set_map(Map: map_resource):
 	current_map = Map
+	Global.map_name = current_map.name
 	update_map()
 
 
@@ -44,6 +48,7 @@ func update_map():
 
 		
 func add_map_obj():
+	print(current_map.name)
 	if is_inside_tree():
 		add_map_items()
 		add_map_enemies()
@@ -121,6 +126,9 @@ func clear_arrays():
 	var enemies = get_tree().get_nodes_in_group("Enemy")
 	var rocks = get_tree().get_nodes_in_group("Rock")
 	
+	
+	#set_map(rand_map)
+	
 	for i in items:
 		i.queue_free()
 		
@@ -129,3 +137,10 @@ func clear_arrays():
 		
 	for r in rocks:
 		r.queue_free()
+		
+	change_map()	
+	
+func change_map():
+	var new_map = map_list.pick_random()
+	set_map(new_map)
+	tilemap.set_map(new_map)

@@ -12,9 +12,10 @@ func game_start():
 	
 func game_over():
 	self.show()
-	text.text = "[center] You won!"
+	
+	text.text = "[center]%s[center]" % (str(Global.map_name)+ " Floor:  " + str(Global.current_level + 1))
 	
 
 func restart():
 	self.show()
-	text.text = "[center] Try again?"
+	text.text = "[center]%s[center]" % ("You perished!")

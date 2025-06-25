@@ -45,6 +45,7 @@ metadata/_custom_type_script = "uid://b0287kpevj45s"
 
 [resource]
 script = ExtResource("3_ydqdw")
+name = &"Sand Dune"
 tileset = ExtResource("2_b0adn")
 map_enemies = Array[ExtResource("2_ydqdw")]([SubResource("Resource_245f2")])
 map_items = Array[ExtResource("3_c0r2y")]([SubResource("Resource_a7bsj")])

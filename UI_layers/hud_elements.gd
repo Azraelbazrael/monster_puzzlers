@@ -10,10 +10,10 @@ extends VBoxContainer
 @export var min_hp: Label
 @export var max_hp: Label
 
-@export var lvl_label: Label
+#@export var lvl_label: Label
 
-func _process(delta: float) -> void:
-	lvl_label.text = "FLOOR: %d" % [Global.current_level]
+#func _process(delta: float) -> void:
+	#lvl_label.text = "FLOOR: %d" % [Global.current_level]
 	
 func update_stats(stats: Character_stats):
 

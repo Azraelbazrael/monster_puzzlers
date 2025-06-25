@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c1vjw7bfp0mmc" path="res://UI_layers/recipe_canvas.tscn" id="5_hgqje"]
 [ext_resource type="Resource" uid="uid://1tswto083w7i" path="res://custom_resources/items/weapons/pickaxe.tres" id="7_funva"]
 
-[node name="HUD_elements" type="VBoxContainer" node_paths=PackedStringArray("stam_bar", "hp_bar", "min_sp", "max_sp", "min_hp", "max_hp", "lvl_label")]
+[node name="HUD_elements" type="VBoxContainer" node_paths=PackedStringArray("stam_bar", "hp_bar", "min_sp", "max_sp", "min_hp", "max_hp")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -29,7 +29,6 @@ min_sp = NodePath("TopContainer/VboxContainer/Stam_Container/stam_bar/HBoxContai
 max_sp = NodePath("TopContainer/VboxContainer/Stam_Container/stam_bar/HBoxContainer/max_sp")
 min_hp = NodePath("TopContainer/VboxContainer/HP_Container/VBoxContainer/HBoxContainer/NinePatchRect/hp_bar/HBoxContainer/min_hp")
 max_hp = NodePath("TopContainer/VboxContainer/HP_Container/VBoxContainer/HBoxContainer/NinePatchRect/hp_bar/HBoxContainer/max_hp")
-lvl_label = NodePath("TopContainer/Level_label")
 metadata/_edit_use_anchors_ = true
 
 [node name="TopContainer" type="MarginContainer" parent="."]
@@ -153,6 +152,7 @@ theme_override_font_sizes/font_size = 28
 text = "???"
 
 [node name="Level_label" type="Label" parent="TopContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 28

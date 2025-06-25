@@ -12,7 +12,6 @@ func _ready() -> void:
 
 func set_map(Map: map_resource):
 	map = Map
-	
 	update_map()
 
 func update_map():
