@@ -63,8 +63,7 @@ func add_map_bosses():
 			boss.stats = current_map.map_bosses[ i ].enemy
 			get_tree().root.call_deferred("add_child", boss)
 			
-			Global.emit_signal("obj_placed")
-			boss.global_position = tilemap.rand_point * tilemap.TILESIZE
+			boss.global_position = get_parent().end_room.position
 			#print(boss.global_position)
 
 func add_map_items():

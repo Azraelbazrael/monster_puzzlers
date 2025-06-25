@@ -1,6 +1,5 @@
 extends TileMap
 
-#var tiles_in_room = [] ##array of tiles
 var rand_point
 const TILESIZE = 32
 @export var map: map_resource: set = set_map
@@ -29,3 +28,4 @@ func update_map():
 func place_object() -> void:
 	var floor_tiles = get_used_cells_by_id(0,0)
 	rand_point = floor_tiles.pick_random() 
+	#print(get_used_rect())

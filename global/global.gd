@@ -8,6 +8,7 @@ signal obj_placed
 signal game_start
 signal game_over
 signal level_passed
+signal game_complete
 
 signal boss_time
 var boss_level: bool = false

@@ -251,7 +251,7 @@ func start_playing():
 	Global.emit_signal("obj_placed")
 	
 	add_child(player)
-	#if boss_time == true:
+
 		#player.position = start_room.position
 		
 		
@@ -278,9 +278,7 @@ func retry() -> void:
 	_on_game_over()
 	Global.current_level = 0 
 
-func level_proceed() -> void:
-	
-		
+func level_proceed() -> void:	
 	Global.current_level += 1
 	
 	if Global.current_level == 2:

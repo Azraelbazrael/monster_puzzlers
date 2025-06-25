@@ -11,3 +11,7 @@ func _ready() -> void:
 
 #func _physics_process(delta: float) -> void:
 	#rotation_degrees += 50 * delta
+func _on_dead_enemy() -> void:
+	visible = false
+	Global.emit_signal("game_complete")
+	queue_free()
