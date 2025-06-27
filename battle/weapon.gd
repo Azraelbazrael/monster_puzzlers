@@ -1,6 +1,6 @@
 extends Sprite2D
 class_name HeldWeapon
-@export var weapon: Weapon_resource
+@export var weapon: Item_resource
 
 #@onready var weaponfx = $WeaponFX
 @onready var hitbox = $Hitbox

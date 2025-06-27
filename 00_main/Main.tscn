@@ -1,43 +1,19 @@
-[gd_scene load_steps=16 format=3 uid="uid://c2m7qg2uvtfhi"]
+[gd_scene load_steps=8 format=3 uid="uid://c2m7qg2uvtfhi"]
 
 [ext_resource type="Script" uid="uid://nsiytofi40ht" path="res://00_main/main.gd" id="1_eg6d5"]
 [ext_resource type="Script" uid="uid://dlkslglqrr775" path="res://00_main/level_manager.gd" id="2_esoif"]
 [ext_resource type="Script" uid="uid://ci4glncunbf0j" path="res://custom_resources/maps/map.gd" id="3_ko1dt"]
 [ext_resource type="PackedScene" uid="uid://hicct6hwqhhn" path="res://UI_layers/textbox.tscn" id="3_qqp57"]
 [ext_resource type="Script" uid="uid://c1utxc45fejt8" path="res://dungeon_generator/screen_layers.gd" id="4_vhq5f"]
-[ext_resource type="Script" uid="uid://dpvgp764w0f1p" path="res://custom_resources/maps/map_bosses.gd" id="5_fqvdj"]
 [ext_resource type="Script" uid="uid://b8wwvbrj3t4ge" path="res://dungeon_generator/tile_map.gd" id="5_h3sfl"]
 [ext_resource type="Resource" uid="uid://dsg2y24ieqm3f" path="res://custom_resources/maps/sand_map.tres" id="5_ko1dt"]
-[ext_resource type="Script" uid="uid://djdrgpjq3yspg" path="res://custom_resources/maps/map_enemies.gd" id="6_xp2d3"]
-[ext_resource type="Script" uid="uid://brfqgjwepweny" path="res://custom_resources/maps/map_items.gd" id="7_b7wva"]
-[ext_resource type="Script" uid="uid://b0287kpevj45s" path="res://custom_resources/maps/map_rocks.gd" id="8_bvf8f"]
-[ext_resource type="Resource" uid="uid://cp34rnc1vqdut" path="res://custom_resources/interactables/evil_rock.tres" id="9_ssce6"]
-[ext_resource type="TileSet" uid="uid://clr01r8bc543d" path="res://assets/tiles.tres" id="10_lvxyc"]
-
-[sub_resource type="Resource" id="Resource_fvoyi"]
-script = ExtResource("8_bvf8f")
-rock = ExtResource("9_ssce6")
-probability = 100.0
-min_amount = 1
-max_amount = 1
-metadata/_custom_type_script = "uid://b0287kpevj45s"
-
-[sub_resource type="Resource" id="Resource_k4lip"]
-script = ExtResource("3_ko1dt")
-name = &"Butt Island"
-tileset = ExtResource("10_lvxyc")
-map_enemies = Array[ExtResource("6_xp2d3")]([])
-map_items = Array[ExtResource("7_b7wva")]([])
-map_rocks = Array[ExtResource("8_bvf8f")]([SubResource("Resource_fvoyi")])
-map_bosses = Array[ExtResource("5_fqvdj")]([])
-metadata/_custom_type_script = "uid://ci4glncunbf0j"
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_eg6d5")
 
 [node name="LevelManager" type="Node" parent="."]
 script = ExtResource("2_esoif")
-map_list = Array[ExtResource("3_ko1dt")]([ExtResource("5_ko1dt"), SubResource("Resource_k4lip")])
+map_list = Array[ExtResource("3_ko1dt")]([ExtResource("5_ko1dt")])
 
 [node name="RoomContainer" type="Node" parent="."]
 

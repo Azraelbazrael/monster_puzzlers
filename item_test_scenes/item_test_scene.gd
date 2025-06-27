@@ -22,23 +22,23 @@ func _ready() -> void:
 	Global.connect("generate_dungeon", hide_screenlayer)
 	#Global.connect("player_died", retry)
 	
-func _input(event):
+#func _input(event):
 	
-	if event.is_action_pressed('ui_select'): ## space_bar
+	#if event.is_action_pressed('ui_select'): ## space_bar
 		
-		gen_items()
+		#gen_items()
 	
 	
 	
 	
 	
-func gen_items():
-	player_c = player.instantiate()
+#func gen_items():
+	#player_c = player.instantiate()
 	#chaser_c = chaser.instantiate()
 	
-	add_child(player_c)	
-	Global.emit_signal("obj_placed")
-	player_c.position = map.rand_point * 32
+	#add_child(player_c)	
+	#Global.emit_signal("obj_placed")
+	#player_c.position = map.rand_point * 32
 	
 	
 	#add_child(chaser_c)	
