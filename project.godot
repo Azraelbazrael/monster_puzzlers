@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 Global="*res://global/global.gd"
 
+[display]
+
+window/size/viewport_width=489
+window/size/viewport_height=325
+
 [global_group]
 
 Player=""

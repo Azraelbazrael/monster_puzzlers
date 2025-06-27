@@ -126,8 +126,7 @@ func clear_arrays():
 	var enemies = get_tree().get_nodes_in_group("Enemy")
 	var rocks = get_tree().get_nodes_in_group("Rock")
 	
-	
-	#set_map(rand_map)
+
 	
 	for i in items:
 		i.queue_free()

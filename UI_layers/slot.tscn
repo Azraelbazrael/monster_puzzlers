@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dgld3rspi14u3" path="res://UI_layers/slot.gd" id="1_ahbps"]
 
 [node name="Slot" type="PanelContainer" node_paths=PackedStringArray("texture_rect") groups=["Slot"]]
+texture_filter = 1
 custom_minimum_size = Vector2(40, 40)
 mouse_filter = 1
 script = ExtResource("1_ahbps")

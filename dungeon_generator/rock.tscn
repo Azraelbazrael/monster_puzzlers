@@ -15,6 +15,7 @@ script = ExtResource("3_4k4v5")
 metadata/_custom_type_script = "uid://dyfo0vatkdm0a"
 
 [node name="Rock" type="CharacterBody2D" groups=["Rock"]]
+texture_filter = 1
 script = ExtResource("1_x3628")
 damage_label = ExtResource("2_8hl8r")
 
