@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bn3g6m1yo6o5s"]
+[gd_scene load_steps=11 format=3 uid="uid://bn3g6m1yo6o5s"]
 
 [ext_resource type="Script" uid="uid://bejq3cqs0dm6x" path="res://battle/weapon.gd" id="1_1soaq"]
-[ext_resource type="Script" uid="uid://47w13bhyrl1j" path="res://battle/weapon_hitbox.gd" id="2_njl78"]
+[ext_resource type="Script" uid="uid://rvsj43pyvhwq" path="res://battle/hitbox.gd" id="2_upngb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1soaq"]
 radius = 43.4432
@@ -150,6 +150,9 @@ _data = {
 &"short_sword": SubResource("Animation_y4unk")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_upngb"]
+radius = 30.6757
+
 [node name="Weapon" type="Sprite2D" groups=["Weapon"]]
 z_index = 1
 texture_filter = 1
@@ -159,7 +162,7 @@ script = ExtResource("1_1soaq")
 [node name="Hitbox" type="Area2D" parent="."]
 scale = Vector2(1.48, 1.32)
 monitorable = false
-script = ExtResource("2_njl78")
+script = ExtResource("2_upngb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, 1.51515)
@@ -172,3 +175,9 @@ active = false
 libraries = {
 &"": SubResource("AnimationLibrary_2050d")
 }
+
+[node name="HeldItem" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeldItem"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_upngb")

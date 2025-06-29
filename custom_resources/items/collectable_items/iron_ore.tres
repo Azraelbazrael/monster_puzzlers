@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item_resource" load_steps=3 format=3 uid="uid://cqxvomyfitgvp"]
 
-[ext_resource type="Script" uid="uid://dbx1n0k0or8s4" path="res://resources/items.gd" id="1_1r61u"]
+[ext_resource type="Script" uid="uid://dbx1n0k0or8s4" path="res://custom_resources/items/items.gd" id="1_1r61u"]
 [ext_resource type="Texture2D" uid="uid://bdywcsgkd4cj5" path="res://assets/iron_ore.png" id="1_swme4"]
 
 [resource]
@@ -11,5 +11,7 @@ name = ""
 stackable = false
 max_stack = 0
 animation = ""
+is_trigger = true
+is_weapon = false
 item_desc = ""
 metadata/_custom_type_script = "uid://dbx1n0k0or8s4"

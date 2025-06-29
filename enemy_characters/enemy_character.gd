@@ -84,11 +84,13 @@ func _on_player_detection_area_exited(targ_d: Area2D) -> void:
 func _on_hurtbox_entered(area: Area2D) -> void:
 	if area.get_parent().is_in_group("Weapon"):
 		weapon = area.get_parent()
-		print(area.name)
-		if weapon.weapon.is_weapon:
-			_add_dmg_label(weapon.weapon.damage)
-			stats.take_damage(weapon.weapon.damage)
-		
+		#print(area.name)
+		if area.name == "Hitbox":
+			if weapon.weapon.is_weapon:
+				_add_dmg_label(weapon.weapon.damage)
+				stats.take_damage(weapon.weapon.damage)
+		else:
+			print(area.name)
 		
 func _on_hurtbox_exited(weapon: Area2D) -> void:
 	if weapon.get_parent().is_in_group("Weapon"):
