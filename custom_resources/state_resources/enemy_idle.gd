@@ -14,7 +14,6 @@ func _enter_state(_previous_state : State):
 	print("current state: Idle")
 	if actor:
 		actor.connect("player_found", _found_player)
-		actor.connect("taking_dmg", _recieve_damage)
 		
 	_randomize_wander()
 	
@@ -36,5 +35,3 @@ func frame_update(_delta : float):
 func _found_player():
 	transition.emit("EnemyChase")
 	
-func  _recieve_damage():
-	transition.emit("EnemyDamage")	

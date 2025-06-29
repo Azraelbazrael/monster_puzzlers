@@ -3,8 +3,7 @@ class_name EnemyCharacter
 
 signal dead_enemy
 signal attack_target
-signal taking_dmg
-signal no_dmg
+
 
 var damaged: bool
 
@@ -20,6 +19,7 @@ var home_pos = Vector2.ZERO
 
 var target
 var weapon
+var is_damaged: bool = false
 var tilemap: TileMap
 var current_path: Array[Vector2i]
 
@@ -82,12 +82,14 @@ func _on_player_detection_area_exited(targ_d: Area2D) -> void:
 		target = null
 
 func _on_hurtbox_entered(area: Area2D) -> void:
-	if area.get_parent().is_in_group("Player"):
+	if area.get_parent().is_in_group("Weapon"):
 		weapon = area.get_parent()
-		#pass
+		print(area.name)
+		if weapon.weapon.is_weapon:
+			_add_dmg_label(weapon.weapon.damage)
+			stats.take_damage(weapon.weapon.damage)
+		
 		
 func _on_hurtbox_exited(weapon: Area2D) -> void:
-
-	if weapon.get_parent().is_in_group("Player"):
+	if weapon.get_parent().is_in_group("Weapon"):
 		weapon = null
-		no_dmg.emit()

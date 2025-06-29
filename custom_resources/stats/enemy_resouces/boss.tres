@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://bdywcsgkd4cj5" path="res://assets/iron_ore.png" id="3_33pi6"]
 [ext_resource type="Script" uid="uid://dg5cpt0maie22" path="res://custom_resources/state_resources/state_resource.gd" id="3_pwbjd"]
 [ext_resource type="Script" uid="uid://c7643ki3epl27" path="res://custom_resources/state_resources/enemy_shoot.gd" id="7_5vd3d"]
-[ext_resource type="Script" uid="uid://djwywofo232lr" path="res://custom_resources/state_resources/enemy_damage.gd" id="8_ly2h1"]
 [ext_resource type="Script" uid="uid://dyfo0vatkdm0a" path="res://custom_resources/state_resources/rock_idle.gd" id="9_33pi6"]
 
 [sub_resource type="Resource" id="Resource_ly2h1"]
@@ -24,8 +23,42 @@ metadata/_custom_type_script = "uid://dyfo0vatkdm0a"
 script = ExtResource("7_5vd3d")
 metadata/_custom_type_script = "uid://c7643ki3epl27"
 
+[sub_resource type="GDScript" id="GDScript_mcgpg"]
+script/source = "extends State
+class_name EnemyDamage
+
+var dmg_time: float = 1.5
+
+func _enter_state(_previous_state : State):
+	print(\"current state: Enemy Damaged\")
+	if actor:
+		_damage_enemy()
+		actor.connect(\"no_dmg\", _undamage)
+		
+	#_randomize_wander()
+func _damage_enemy():
+	dmg_time = 1.5
+	if actor.weapon.weapon:
+		if actor.weapon.weapon.is_weapon == true:
+			actor._add_dmg_label(actor.weapon.weapon.damage)
+			actor.stats.take_damage(actor.weapon.weapon.damage)
+	else:
+		_undamage()
+		
+func frame_update(_delta : float):
+	if dmg_time > 0:
+		dmg_time -= _delta
+	else:
+		_damage_enemy()	
+		
+
+func _undamage():
+	
+	transition.emit(\"EnemyIdle\")
+"
+
 [sub_resource type="Resource" id="Resource_33pi6"]
-script = ExtResource("8_ly2h1")
+script = SubResource("GDScript_mcgpg")
 metadata/_custom_type_script = "uid://djwywofo232lr"
 
 [resource]

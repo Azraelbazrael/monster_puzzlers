@@ -12,5 +12,7 @@ enum Type{COLLECTABLE, WEAPON}
 @export var animation : String
 
 
+@export var is_trigger: bool
+@export var is_weapon: bool
 
 @export_multiline var item_desc: String

@@ -5,6 +5,7 @@ signal item_drop
 signal taking_dmg
 signal un_dmg
 
+var is_damaged: bool = false
 const PICKUP = preload("res://item_test_scenes/interactable_items/PickableItem.tscn")
 ##add drop data here later...
 
@@ -46,15 +47,17 @@ func update_rock() -> void:
 
 
 func _on_rock_range_entered(area: Area2D) -> void:
-	if area.get_parent().is_in_group("Player"):
+	if area.get_parent().is_in_group("Weapon"):
 		hurt_by = area.get_parent()
+		if hurt_by.weapon.is_weapon == true:
+			add_dmg_label(hurt_by.weapon.rock_damage)
+			stats.take_damage(hurt_by.weapon.rock_damage)
 
 
 
 func _on_rock_range_exited(area: Area2D) -> void:
 	if area.get_parent().is_in_group("Weapon"):
 		hurt_by = null
-		emit_signal("un_dmg")
 
 
 func drop_items():

@@ -23,6 +23,7 @@ signal player_unhurt
 		#	set_damage(1)
 			
 @export var character_stats: Character_stats: set = set_character_stats
+@export var weapon_hitbox: Area2D
 #@export var s_timer := 1.5
 
 var hurt_by
@@ -75,8 +76,20 @@ func _input(event):
 		Camera.zoom = Camera.zoom - Vector2(0.1, 0.1)
 	if event.is_action_pressed('E'):
 		if current_item != null:
-			emit_signal("player_hit")
+			if current_item.is_weapon == true:
+				#emit_signal("player_hit")
+				toggle_weapon_collision()
+			else:
+				pass
 
+func toggle_weapon_collision():
+	var deal_damage_zone_collision = weapon_hitbox.get_node("CollisionShape2D")
+	var wait_time: float = 0.5
+	deal_damage_zone_collision.disabled = false
+	await get_tree().create_timer(wait_time).timeout
+	deal_damage_zone_collision.disabled = true
+	
+	
 func start(_position, _direction):
 	
 	rotation = _direction

@@ -32,13 +32,14 @@ radius = 40.1995
 script = ExtResource("8_8xblr")
 metadata/_custom_type_script = "uid://b4r87fyx11t3n"
 
-[node name="Character" type="CharacterBody2D" groups=["Player"]]
+[node name="Character" type="CharacterBody2D" node_paths=PackedStringArray("weapon_hitbox") groups=["Player"]]
 texture_filter = 2
 collision_layer = 5
 collision_mask = 3
 script = ExtResource("1_yq3e2")
 damage_label = ExtResource("3_gpoms")
 character_stats = ExtResource("2_6inmr")
+weapon_hitbox = NodePath("Weapon/Weapon/Hitbox")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -79,6 +80,7 @@ monitorable = true
 
 [node name="CollisionShape2D" parent="Weapon/Weapon/Hitbox" index="0"]
 position = Vector2(-0.675676, 0.757576)
+disabled = true
 debug_color = Color(0.857535, 0.000727929, 0.881787, 0.42)
 
 [node name="left_pos" type="Marker2D" parent="Weapon"]

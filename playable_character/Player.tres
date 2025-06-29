@@ -1,16 +1,46 @@
 [gd_resource type="Resource" script_class="Character_stats" load_steps=12 format=3 uid="uid://dx84dtkbq66da"]
 
-[ext_resource type="Texture2D" uid="uid://bwf71r213qbk4" path="res://playable_character/icon.png" id="1_mneb5"]
+[ext_resource type="Texture2D" uid="uid://cyuiysi77n8d" path="res://assets/mc_default.png" id="1_557kk"]
 [ext_resource type="Script" uid="uid://brxclei3yhw1o" path="res://custom_resources/stats/player_resources/character_stats.gd" id="1_rhevn"]
 [ext_resource type="Script" uid="uid://bd4axb5en01gi" path="res://custom_resources/items/projectile/projectile.gd" id="2_pgr83"]
 [ext_resource type="Script" uid="uid://dj70fcnkrrk5y" path="res://custom_resources/items/dropdata.gd" id="2_vrgfc"]
 [ext_resource type="Script" uid="uid://dg5cpt0maie22" path="res://custom_resources/state_resources/state_resource.gd" id="4_mgdnr"]
 [ext_resource type="Script" uid="uid://b4r87fyx11t3n" path="res://custom_resources/state_resources/player_idle.gd" id="5_mgdnr"]
 [ext_resource type="Script" uid="uid://gixd6qnvlx0r" path="res://custom_resources/state_resources/player_damage.gd" id="6_ryvj4"]
-[ext_resource type="Script" uid="uid://der0srbom20iu" path="res://custom_resources/state_resources/player_attack.gd" id="7_557kk"]
+
+[sub_resource type="GDScript" id="GDScript_557kk"]
+script/source = "extends State
+class_name PlayerAttack
+var dmg_time: float = 1.5
+
+func _enter_state(_previous_state : State):
+	if actor.target:
+		_damage_target()
+		if actor.target == null:
+			actor.connect(\"player_hit_stop\", _unhurt_target)
+	else:
+		transition.emit(\"PlayerIdle\")
+		
+func _damage_target():
+	if actor.target:
+		dmg_time = 1.5
+		actor.target.is_damaged = true
+		actor.target.emit_signal(\"taking_dmg\")
+		
+
+func frame_update(_delta : float):
+	if dmg_time > 0:
+		dmg_time -= _delta
+	else:
+		_damage_target()
+	
+
+func _unhurt_target():
+	transition.emit(\"PlayerIdle\")
+"
 
 [sub_resource type="Resource" id="Resource_pgr83"]
-script = ExtResource("7_557kk")
+script = SubResource("GDScript_557kk")
 metadata/_custom_type_script = "uid://der0srbom20iu"
 
 [sub_resource type="Resource" id="Resource_557kk"]
@@ -26,7 +56,7 @@ script = ExtResource("1_rhevn")
 max_stamina = 100
 type = 0
 max_health = 100
-art = ExtResource("1_mneb5")
+art = ExtResource("1_557kk")
 damage = 0.0
 knockbak_mod = 0.0
 is_special_rock = false
