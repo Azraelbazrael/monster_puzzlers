@@ -76,10 +76,8 @@ func _input(event):
 		Camera.zoom = Camera.zoom - Vector2(0.1, 0.1)
 	if event.is_action_pressed('E'):
 		if current_item != null:
-			if current_item.is_weapon == true:
-				#emit_signal("player_hit")
-				toggle_weapon_collision()
-			else:
+			toggle_weapon_collision()
+		else:
 				pass
 
 func toggle_weapon_collision():

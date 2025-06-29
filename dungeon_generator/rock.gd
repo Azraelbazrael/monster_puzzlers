@@ -48,9 +48,8 @@ func update_rock() -> void:
 
 func _on_rock_range_entered(area: Area2D) -> void:
 	if area.get_parent().is_in_group("Weapon"):
-		if area.name == "Hitbox":
-			hurt_by = area.get_parent()
-			if hurt_by.weapon.is_weapon == true:
+		hurt_by = area.get_parent()
+		if hurt_by.weapon.is_weapon == true:
 				add_dmg_label(hurt_by.weapon.rock_damage)
 				stats.take_damage(hurt_by.weapon.rock_damage)
 		else:
