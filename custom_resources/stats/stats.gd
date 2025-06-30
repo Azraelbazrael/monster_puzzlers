@@ -19,6 +19,8 @@ enum Type{PLAYER,MONSTER,INTERACTABLE}
 @export var states: Dictionary[StringName, State] = {}
 
 
+@export_group ("Befriending Triggers")
+@export var Triggers: Array[BefriendTrigger]
 
 var health: int : set = set_health ## CURRENT health, different from total health
 

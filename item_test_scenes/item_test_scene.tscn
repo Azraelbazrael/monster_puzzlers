@@ -1,14 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://4apxre8qmijm"]
+[gd_scene load_steps=12 format=3 uid="uid://4apxre8qmijm"]
 
 [ext_resource type="Script" uid="uid://blgb0w5se4rvl" path="res://item_test_scenes/item_test_scene.gd" id="1_0ea5s"]
 [ext_resource type="TileSet" uid="uid://clr01r8bc543d" path="res://assets/tiles.tres" id="1_6c26f"]
 [ext_resource type="Script" uid="uid://c1utxc45fejt8" path="res://dungeon_generator/screen_layers.gd" id="4_fdt3l"]
 [ext_resource type="PackedScene" uid="uid://hicct6hwqhhn" path="res://UI_layers/textbox.tscn" id="4_w8q88"]
-[ext_resource type="PackedScene" uid="uid://cc5mq5k65kyi7" path="res://enemy_characters/Boss_Character.tscn" id="6_1pqcw"]
 [ext_resource type="PackedScene" uid="uid://clxu3pvvi21e8" path="res://playable_character/character.tscn" id="7_1pqcw"]
-[ext_resource type="Resource" uid="uid://bi53t6k1rjriu" path="res://custom_resources/stats/enemy_resouces/boss.tres" id="7_q0ori"]
+[ext_resource type="PackedScene" uid="uid://cfcmdo4rjimke" path="res://enemy_characters/Enemy_Character.tscn" id="8_q0ori"]
 [ext_resource type="PackedScene" uid="uid://curjxjq3rmyv7" path="res://dungeon_generator/rock.tscn" id="8_vgxtk"]
 [ext_resource type="Resource" uid="uid://05jacqha5wwd" path="res://custom_resources/interactables/regular_rock.tres" id="9_82mb3"]
+[ext_resource type="Resource" uid="uid://8gjkinbrhl5c" path="res://custom_resources/stats/enemy_resouces/cerberus.tres" id="9_vgxtk"]
+[ext_resource type="Script" uid="uid://dyfo0vatkdm0a" path="res://custom_resources/state_resources/rock_idle.gd" id="10_82mb3"]
+
+[sub_resource type="Resource" id="Resource_3rxvh"]
+script = ExtResource("10_82mb3")
+metadata/_custom_type_script = "uid://dyfo0vatkdm0a"
 
 [node name="item_test_scene" type="Node2D"]
 script = ExtResource("1_0ea5s")
@@ -37,10 +42,6 @@ position = Vector2(560, 331)
 enabled = false
 zoom = Vector2(0.5, 0.5)
 
-[node name="BossEnemy" parent="." instance=ExtResource("6_1pqcw")]
-position = Vector2(756, 226)
-stats = ExtResource("7_q0ori")
-
 [node name="Character" parent="." instance=ExtResource("7_1pqcw")]
 position = Vector2(371, 494)
 
@@ -48,6 +49,15 @@ position = Vector2(371, 494)
 position = Vector2(362, 230)
 stats = ExtResource("9_82mb3")
 
+[node name="Enemy" parent="." instance=ExtResource("8_q0ori")]
+position = Vector2(751, 246)
+stats = ExtResource("9_vgxtk")
+
+[node name="StateMachine" parent="Enemy" index="5" node_paths=PackedStringArray("actor")]
+default_state = SubResource("Resource_3rxvh")
+actor = NodePath("..")
+
 [connection signal="visibility_changed" from="ScreenLayers" to="ScreenLayers" method="_on_visibility_changed"]
 
 [editable path="ScreenLayers/textbox"]
+[editable path="Enemy"]

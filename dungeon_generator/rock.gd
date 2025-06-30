@@ -51,6 +51,7 @@ func _on_rock_range_entered(area: Area2D) -> void:
 		hurt_by = area.get_parent()
 		if hurt_by.weapon.is_weapon == true:
 				add_dmg_label(hurt_by.weapon.rock_damage)
+				hurt_by.weapon.use_cost(hurt_by.get_parent().get_parent().character_stats)
 				stats.take_damage(hurt_by.weapon.rock_damage)
 		else:
 			print(area.name)

@@ -83,6 +83,7 @@ func _input(event):
 func toggle_weapon_collision():
 	var deal_damage_zone_collision = weapon_hitbox.get_node("CollisionShape2D")
 	var wait_time: float = 0.5
+	
 	deal_damage_zone_collision.disabled = false
 	await get_tree().create_timer(wait_time).timeout
 	deal_damage_zone_collision.disabled = true

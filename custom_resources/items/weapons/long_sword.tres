@@ -18,6 +18,5 @@ name = "Longsword"
 stackable = true
 max_stack = 0
 animation = "long_sword"
-is_trigger = false
 is_weapon = true
 item_desc = "Longsword"

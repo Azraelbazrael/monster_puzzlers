@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Stats" load_steps=12 format=3 uid="uid://05jacqha5wwd"]
+[gd_resource type="Resource" script_class="Stats" load_steps=13 format=3 uid="uid://05jacqha5wwd"]
 
 [ext_resource type="Script" uid="uid://bo3ep8hogvh5p" path="res://custom_resources/stats/stats.gd" id="1_e83q6"]
+[ext_resource type="Script" uid="uid://eej6d0dk2jmi" path="res://custom_resources/items/befriend_triggers.gd" id="1_v6cjh"]
 [ext_resource type="Texture2D" uid="uid://cdo81qnvud3xp" path="res://assets/rock.png" id="1_vaplt"]
 [ext_resource type="Script" uid="uid://bd4axb5en01gi" path="res://custom_resources/items/projectile/projectile.gd" id="2_ejhlt"]
 [ext_resource type="Script" uid="uid://dj70fcnkrrk5y" path="res://custom_resources/items/dropdata.gd" id="2_ltg2v"]
@@ -39,4 +40,5 @@ states = Dictionary[StringName, ExtResource("5_tnjvy")]({
 &"RockDestroy": SubResource("Resource_kc4ff"),
 &"RockIdle": SubResource("Resource_cqf68")
 })
+Triggers = Array[ExtResource("1_v6cjh")]([])
 metadata/_custom_type_script = "uid://bo3ep8hogvh5p"

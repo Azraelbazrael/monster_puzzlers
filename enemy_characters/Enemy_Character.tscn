@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cfcmdo4rjimke"]
+[gd_scene load_steps=10 format=3 uid="uid://cfcmdo4rjimke"]
 
 [ext_resource type="Script" uid="uid://decr12pcq5vju" path="res://enemy_characters/enemy_character.gd" id="1_fq3j4"]
 [ext_resource type="PackedScene" uid="uid://7wtngh11pph" path="res://UI_layers/floating_text.tscn" id="2_4y350"]
+[ext_resource type="PackedScene" uid="uid://d15a6umyvmm0e" path="res://enemy_characters/Befriended_Monster.tscn" id="3_hdpj2"]
 [ext_resource type="Script" uid="uid://bvpsio45nj0r7" path="res://states/state_machine.gd" id="3_nsbh1"]
 [ext_resource type="Script" uid="uid://b4s8tn8fsuqku" path="res://custom_resources/state_resources/enemy_idle.gd" id="4_p3l1p"]
 
@@ -24,6 +25,7 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_fq3j4")
 damage_label = ExtResource("2_4y350")
+befriend = ExtResource("3_hdpj2")
 hurtbox = NodePath("Hurtbox")
 stateMachine = NodePath("StateMachine")
 player_detect = NodePath("PlayerDetection")
@@ -56,6 +58,7 @@ position = Vector2(1, -68)
 script = ExtResource("3_nsbh1")
 default_state = SubResource("Resource_p3l1p")
 
+[connection signal="befriended" from="." to="." method="_on_befriended"]
 [connection signal="dead_enemy" from="." to="." method="_on_dead_enemy"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_entered"]
 [connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_exited"]

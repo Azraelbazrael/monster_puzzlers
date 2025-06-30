@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Stats" load_steps=14 format=3 uid="uid://bi53t6k1rjriu"]
+[gd_resource type="Resource" script_class="Stats" load_steps=15 format=3 uid="uid://bi53t6k1rjriu"]
 
 [ext_resource type="Script" uid="uid://dj70fcnkrrk5y" path="res://custom_resources/items/dropdata.gd" id="1_3c0ea"]
+[ext_resource type="Script" uid="uid://eej6d0dk2jmi" path="res://custom_resources/items/befriend_triggers.gd" id="1_33pi6"]
 [ext_resource type="Texture2D" uid="uid://bnce2njwhkyj2" path="res://enemy_characters/small_texture.png" id="1_vr1oo"]
 [ext_resource type="Script" uid="uid://bd4axb5en01gi" path="res://custom_resources/items/projectile/projectile.gd" id="2_pwbjd"]
 [ext_resource type="Script" uid="uid://bo3ep8hogvh5p" path="res://custom_resources/stats/stats.gd" id="2_vr1oo"]
@@ -76,4 +77,5 @@ states = Dictionary[StringName, ExtResource("3_pwbjd")]({
 &"EnemyShoot": SubResource("Resource_mcgpg"),
 &"RockDamage": SubResource("Resource_33pi6")
 })
+Triggers = Array[ExtResource("1_33pi6")]([])
 metadata/_custom_type_script = "uid://bo3ep8hogvh5p"

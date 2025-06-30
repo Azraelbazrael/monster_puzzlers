@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name EnemyCharacter
 
 signal dead_enemy
+signal befriended
 signal attack_target
 
 
@@ -10,6 +11,7 @@ var damaged: bool
 
 @export var stats: Stats: set = set_stats
 @export var damage_label: PackedScene
+@export var befriend: PackedScene
 @export var hurtbox: Area2D
 @export var knockback_mod: float = 0.1
 @export var stateMachine: Node
@@ -85,11 +87,32 @@ func _on_hurtbox_entered(area: Area2D) -> void:
 	if area.get_parent().is_in_group("Weapon"):
 		weapon = area.get_parent()
 		if weapon.weapon.is_weapon:
+				weapon.weapon.use_cost(weapon.get_parent().get_parent().character_stats)
 				_add_dmg_label(weapon.weapon.damage)
 				stats.take_damage(weapon.weapon.damage)
 		else:
-			print(area.name)
-		
+			_befriend_check()
 func _on_hurtbox_exited(weapon: Area2D) -> void:
 	if weapon.get_parent().is_in_group("Weapon"):
 		weapon = null
+
+func _befriend_check():
+	var flag = []
+ 	
+	if stats.Triggers:
+		for i in range(stats.Triggers.size()):
+			if stats.Triggers[i] == null:
+				continue
+			flag.append(stats.Triggers[i])
+		for f in flag.size():
+			if flag[f].item == weapon.weapon:
+				emit_signal("befriended")
+
+
+func _on_befriended() -> void:
+	visible = false
+	var friend = befriend.instantiate()
+	friend.stats = stats
+	friend.position = global_position
+	get_tree().root.call_deferred("add_child", friend)
+	queue_free()

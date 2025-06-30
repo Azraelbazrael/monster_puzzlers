@@ -19,7 +19,6 @@ name = "Pickaxe"
 stackable = true
 max_stack = 2
 animation = "short_sword"
-is_trigger = false
 is_weapon = true
 item_desc = ""
 metadata/_custom_type_script = "uid://cxvvvlfvh3xbb"

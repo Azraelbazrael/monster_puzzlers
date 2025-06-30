@@ -19,6 +19,5 @@ name = ""
 stackable = true
 max_stack = 1
 animation = "scythe"
-is_trigger = false
 is_weapon = true
 item_desc = "Scything scythe scythe scythe"
