@@ -17,7 +17,7 @@ enum Type{PLAYER,MONSTER,INTERACTABLE}
 @export_group("States")
 
 @export var states: Dictionary[StringName, State] = {}
-
+@export var befriended_states: Dictionary[StringName, State] = {}
 
 @export_group ("Befriending Triggers")
 @export var Triggers: Array[BefriendTrigger]

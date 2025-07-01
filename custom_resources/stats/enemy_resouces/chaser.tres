@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Stats" load_steps=7 format=3 uid="uid://dnbj2d2k1t0o4"]
+[gd_resource type="Resource" script_class="Stats" load_steps=11 format=3 uid="uid://dnbj2d2k1t0o4"]
 
 [ext_resource type="Script" uid="uid://eej6d0dk2jmi" path="res://custom_resources/items/befriend_triggers.gd" id="1_bv0bu"]
 [ext_resource type="Script" uid="uid://bo3ep8hogvh5p" path="res://custom_resources/stats/stats.gd" id="1_klj2t"]
@@ -6,6 +6,16 @@
 [ext_resource type="Script" uid="uid://dj70fcnkrrk5y" path="res://custom_resources/items/dropdata.gd" id="2_c8wrx"]
 [ext_resource type="Script" uid="uid://bd4axb5en01gi" path="res://custom_resources/items/projectile/projectile.gd" id="2_rlxow"]
 [ext_resource type="Script" uid="uid://dg5cpt0maie22" path="res://custom_resources/state_resources/state_resource.gd" id="4_np2q1"]
+[ext_resource type="Script" uid="uid://b4s8tn8fsuqku" path="res://custom_resources/state_resources/enemy_states/enemy_idle.gd" id="7_rlxow"]
+[ext_resource type="Script" uid="uid://cudkvqu2m4a52" path="res://custom_resources/state_resources/enemy_states/enemy_chase.gd" id="8_yjros"]
+
+[sub_resource type="Resource" id="Resource_t2ocx"]
+script = ExtResource("7_rlxow")
+metadata/_custom_type_script = "uid://b4s8tn8fsuqku"
+
+[sub_resource type="Resource" id="Resource_p02f4"]
+script = ExtResource("8_yjros")
+metadata/_custom_type_script = "uid://cudkvqu2m4a52"
 
 [resource]
 script = ExtResource("1_klj2t")
@@ -17,6 +27,10 @@ knockbak_mod = 0.5
 is_special_rock = false
 drops = Array[ExtResource("2_c8wrx")]([])
 bullets = Array[ExtResource("2_rlxow")]([])
-states = Dictionary[StringName, ExtResource("4_np2q1")]({})
+states = Dictionary[StringName, ExtResource("4_np2q1")]({
+&"EnemyChase": SubResource("Resource_p02f4"),
+&"EnemyIdle": SubResource("Resource_t2ocx")
+})
+befriended_states = Dictionary[StringName, ExtResource("4_np2q1")]({})
 Triggers = Array[ExtResource("1_bv0bu")]([])
 metadata/_custom_type_script = "uid://bo3ep8hogvh5p"

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bd7y1xr1l48bk" path="res://dungeon_generator/rock.gd" id="1_x3628"]
 [ext_resource type="Script" uid="uid://bvpsio45nj0r7" path="res://states/state_machine.gd" id="2_1vhae"]
 [ext_resource type="PackedScene" uid="uid://7wtngh11pph" path="res://UI_layers/floating_text.tscn" id="2_8hl8r"]
-[ext_resource type="Script" uid="uid://dyfo0vatkdm0a" path="res://custom_resources/state_resources/rock_idle.gd" id="3_4k4v5"]
+[ext_resource type="Script" uid="uid://dyfo0vatkdm0a" path="res://custom_resources/state_resources/rock_states/rock_idle.gd" id="3_4k4v5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6g0r5"]
 

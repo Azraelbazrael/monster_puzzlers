@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://dj70fcnkrrk5y" path="res://custom_resources/items/dropdata.gd" id="2_421dt"]
 [ext_resource type="Script" uid="uid://bd4axb5en01gi" path="res://custom_resources/items/projectile/projectile.gd" id="2_a2wls"]
 [ext_resource type="Script" uid="uid://dg5cpt0maie22" path="res://custom_resources/state_resources/state_resource.gd" id="4_dbkp0"]
-[ext_resource type="Script" uid="uid://dyfo0vatkdm0a" path="res://custom_resources/state_resources/rock_idle.gd" id="5_yg71h"]
-[ext_resource type="Script" uid="uid://cj3uknxku6uj" path="res://custom_resources/state_resources/rock_destroy.gd" id="7_akych"]
+[ext_resource type="Script" uid="uid://dyfo0vatkdm0a" path="res://custom_resources/state_resources/rock_states/rock_idle.gd" id="5_yg71h"]
+[ext_resource type="Script" uid="uid://cj3uknxku6uj" path="res://custom_resources/state_resources/rock_states/rock_destroy.gd" id="7_akych"]
 
 [sub_resource type="Resource" id="Resource_o2o4e"]
 script = ExtResource("7_akych")
@@ -31,5 +31,6 @@ states = Dictionary[StringName, ExtResource("4_dbkp0")]({
 &"RockDestroy": SubResource("Resource_o2o4e"),
 &"RockIdle": SubResource("Resource_bu5nd")
 })
+befriended_states = Dictionary[StringName, ExtResource("4_dbkp0")]({})
 Triggers = Array[ExtResource("1_a2wls")]([])
 metadata/_custom_type_script = "uid://bo3ep8hogvh5p"

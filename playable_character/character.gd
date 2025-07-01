@@ -176,3 +176,10 @@ func _on_hitbox_exited(area: Area2D) -> void:
 		target = null
 	if area.get_parent().is_in_group("Rock"):
 		target = null
+
+func accelerate_towards_point(point, delta):
+#	var movement = mov_direction * speed
+#	mov_direction = (point.position - position).normalized()
+#	velocity = movement + (knockback * 2)
+	#velocity = velocity.move_toward(mov_direction * speed, 200 * delta)
+	move_and_slide()

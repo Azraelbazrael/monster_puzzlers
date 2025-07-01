@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://bd4axb5en01gi" path="res://custom_resources/items/projectile/projectile.gd" id="2_pgr83"]
 [ext_resource type="Script" uid="uid://dj70fcnkrrk5y" path="res://custom_resources/items/dropdata.gd" id="2_vrgfc"]
 [ext_resource type="Script" uid="uid://dg5cpt0maie22" path="res://custom_resources/state_resources/state_resource.gd" id="4_mgdnr"]
-[ext_resource type="Script" uid="uid://b4r87fyx11t3n" path="res://custom_resources/state_resources/player_idle.gd" id="5_mgdnr"]
-[ext_resource type="Script" uid="uid://gixd6qnvlx0r" path="res://custom_resources/state_resources/player_damage.gd" id="6_ryvj4"]
+[ext_resource type="Script" uid="uid://b4r87fyx11t3n" path="res://custom_resources/state_resources/player_states/player_idle.gd" id="5_mgdnr"]
+[ext_resource type="Script" uid="uid://gixd6qnvlx0r" path="res://custom_resources/state_resources/player_states/player_damage.gd" id="6_ryvj4"]
 
 [sub_resource type="GDScript" id="GDScript_557kk"]
 script/source = "extends State
@@ -68,4 +68,5 @@ states = Dictionary[StringName, ExtResource("4_mgdnr")]({
 &"PlayerDamage": SubResource("Resource_557kk"),
 &"PlayerIdle": SubResource("Resource_ryvj4")
 })
+befriended_states = Dictionary[StringName, ExtResource("4_mgdnr")]({})
 Triggers = Array[ExtResource("1_pgr83")]([])

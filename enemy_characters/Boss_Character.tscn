@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c2mm1pc26blvy" path="res://enemy_characters/Boss_enemy.gd" id="1_aaexn"]
 [ext_resource type="PackedScene" uid="uid://7wtngh11pph" path="res://UI_layers/floating_text.tscn" id="2_0ggnu"]
 [ext_resource type="Script" uid="uid://bvpsio45nj0r7" path="res://states/state_machine.gd" id="3_2wox6"]
-[ext_resource type="Script" uid="uid://dyfo0vatkdm0a" path="res://custom_resources/state_resources/rock_idle.gd" id="4_ccvxg"]
+[ext_resource type="Script" uid="uid://dyfo0vatkdm0a" path="res://custom_resources/state_resources/rock_states/rock_idle.gd" id="4_ccvxg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aaexn"]
 size = Vector2(29, 31)

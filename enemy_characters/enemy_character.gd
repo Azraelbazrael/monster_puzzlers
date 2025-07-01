@@ -7,7 +7,10 @@ signal attack_target
 
 
 var damaged: bool
+@onready var playerCollision: RayCast2D = $PlayerCollision
 
+@export var speed: int =  30
+@export var radius_limit: int =  80
 
 @export var stats: Stats: set = set_stats
 @export var damage_label: PackedScene
@@ -17,7 +20,11 @@ var damaged: bool
 @export var stateMachine: Node
 @export var player_detect: Area2D
 
-var home_pos = Vector2.ZERO
+var radius_squared = radius_limit**2
+var mov_direction = Vector2()
+var knockback_dir = Vector2.ZERO
+var knockback = Vector2.ZERO
+
 
 var target
 var weapon
@@ -116,3 +123,19 @@ func _on_befriended() -> void:
 	friend.position = global_position
 	get_tree().root.call_deferred("add_child", friend)
 	queue_free()
+
+func accelerate_towards_point(point, delta):
+	var movement = mov_direction * speed
+	mov_direction = (point.position - position).normalized()
+	velocity = movement + (knockback * 2)
+	velocity = velocity.move_toward(mov_direction * speed, 200 * delta)
+	move_and_slide()
+
+func checkplayerdistance(target):
+	var distance_squared = (target.position.x - global_position.x)**2 + (target.position.y - global_position.y)**2
+	if distance_squared <= radius_squared:
+		playerCollision.target_position = target.position - global_position
+		if playerCollision.is_colliding():
+			return true
+		else:
+			return false

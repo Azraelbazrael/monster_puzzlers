@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bn3g6m1yo6o5s" path="res://battle/weapon.tscn" id="5_h2glg"]
 [ext_resource type="PackedScene" uid="uid://cfqed3nxels06" path="res://UI_layers/hud_elements.tscn" id="5_jqy6k"]
 [ext_resource type="Script" uid="uid://bvpsio45nj0r7" path="res://states/state_machine.gd" id="7_gpoms"]
-[ext_resource type="Script" uid="uid://b4r87fyx11t3n" path="res://custom_resources/state_resources/player_idle.gd" id="8_8xblr"]
+[ext_resource type="Script" uid="uid://b4r87fyx11t3n" path="res://custom_resources/state_resources/player_states/player_idle.gd" id="8_8xblr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xco0j"]
 size = Vector2(50, 51)
