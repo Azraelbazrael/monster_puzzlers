@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://7wtngh11pph" path="res://UI_layers/floating_text.tscn" id="2_4y350"]
 [ext_resource type="PackedScene" uid="uid://d15a6umyvmm0e" path="res://enemy_characters/Befriended_Monster.tscn" id="3_hdpj2"]
 [ext_resource type="Script" uid="uid://bvpsio45nj0r7" path="res://states/state_machine.gd" id="3_nsbh1"]
-[ext_resource type="Script" uid="uid://b4s8tn8fsuqku" path="res://custom_resources/state_resources/enemy_states/enemy_idle.gd" id="4_p3l1p"]
+[ext_resource type="Script" uid="uid://dyfo0vatkdm0a" path="res://custom_resources/state_resources/rock_states/rock_idle.gd" id="5_hdpj2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eytep"]
 size = Vector2(50, 51)
@@ -15,9 +15,9 @@ radius = 50.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_p3l1p"]
 radius = 89.4944
 
-[sub_resource type="Resource" id="Resource_p3l1p"]
-script = ExtResource("4_p3l1p")
-metadata/_custom_type_script = "uid://b4s8tn8fsuqku"
+[sub_resource type="Resource" id="Resource_diinw"]
+script = ExtResource("5_hdpj2")
+metadata/_custom_type_script = "uid://dyfo0vatkdm0a"
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "stateMachine", "player_detect") groups=["Enemy"]]
 collision_layer = 6
@@ -56,7 +56,7 @@ position = Vector2(1, -68)
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_nsbh1")
-default_state = SubResource("Resource_p3l1p")
+default_state = SubResource("Resource_diinw")
 
 [node name="PlayerCollision" type="RayCast2D" parent="."]
 target_position = Vector2(0, 124)

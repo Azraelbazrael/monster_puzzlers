@@ -1,14 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://cfqed3nxels06"]
+[gd_scene load_steps=12 format=3 uid="uid://cfqed3nxels06"]
 
 [ext_resource type="PackedScene" uid="uid://bxjh225dp1o" path="res://UI_layers/slot.tscn" id="1_8nd76"]
 [ext_resource type="Script" uid="uid://cyvei8l5lmjw4" path="res://UI_layers/hud_elements.gd" id="1_qa41y"]
 [ext_resource type="Script" uid="uid://b2cd2ehjeh0rw" path="res://UI_layers/inventory_slots.gd" id="1_v36sh"]
+[ext_resource type="FontFile" uid="uid://bbi76nolw4m6x" path="res://assets/fonts/pixellari/Pixellari.ttf" id="1_vx0lk"]
 [ext_resource type="Texture2D" uid="uid://ih6cudu5e0cc" path="res://assets/bar/bar_under.png" id="2_bfbvt"]
 [ext_resource type="Script" uid="uid://d3f2jrlfybdpi" path="res://UI_layers/player_inventory.gd" id="3_3mshm"]
 [ext_resource type="Texture2D" uid="uid://c4nau48rs403q" path="res://assets/bar/bar_progress.png" id="3_8qdjm"]
 [ext_resource type="Texture2D" uid="uid://db460ch2parqg" path="res://assets/bar/bar_over_asset.png" id="4_5gaxu"]
 [ext_resource type="PackedScene" uid="uid://c1vjw7bfp0mmc" path="res://UI_layers/recipe_canvas.tscn" id="5_hgqje"]
 [ext_resource type="Resource" uid="uid://1tswto083w7i" path="res://custom_resources/items/weapons/pickaxe.tres" id="7_funva"]
+
+[sub_resource type="Theme" id="Theme_oro2y"]
+default_font = ExtResource("1_vx0lk")
 
 [node name="HUD_elements" type="VBoxContainer" node_paths=PackedStringArray("stam_bar", "hp_bar", "min_sp", "max_sp", "min_hp", "max_hp")]
 anchors_preset = -1
@@ -25,6 +29,7 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
+theme = SubResource("Theme_oro2y")
 script = ExtResource("1_qa41y")
 stam_bar = NodePath("TopContainer/VboxContainer/Stam_Container/stam_bar")
 hp_bar = NodePath("TopContainer/VboxContainer/HP_Container/VBoxContainer/HBoxContainer/NinePatchRect/hp_bar")

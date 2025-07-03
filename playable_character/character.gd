@@ -1,10 +1,8 @@
 class_name PlayerCharacter
 extends CharacterBody2D
 signal player_dead
-signal player_hit
-signal player_hit_stop
-signal player_hurt
-signal player_unhurt
+signal is_hurt
+signal is_unhurt
 
 @onready var Camera: Camera2D = $Camera2D
 @onready var hud_ui: VBoxContainer = $CanvasLayer/HUD_elements as Hud_UI
@@ -105,7 +103,6 @@ func _process(delta: float) -> void:
 		if screenlayer:
 			screenlayer.show()
 	
-	#print(current_item)
 	update_stats()
 
 
@@ -176,10 +173,3 @@ func _on_hitbox_exited(area: Area2D) -> void:
 		target = null
 	if area.get_parent().is_in_group("Rock"):
 		target = null
-
-func accelerate_towards_point(point, delta):
-#	var movement = mov_direction * speed
-#	mov_direction = (point.position - position).normalized()
-#	velocity = movement + (knockback * 2)
-	#velocity = velocity.move_toward(mov_direction * speed, 200 * delta)
-	move_and_slide()

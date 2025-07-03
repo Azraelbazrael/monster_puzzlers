@@ -14,9 +14,7 @@ signal boss_time
 
 var map_name: StringName
 var boss_level: bool = false
+var player_party: Array[Node2D] ##untested party system for monster recruits
 
-#signal map_astar_grid(AStarGrid2D)
-
-#signal enemy_dead(object) ## currently unused
 
 var current_level = 0

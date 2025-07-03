@@ -4,6 +4,7 @@ extends Stats
 
 @export var max_stamina:= 1
 var stamina: int : set = set_stamina
+#var party: Array[Stats]
 
 func set_stamina(value : int) -> void:
 	stamina = clampi(value, 0, 999)

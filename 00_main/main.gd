@@ -247,15 +247,15 @@ func find_end_room():
 func start_playing():
 	Global.emit_signal("game_start")
 
-	player = Player.instantiate()
-	Global.emit_signal("obj_placed")
+	#player = Player.instantiate()
+	#Global.emit_signal("obj_placed")
 	
-	add_child(player)
+	#add_child(player)
 
 		#player.position = start_room.position
 		
 		
-	player.position = Map.rand_point * 32
+#	player.position = Map.rand_point * 32
 	if is_inside_tree():
 		await get_tree().process_frame
 	
@@ -265,7 +265,7 @@ func start_playing():
 
 func _on_game_over() -> void:
 	play_mode = false
-	player.queue_free()
+#	player.queue_free()
 	screen_layer.show()
 	
 func _on_game_start() -> void:

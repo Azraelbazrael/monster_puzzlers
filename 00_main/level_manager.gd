@@ -15,9 +15,11 @@ const m_item = preload("res://item_test_scenes/interactable_items/PickableItem.t
 const m_enemy = preload("res://enemy_characters/Enemy_Character.tscn")
 const m_rock = preload("res://dungeon_generator/rock.tscn")
 const m_boss = preload("res://enemy_characters/Boss_Character.tscn")
+const c_party = preload("res://enemy_characters/Befriended_Monster.tscn")
 
+var pc = preload("res://playable_character/character.tscn")
 
-
+var player = null
 
 
 func _ready() -> void:
@@ -48,13 +50,40 @@ func update_map():
 
 		
 func add_map_obj():
-	print(current_map.name)
+	#print(current_map.name)
 	if is_inside_tree():
+		add_player()
 		add_map_items()
 		add_map_enemies()
 		add_map_rocks()
 		add_map_bosses()
+		add_party_members()
 
+
+func add_player():
+	if !player:
+		var pchar = pc.instantiate()
+		get_tree().root.call_deferred("add_child", pchar)
+		player = pchar
+	
+	player.visible = true
+	Global.emit_signal("obj_placed")
+	player.global_position = tilemap.rand_point * tilemap.TILESIZE
+	
+	
+func add_party_members():
+	##untested way to keep track of and instantiate party members into new levels by not having the player hold the information
+	if Global.player_party.size() == 0:
+		return
+	for p in Global.player_party.size():
+		var party_mem: BefriendedMonster = c_party.instantiate() as BefriendedMonster
+		party_mem.stats = Global.player_party[p].stats
+		
+		party_mem.player = player
+		party_mem.global_position = player.position
+		get_tree().root.call_deferred("add_child", party_mem)
+		
+	print(Global.player_party)	
 func add_map_bosses():
 	
 	if current_map.map_bosses.size() == 0:
@@ -125,8 +154,8 @@ func clear_arrays():
 	var items = get_tree().get_nodes_in_group("PickableItems")
 	var enemies = get_tree().get_nodes_in_group("Enemy")
 	var rocks = get_tree().get_nodes_in_group("Rock")
-	
-
+	var party = get_tree().get_nodes_in_group("Party")
+	var playerch = get_tree().get_nodes_in_group("Player")
 	
 	for i in items:
 		i.queue_free()
@@ -136,6 +165,12 @@ func clear_arrays():
 		
 	for r in rocks:
 		r.queue_free()
+	
+	for p in party:
+		p.queue_free()
+	
+	for pl in playerch:
+		pl.visible = false
 		
 	change_map()	
 	

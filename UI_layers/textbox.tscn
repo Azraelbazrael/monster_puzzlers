@@ -1,6 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://hicct6hwqhhn"]
+[gd_scene load_steps=5 format=3 uid="uid://hicct6hwqhhn"]
 
 [ext_resource type="Script" uid="uid://2aeahrgdd4tv" path="res://UI_layers/textbox.gd" id="1_032rg"]
+[ext_resource type="FontFile" uid="uid://bbi76nolw4m6x" path="res://assets/fonts/pixellari/Pixellari.ttf" id="1_vhiay"]
+
+[sub_resource type="Theme" id="Theme_xiexq"]
+default_font = ExtResource("1_vhiay")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_3tfne"]
 
@@ -8,6 +12,7 @@
 offset_right = 976.0
 offset_bottom = 644.0
 scale = Vector2(0.5, 0.5)
+theme = SubResource("Theme_xiexq")
 script = ExtResource("1_032rg")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]

@@ -3,7 +3,7 @@ extends GridContainer
 signal item_changed
 
 func equip(item):
-	var character_child = get_tree().current_scene.get_node("Character")
+	var character_child = get_tree().root.get_node("Character")
 	if item !=null:
 		if character_child:
 			character_child.current_item = item

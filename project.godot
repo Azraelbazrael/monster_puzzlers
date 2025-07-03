@@ -33,6 +33,7 @@ Slot=""
 Rock=""
 PickableItems=""
 Projectile=""
+Party=""
 
 [input]
 
@@ -63,6 +64,7 @@ E={
 2d_physics/layer_2="Enemies"
 2d_physics/layer_3="Player"
 2d_physics/layer_4="Walls"
+2d_physics/layer_5="player_detection"
 
 [physics]
 

@@ -84,8 +84,13 @@ func _on_player_detection_area_entered(targ_d: Area2D) -> void:
 	if targ_d.get_parent().is_in_group("Player"):
 		target = targ_d.get_parent()
 		player_found.emit()
-		
-
+	if targ_d.get_parent().is_in_group("Weapon"):
+		weapon = targ_d.get_parent()	
+		if !weapon.weapon.is_weapon:
+			_befriend_check()
+	if targ_d.get_parent().is_in_group("Party"):
+		targ_d.get_parent().enemy = self
+#
 func _on_player_detection_area_exited(targ_d: Area2D) -> void:
 	if targ_d.get_parent().is_in_group("Player"):
 		target = null
@@ -97,8 +102,7 @@ func _on_hurtbox_entered(area: Area2D) -> void:
 				weapon.weapon.use_cost(weapon.get_parent().get_parent().character_stats)
 				_add_dmg_label(weapon.weapon.damage)
 				stats.take_damage(weapon.weapon.damage)
-		else:
-			_befriend_check()
+		
 func _on_hurtbox_exited(weapon: Area2D) -> void:
 	if weapon.get_parent().is_in_group("Weapon"):
 		weapon = null
@@ -113,6 +117,7 @@ func _befriend_check():
 			flag.append(stats.Triggers[i])
 		for f in flag.size():
 			if flag[f].item == weapon.weapon:
+				
 				emit_signal("befriended")
 
 
@@ -122,6 +127,8 @@ func _on_befriended() -> void:
 	friend.stats = stats
 	friend.position = global_position
 	get_tree().root.call_deferred("add_child", friend)
+	friend.player = target
+	Global.player_party.append(friend.duplicate())
 	queue_free()
 
 func accelerate_towards_point(point, delta):
