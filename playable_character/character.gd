@@ -83,17 +83,14 @@ func _input(event):
 		if current_item != null:
 			toggle_weapon_collision()
 		else:
-				pass
+			pass
+			
 	if event.is_action_pressed('F'):
 		if options_menu.visible == false:
 			options_menu.visible = true
 		elif options_menu.visible == true:
 			options_menu.visible = false	
 			
-	if event.is_action_pressed("ui_accept"):
-		if player_s.item:
-			current_item = null
-			use_item(player_s.item)
 			
 			
 func toggle_weapon_collision():
@@ -153,7 +150,15 @@ func _physics_process(delta):
 			if current_item !=null:
 				$Weapon/Weapon.position = $Weapon/right_pos.position
 				$Weapon/Weapon.scale.x = 1
-
+	
+	
+		
+	if Global.player_party.size() >= 1:
+		has_party = true
+		options_menu.monst_command_b.visible = true
+	else:
+		has_party = false
+		options_menu.monst_command_b.visible = false
 			
 		
 func add_item(item):

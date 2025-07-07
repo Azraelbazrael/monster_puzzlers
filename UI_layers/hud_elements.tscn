@@ -187,6 +187,7 @@ alignment = 2
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+theme_override_constants/outline_size = 11
 theme_override_font_sizes/font_size = 28
 text = "Press 'E' to Use"
 horizontal_alignment = 2
