@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://clxu3pvvi21e8"]
+[gd_scene load_steps=17 format=3 uid="uid://clxu3pvvi21e8"]
 
 [ext_resource type="Script" uid="uid://cna6q07tdh7om" path="res://playable_character/character.gd" id="1_yq3e2"]
 [ext_resource type="Resource" uid="uid://dx84dtkbq66da" path="res://playable_character/Player.tres" id="2_6inmr"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cyuiysi77n8d" path="res://assets/mc_default.png" id="4_8xblr"]
 [ext_resource type="PackedScene" uid="uid://bn3g6m1yo6o5s" path="res://battle/weapon.tscn" id="5_h2glg"]
 [ext_resource type="PackedScene" uid="uid://cfqed3nxels06" path="res://UI_layers/hud_elements.tscn" id="5_jqy6k"]
+[ext_resource type="PackedScene" uid="uid://bune3qrbycbro" path="res://UI_layers/options_menu.tscn" id="5_ytw7f"]
+[ext_resource type="Script" uid="uid://b2cd2ehjeh0rw" path="res://UI_layers/inventory_slots.gd" id="6_c0c67"]
 [ext_resource type="Script" uid="uid://bvpsio45nj0r7" path="res://states/state_machine.gd" id="7_gpoms"]
 [ext_resource type="Script" uid="uid://b4r87fyx11t3n" path="res://custom_resources/state_resources/player_states/player_idle.gd" id="8_8xblr"]
 
@@ -71,7 +73,14 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 metadata/_edit_lock_ = true
 
+[node name="Player_inventory" parent="CanvasLayer/HUD_elements/BottomContainer/VBoxContainer/VboxContainer/MarginContainer2/Panel/MarginContainer" index="0"]
+script = ExtResource("6_c0c67")
+ITEM = null
+
+[node name="OptionsMenu" parent="CanvasLayer" instance=ExtResource("5_ytw7f")]
+
 [node name="Weapon" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="Weapon" parent="Weapon" instance=ExtResource("5_h2glg")]
 
@@ -103,7 +112,4 @@ actor = NodePath("..")
 [connection signal="area_exited" from="Weapon/Weapon/Hitbox" to="." method="_on_hitbox_exited"]
 
 [editable path="CanvasLayer/HUD_elements"]
-[editable path="CanvasLayer/HUD_elements/recipe_canvas"]
-[editable path="CanvasLayer/HUD_elements/recipe_canvas/PanelContainer/RecipeMarginContainer/VBoxContainer/RecipeContainers/MarginContainer/Craft_grid/craft_slot2"]
-[editable path="CanvasLayer/HUD_elements/recipe_canvas/PanelContainer/RecipeMarginContainer/VBoxContainer/RecipeContainers/MarginContainer/Craft_grid/craft_slot"]
 [editable path="Weapon/Weapon"]

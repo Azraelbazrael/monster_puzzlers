@@ -4,12 +4,18 @@ signal player_dead
 signal is_hurt
 signal is_unhurt
 
+
+
 @onready var Camera: Camera2D = $Camera2D
 @onready var hud_ui: VBoxContainer = $CanvasLayer/HUD_elements as Hud_UI
 @onready var StateMachine: Node = $StateMachine as FiniteStateMachine
-
+@onready var canvas_layer: CanvasLayer = $CanvasLayer
+@onready var options_menu = $CanvasLayer/OptionsMenu
+@onready var weapon = $Weapon/Weapon
+@onready var player_s = $CanvasLayer/HUD_elements/BottomContainer/VBoxContainer/VboxContainer/MarginContainer2/Panel/MarginContainer/Player_inventory/Slot
 @export var speed = 350
 @export var damage_label: PackedScene
+
 
 @export var current_item: Item_resource:
 	set(value):
@@ -17,12 +23,11 @@ signal is_unhurt
 		if current_item != null:
 			set_held_item(value)
 		else:
-			pass
-		#	set_damage(1)
+			weapon.texture = null
 			
 @export var character_stats: Character_stats: set = set_character_stats
 @export var weapon_hitbox: Area2D
-#@export var s_timer := 1.5
+
 
 var hurt_by
 var target
@@ -31,10 +36,13 @@ var stamina_cooldown := 1.5
 var can_regen: bool
 var can_start_timer: bool
 var damage
+var can_befriend: bool = false
+
+var has_party: bool = false
 
 func _ready() -> void:
 	StateMachine.states = character_stats.states
-	#print(StateMachine.states)
+
 
 func set_character_stats(value: Character_stats) -> void:
 	character_stats = value.create_instance()
@@ -49,10 +57,9 @@ func update_character() -> void:
 
 
 func set_held_item(value: Item_resource) -> void:
-	$Weapon/Weapon.weapon = current_item
-	$Weapon/Weapon.texture = current_item.art
+	weapon.weapon = current_item
+	weapon.texture = current_item.art
 	$Weapon/Weapon.position = $Weapon/right_pos.position
-	Global.emit_signal("weapon_changed")
 	
 	
 	
@@ -77,7 +84,18 @@ func _input(event):
 			toggle_weapon_collision()
 		else:
 				pass
-
+	if event.is_action_pressed('F'):
+		if options_menu.visible == false:
+			options_menu.visible = true
+		elif options_menu.visible == true:
+			options_menu.visible = false	
+			
+	if event.is_action_pressed("ui_accept"):
+		if player_s.item:
+			current_item = null
+			use_item(player_s.item)
+			
+			
 func toggle_weapon_collision():
 	var deal_damage_zone_collision = weapon_hitbox.get_node("CollisionShape2D")
 	var wait_time: float = 0.5
@@ -104,6 +122,13 @@ func _process(delta: float) -> void:
 			screenlayer.show()
 	
 	update_stats()
+	
+	if current_item != null && current_item.is_weapon:
+		$CanvasLayer/HUD_elements/BottomContainer/VBoxContainer/TextPrompt.visible = true
+		$CanvasLayer/HUD_elements/BottomContainer/VBoxContainer/TextPrompt.text = "Press 'E' to ATTACK"
+	else:
+		$CanvasLayer/HUD_elements/BottomContainer/VBoxContainer/TextPrompt.visible = false
+	
 
 
 
@@ -132,12 +157,17 @@ func _physics_process(delta):
 			
 		
 func add_item(item):
-	var inventory = $CanvasLayer/HUD_elements/BottomContainer/VboxContainer/MarginContainer/Inventory/Slot_Container/Inventory_Slots
+	var inventory = $CanvasLayer/HUD_elements/BottomContainer/VBoxContainer/VboxContainer/MarginContainer/Inventory/Slot_Container/Inventory_Slots
 	
 	if inventory:
 		inventory.add_item(item)
 
-
+func use_item(item):
+	var inventory = $CanvasLayer/HUD_elements/BottomContainer/VBoxContainer/VboxContainer/MarginContainer2/Panel/MarginContainer/Player_inventory
+	
+	if inventory:
+		inventory.remove_item(item)		
+		
 func _check_hurtbox(area: Area2D) -> void:
 
 	if area.get_parent().is_in_group("Enemy"):
@@ -166,7 +196,6 @@ func _on_hitbox_entered(area: Area2D) -> void:
 		target = area.get_parent()
 	if area.get_parent().is_in_group("Rock"):
 		target = area.get_parent()
-		#print("HURTING", target)
 
 func _on_hitbox_exited(area: Area2D) -> void:
 	if area.get_parent().is_in_group("Enemy"):

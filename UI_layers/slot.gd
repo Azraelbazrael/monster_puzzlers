@@ -7,7 +7,7 @@ var recipe_handler = null
 		item = value
 		
 		if get_parent().name == "Player_inventory":
-			get_parent().equip(item)	
+			get_parent().equip(item)
 		
 			
 		if value !=null:
