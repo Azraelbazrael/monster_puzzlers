@@ -1,14 +1,20 @@
-[gd_scene load_steps=10 format=3 uid="uid://4apxre8qmijm"]
+[gd_scene load_steps=13 format=3 uid="uid://4apxre8qmijm"]
 
 [ext_resource type="Script" uid="uid://blgb0w5se4rvl" path="res://item_test_scenes/item_test_scene.gd" id="1_0ea5s"]
 [ext_resource type="TileSet" uid="uid://clr01r8bc543d" path="res://assets/tiles.tres" id="1_6c26f"]
 [ext_resource type="Script" uid="uid://c1utxc45fejt8" path="res://dungeon_generator/screen_layers.gd" id="4_fdt3l"]
 [ext_resource type="PackedScene" uid="uid://hicct6hwqhhn" path="res://UI_layers/textbox.tscn" id="4_w8q88"]
 [ext_resource type="Resource" uid="uid://8gjkinbrhl5c" path="res://custom_resources/stats/enemy_resouces/cerberus.tres" id="6_3rxvh"]
+[ext_resource type="Resource" uid="uid://dnbj2d2k1t0o4" path="res://custom_resources/stats/enemy_resouces/chaser.tres" id="6_82mb3"]
 [ext_resource type="PackedScene" uid="uid://clxu3pvvi21e8" path="res://playable_character/character.tscn" id="7_1pqcw"]
+[ext_resource type="Script" uid="uid://b4s8tn8fsuqku" path="res://custom_resources/state_resources/enemy_states/enemy_idle.gd" id="7_3rxvh"]
 [ext_resource type="PackedScene" uid="uid://cfcmdo4rjimke" path="res://enemy_characters/Enemy_Character.tscn" id="8_q0ori"]
 [ext_resource type="PackedScene" uid="uid://curjxjq3rmyv7" path="res://dungeon_generator/rock.tscn" id="8_vgxtk"]
 [ext_resource type="Resource" uid="uid://05jacqha5wwd" path="res://custom_resources/interactables/regular_rock.tres" id="9_82mb3"]
+
+[sub_resource type="Resource" id="Resource_dha8h"]
+script = ExtResource("7_3rxvh")
+metadata/_custom_type_script = "uid://b4s8tn8fsuqku"
 
 [node name="item_test_scene" type="Node2D"]
 script = ExtResource("1_0ea5s")
@@ -39,7 +45,10 @@ zoom = Vector2(0.5, 0.5)
 
 [node name="Enemy" parent="." instance=ExtResource("8_q0ori")]
 position = Vector2(371, 494)
-stats = ExtResource("6_3rxvh")
+stats = ExtResource("6_82mb3")
+
+[node name="StateMachine" parent="Enemy" index="5"]
+default_state = SubResource("Resource_dha8h")
 
 [node name="Rock" parent="." instance=ExtResource("8_vgxtk")]
 position = Vector2(362, 230)
@@ -55,3 +64,4 @@ position = Vector2(764, 492)
 [connection signal="visibility_changed" from="ScreenLayers" to="ScreenLayers" method="_on_visibility_changed"]
 
 [editable path="ScreenLayers/textbox"]
+[editable path="Enemy"]

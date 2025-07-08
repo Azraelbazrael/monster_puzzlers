@@ -3,7 +3,7 @@ class_name State
 
 var previous_state : State
 var actor: CharacterBody2D
-var target: PlayerCharacter
+var target: CharacterBody2D
 
 var state_name: StringName
  

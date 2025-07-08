@@ -25,6 +25,7 @@ art = ExtResource("1_wlg7t")
 damage = 3.0
 knockbak_mod = 0.5
 is_special_rock = false
+attack_speed = 0.0
 drops = Array[ExtResource("2_c8wrx")]([])
 bullets = Array[ExtResource("2_rlxow")]([])
 states = Dictionary[StringName, ExtResource("4_np2q1")]({

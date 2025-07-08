@@ -26,7 +26,7 @@ var knockback_dir = Vector2.ZERO
 var knockback = Vector2.ZERO
 
 
-var target
+var target: CharacterBody2D
 var weapon
 var is_damaged: bool = false
 var tilemap: TileMap
@@ -89,14 +89,15 @@ func _on_player_detection_area_entered(targ_d: Area2D) -> void:
 		if !weapon.weapon.is_weapon:
 			_befriend_check()
 	if targ_d.get_parent().is_in_group("Party"):
-		#print("p")
 		targ_d.get_parent().enemy = self
+		target = targ_d.get_parent()
 #
 func _on_player_detection_area_exited(targ_d: Area2D) -> void:
 	if targ_d.get_parent().is_in_group("Player"):
 		target = null
 	if targ_d.get_parent().is_in_group("Party"):
 		targ_d.get_parent().enemy = null
+		target = null
 		
 
 func _on_hurtbox_entered(area: Area2D) -> void:

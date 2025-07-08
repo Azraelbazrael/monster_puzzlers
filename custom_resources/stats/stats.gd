@@ -9,6 +9,7 @@ enum Type{PLAYER,MONSTER,INTERACTABLE}
 @export var damage: float
 @export var knockbak_mod: float
 @export var is_special_rock: bool = false
+@export var attack_speed: float
 
 @export_group("Item drops")
 @export var drops: Array[DropData]
