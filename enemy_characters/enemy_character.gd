@@ -122,9 +122,9 @@ func _befriend_check():
 			flag.append(stats.Triggers[i])
 		for f in flag.size():
 			if flag[f].item == weapon.weapon:
-				
-				target.use_item(target.player_s.item)
-				target.current_item = null
+				var p = get_tree().current_scene.get_node("Character")
+				p.use_item(p.player_s.item)
+				p.current_item = null
 				emit_signal("befriended")
 
 

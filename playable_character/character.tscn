@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://clxu3pvvi21e8"]
+[gd_scene load_steps=15 format=3 uid="uid://clxu3pvvi21e8"]
 
 [ext_resource type="Script" uid="uid://cna6q07tdh7om" path="res://playable_character/character.gd" id="1_yq3e2"]
 [ext_resource type="Resource" uid="uid://dx84dtkbq66da" path="res://playable_character/Player.tres" id="2_6inmr"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://bune3qrbycbro" path="res://UI_layers/options_menu.tscn" id="5_ytw7f"]
 [ext_resource type="Script" uid="uid://b2cd2ehjeh0rw" path="res://UI_layers/inventory_slots.gd" id="6_c0c67"]
 [ext_resource type="Script" uid="uid://bvpsio45nj0r7" path="res://states/state_machine.gd" id="7_gpoms"]
-[ext_resource type="Script" uid="uid://b4r87fyx11t3n" path="res://custom_resources/state_resources/player_states/player_idle.gd" id="8_8xblr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xco0j"]
 size = Vector2(50, 51)
@@ -29,10 +28,6 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gg6pd"]
 radius = 40.1995
-
-[sub_resource type="Resource" id="Resource_ytw7f"]
-script = ExtResource("8_8xblr")
-metadata/_custom_type_script = "uid://b4r87fyx11t3n"
 
 [node name="Character" type="CharacterBody2D" node_paths=PackedStringArray("weapon_hitbox") groups=["Player"]]
 texture_filter = 2
@@ -104,7 +99,6 @@ position = Vector2(0, -26)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("7_gpoms")
-default_state = SubResource("Resource_ytw7f")
 actor = NodePath("..")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_check_hurtbox"]

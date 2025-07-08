@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Stats" load_steps=13 format=3 uid="uid://05jacqha5wwd"]
+[gd_resource type="Resource" script_class="Stats" load_steps=14 format=3 uid="uid://05jacqha5wwd"]
 
 [ext_resource type="Script" uid="uid://bo3ep8hogvh5p" path="res://custom_resources/stats/stats.gd" id="1_e83q6"]
 [ext_resource type="Script" uid="uid://eej6d0dk2jmi" path="res://custom_resources/items/befriend_triggers.gd" id="1_v6cjh"]
@@ -9,6 +9,10 @@
 [ext_resource type="Script" uid="uid://dg5cpt0maie22" path="res://custom_resources/state_resources/state_resource.gd" id="5_tnjvy"]
 [ext_resource type="Script" uid="uid://dyfo0vatkdm0a" path="res://custom_resources/state_resources/rock_states/rock_idle.gd" id="7_pjmlb"]
 [ext_resource type="Script" uid="uid://cj3uknxku6uj" path="res://custom_resources/state_resources/rock_states/rock_destroy.gd" id="9_v6cjh"]
+
+[sub_resource type="Resource" id="Resource_v6cjh"]
+script = ExtResource("7_pjmlb")
+metadata/_custom_type_script = "uid://dyfo0vatkdm0a"
 
 [sub_resource type="Resource" id="Resource_wux4o"]
 script = ExtResource("2_ltg2v")
@@ -34,8 +38,10 @@ art = ExtResource("1_vaplt")
 damage = 0.0
 knockbak_mod = 0.0
 is_special_rock = false
+attack_speed = 0.0
 drops = Array[ExtResource("2_ltg2v")]([SubResource("Resource_wux4o")])
 bullets = Array[ExtResource("2_ejhlt")]([])
+default_state = SubResource("Resource_v6cjh")
 states = Dictionary[StringName, ExtResource("5_tnjvy")]({
 &"RockDestroy": SubResource("Resource_kc4ff"),
 &"RockIdle": SubResource("Resource_cqf68")

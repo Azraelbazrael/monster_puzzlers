@@ -32,5 +32,3 @@ func frame_update(_delta : float):
 func physics_update(_delta : float):
 	pass
  
-#func animation_finished(_anim_name: StringName):
-#	pass

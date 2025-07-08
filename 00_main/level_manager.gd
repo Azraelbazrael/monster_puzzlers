@@ -28,8 +28,6 @@ func _ready() -> void:
 	change_map()
 	update_map()
 	
-	#Global.map_name = current_map.name
-	#tilemap.map = current_map
 	Global.connect("game_start", add_map_obj)
 	Global.connect("game_over", clear_arrays)
 
@@ -52,7 +50,6 @@ func update_map():
 
 		
 func add_map_obj():
-	#print(current_map.name)
 	if is_inside_tree():
 		add_player()
 		add_map_items()
@@ -102,7 +99,6 @@ func add_map_bosses():
 			get_tree().root.call_deferred("add_child", boss)
 			
 			boss.global_position = get_parent().end_room.position
-			#print(boss.global_position)
 
 func add_map_items():
 	if current_map.map_items.size() == 0:

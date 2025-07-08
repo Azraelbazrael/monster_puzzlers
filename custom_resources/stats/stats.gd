@@ -16,7 +16,8 @@ enum Type{PLAYER,MONSTER,INTERACTABLE}
 @export var bullets: Array[projectile_resource]
 
 @export_group("States")
-
+@export var default_state: State
+@export var default_fstate: State
 @export var states: Dictionary[StringName, State] = {}
 @export var befriended_states: Dictionary[StringName, State] = {}
 

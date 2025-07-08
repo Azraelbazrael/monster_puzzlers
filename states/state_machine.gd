@@ -17,11 +17,19 @@ func _ready() -> void:
 		for state: StringName in states.keys():
 			states[state].transition.connect(_on_state_transition)
 			states[state].state_name = state
-			
-	#print(default_state)
+			#if actor.is_in_group("Enemy"):
+			#	default_state = states["EnemyIdle"]	
+			#elif actor.is_in_group("Party"):
+				#default_state = states["FriendIdle"]	
+	if actor.is_in_group("Player"):
+		default_state = actor.character_stats.default_state
+	elif actor.is_in_group("Party"):
+		default_state = actor.stats.default_fstate
+	else:
+		default_state = actor.stats.default_state	
+	#print(actor, default_state)
 	change_state(default_state)
- 	
-	#"res://custom_resources/state_resources/enemy_shoot.gd"
+
 
 func change_state(new_state : State):
 	var n_state = new_state.create_instance()

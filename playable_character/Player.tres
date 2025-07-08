@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character_stats" load_steps=13 format=3 uid="uid://dx84dtkbq66da"]
+[gd_resource type="Resource" script_class="Character_stats" load_steps=14 format=3 uid="uid://dx84dtkbq66da"]
 
 [ext_resource type="Texture2D" uid="uid://cyuiysi77n8d" path="res://assets/mc_default.png" id="1_557kk"]
 [ext_resource type="Script" uid="uid://eej6d0dk2jmi" path="res://custom_resources/items/befriend_triggers.gd" id="1_pgr83"]
@@ -8,6 +8,10 @@
 [ext_resource type="Script" uid="uid://dg5cpt0maie22" path="res://custom_resources/state_resources/state_resource.gd" id="4_mgdnr"]
 [ext_resource type="Script" uid="uid://b4r87fyx11t3n" path="res://custom_resources/state_resources/player_states/player_idle.gd" id="5_mgdnr"]
 [ext_resource type="Script" uid="uid://gixd6qnvlx0r" path="res://custom_resources/state_resources/player_states/player_damage.gd" id="6_ryvj4"]
+
+[sub_resource type="Resource" id="Resource_utpg0"]
+script = ExtResource("5_mgdnr")
+metadata/_custom_type_script = "uid://b4r87fyx11t3n"
 
 [sub_resource type="GDScript" id="GDScript_557kk"]
 script/source = "extends State
@@ -61,9 +65,12 @@ art = ExtResource("1_557kk")
 damage = 0.0
 knockbak_mod = 0.0
 is_special_rock = false
+attack_speed = 0.0
 drops = Array[ExtResource("2_vrgfc")]([])
 bullets = Array[ExtResource("2_pgr83")]([])
+default_state = SubResource("Resource_utpg0")
 states = Dictionary[StringName, ExtResource("4_mgdnr")]({
+&"": null,
 &"PlayerAttack": SubResource("Resource_pgr83"),
 &"PlayerDamage": SubResource("Resource_557kk"),
 &"PlayerIdle": SubResource("Resource_ryvj4")
