@@ -41,9 +41,6 @@ zoom = Vector2(0.5, 0.5)
 position = Vector2(371, 494)
 stats = ExtResource("6_3rxvh")
 
-[node name="Character" parent="." instance=ExtResource("7_1pqcw")]
-position = Vector2(728, 489)
-
 [node name="Rock" parent="." instance=ExtResource("8_vgxtk")]
 position = Vector2(362, 230)
 stats = ExtResource("9_82mb3")
@@ -51,6 +48,9 @@ stats = ExtResource("9_82mb3")
 [node name="Enemy2" parent="." instance=ExtResource("8_q0ori")]
 position = Vector2(776, 192)
 stats = ExtResource("6_3rxvh")
+
+[node name="Character" parent="." instance=ExtResource("7_1pqcw")]
+position = Vector2(764, 492)
 
 [connection signal="visibility_changed" from="ScreenLayers" to="ScreenLayers" method="_on_visibility_changed"]
 

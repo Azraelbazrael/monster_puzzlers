@@ -177,16 +177,16 @@ func _check_hurtbox(area: Area2D) -> void:
 
 	if area.get_parent().is_in_group("Enemy"):
 		hurt_by = area.get_parent()
-		emit_signal("player_hurt")
+		emit_signal("is_hurt")
 		
 	elif area.get_parent().is_in_group("Projectile"):
 		hurt_by = area.get_parent()
-		emit_signal("player_hurt")
+		emit_signal("is_hurt")
 
 func _on_hurtbox_exited(area: Area2D) -> void:
 	if area.get_parent().is_in_group("Enemy"):
 		hurt_by = null
-		emit_signal("player_unhurt")
+		emit_signal("is_unhurt")
 
 func _add_dmg_label():	
 	damage = damage_label.instantiate()

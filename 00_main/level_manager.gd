@@ -17,7 +17,9 @@ const m_rock = preload("res://dungeon_generator/rock.tscn")
 const m_boss = preload("res://enemy_characters/Boss_Character.tscn")
 const c_party = preload("res://enemy_characters/Befriended_Monster.tscn")
 
+
 var pc = preload("res://playable_character/character.tscn")
+var options_menu = preload("res://UI_layers/options_menu.tscn")
 
 var player = null
 
@@ -84,6 +86,8 @@ func add_party_members():
 		get_tree().root.call_deferred("add_child", party_mem)
 		
 	print(Global.player_party)	
+	
+	
 func add_map_bosses():
 	
 	if current_map.map_bosses.size() == 0:
@@ -164,6 +168,7 @@ func clear_arrays():
 		e.queue_free()
 		
 	for r in rocks:
+		print(rocks)
 		r.queue_free()
 	
 	for p in party:

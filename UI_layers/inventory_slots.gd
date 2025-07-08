@@ -9,15 +9,15 @@ func _ready() -> void:
 
 
 func equip(item: Item_resource):
-	var character_child = get_tree().root.get_node("Character")
+#	var character_child = get_tree().root.get_node("Character")
 	var char_child = get_tree().current_scene.get_node("Character")
 	
 	if	item != null:
 		add_item(item)
-		if character_child:
-			character_child.current_item = item
-		elif char_child:
-			char_child.current_item = item
+	#	if character_child:
+	#		character_child.current_item = item
+	#	elif char_child:
+		char_child.current_item = item
 		
 		
 	else:

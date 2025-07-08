@@ -78,6 +78,7 @@ script = ExtResource("6_c0c67")
 ITEM = null
 
 [node name="OptionsMenu" parent="CanvasLayer" instance=ExtResource("5_ytw7f")]
+visible = false
 
 [node name="Weapon" type="Node2D" parent="."]
 metadata/_edit_lock_ = true

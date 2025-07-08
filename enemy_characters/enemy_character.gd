@@ -87,9 +87,9 @@ func _on_player_detection_area_entered(targ_d: Area2D) -> void:
 	if targ_d.get_parent().is_in_group("Weapon"):
 		weapon = targ_d.get_parent()	
 		if !weapon.weapon.is_weapon:
-			
 			_befriend_check()
 	if targ_d.get_parent().is_in_group("Party"):
+		#print("p")
 		targ_d.get_parent().enemy = self
 #
 func _on_player_detection_area_exited(targ_d: Area2D) -> void:
@@ -121,8 +121,9 @@ func _befriend_check():
 			flag.append(stats.Triggers[i])
 		for f in flag.size():
 			if flag[f].item == weapon.weapon:
-				target.current_item = null
+				
 				target.use_item(target.player_s.item)
+				target.current_item = null
 				emit_signal("befriended")
 
 
